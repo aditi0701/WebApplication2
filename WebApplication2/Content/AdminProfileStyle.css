@@ -108,8 +108,8 @@
     position: fixed;
     width: 100%;
     z-index: 100;
-    padding: 0 20px;
     transition: all 0.5s ease;
+    margin-left: 0 px;
 }
 
 .sidebar.active ~ .home-section nav {
@@ -118,20 +118,14 @@
 }
 /*9999999999999999999999999999999999999*/
 .home-section nav .sidebar-button {
-    /*display: flex;
-    align-items: center;
-    font-size: 24px;
-    font-weight: 500;
-    color: white;*/
-
     display: flex;
     align-items: center;
     font-size: 83%;
     font-weight: 500;
     color: #0a3059;
     background-color: white;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 18px;
+    padding-bottom: 18px;
 }
 
 nav .sidebar-button i {
@@ -140,13 +134,6 @@ nav .sidebar-button i {
 }
 /*999999999999999999999999999999999999999999999*/
 .home-section nav .adminSitetext {
-    /*font-size: 15px;
-    background-color: #0311cc;
-    border-radius: 3px;
-    padding-left: 8px;
-    padding-right: 8px;
-    margin-left: 20px;*/
-
     font-size: 18px;
     border-style: solid;
     border-width: thin;
@@ -159,18 +146,14 @@ nav .sidebar-button i {
 }
 
 .home-section nav .dop {
-    padding-left: 0px;
-    padding-right: 0px;
-    margin-left:  0px;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-left: 1 0px;
 }
 
 /*999999999999999999999999999999999999999*/
 .home-section nav .bannerImage {
-    /*padding-left: 15px;
-    padding-right: 5px;
-    margin-top: 10px;*/
-
-     width: 65px;
+    width: 65px;
     height: auto;
 }
 /* End of Sidebar and header */
