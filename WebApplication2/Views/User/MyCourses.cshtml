@@ -1,0 +1,169 @@
+﻿@model WebApplication2.ViewModel.AdminViewModel
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/ApplyCoursesStyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Available Courses </title>
+    <script>var chatbot_id = 2967; !function () { var t, e, a = document, s = "smatbot-chatbot"; a.getElementById(s) || (t = a.createElement("script"), t.id = s, t.type = "text/javascript", t.src = "http://3.111.19.117/js/chatbot.js", e = a.getElementsByTagName("script")[0], e.parentNode.insertBefore(t, e)) }();</script>
+    <script src="http://3.111.19.117/cdnfiles/fingerprint2.min.js"></script>
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul class="nav-links">
+            <li>
+                <a>
+                    <form method="post" action="/user/learnerprofile">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <i class='bx bxs-user'></i>
+                        <button style="background: none; border: none;" type="submit">
+                            <span class="links_name">My Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/updateuser" method="post">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <i class='bx bxs-user'></i>
+                        <button style="background: none; border: none;" type="submit">
+                            <span class="links_name">Update Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/mycourses" method="post">
+                        <i class='bx bx-book'></i>
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <span class="links_name">My Courses</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/applycourses" method="post">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <i class='bx bxs-book'></i>
+                        <button style="background: none; border: none;" type="submit">
+                            <span class="links_name">Apply Course</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a href="http://11.0.0.183/" target="_blank">
+                    <i class="bx bx-message"></i>
+                    <span class="links_name">SmatBot</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/login" method="get">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <i class='bx bxs-log-out'></i>
+                        <button style="background: none; border: none;" type="submit">
+                            <span class="links_name">Logout</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                @*<i class='bx bx-menu sidebarBtn'></i>*@
+                <span class="bannerImage">
+                    <img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
+                </span>
+                <span class="dop"><b>DIRECTORATE OF PERSONNEL</b></span>
+            </div>
+            <span class="adminSitetext"> User Site</span>
+
+        </nav>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container" style="margin-left:300px;margin-right:50px;">
+                <table class="table" id="apply">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Branch</th>
+                            <th>Duration(Months)</th>
+                            <th>Location</th>
+                            <th>Commencement Date</th>
+                            <th>Last Date to Apply</th>
+                            <th>Status</th>
+                            <th>Pending Since</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            //applied courses of the user
+                            string email = Session["Email"].ToString();
+                            var userdata = Model.Users.FirstOrDefault(s => s.email.Equals(email));
+                            var data = Model.UserCourses.Where(s => s.user_id.Equals(userdata.user_id));
+
+                            foreach (var x in data)
+                            {
+                                var detail = Model.Course.FirstOrDefault(s => s.course_id.Equals(x.course_id));
+                                if (detail != null)
+                                {
+                                    
+                                    <tr>
+                                        <th>@detail.course_name</th>
+                                        <th>@detail.branch</th>
+                                        <th>@detail.duration</th>
+                                        <th>@detail.location</th>
+                                        <th>@detail.commencement_date</th>
+                                        <th>@detail.due_date</th>
+                                        
+                                        <th>@x.status</th>
+                                        <th>@x.applyTime</th>
+                                    </tr>
+                                }
+
+                            }
+                            
+                        }
+                    </tbody>
+                </table>
+        </div>
+    </section>
+
+    <script>
+
+        let sidebar = document.querySelector(".sidebar");
+
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+
+
+        sidebarBtn.onclick = function () {
+
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            }
+            else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+</body>
+</html>
+
+

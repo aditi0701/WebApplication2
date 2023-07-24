@@ -1,0 +1,1127 @@
+﻿@* this is an experimental page, it is not used in the main website *@
+@model WebApplication2.ViewModel.AdminViewModel
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var dropZone = document.getElementById("dropZone");
+            var container = document.createElement("div");
+
+            container.id = "contain" + data;
+            dropZone.appendChild(container);
+            container.appendChild(document.getElementById(data));
+
+
+
+            if (data == "rank") {
+
+                document.getElementById("contain" + data).innerHTML += `<td>
+
+                                                           <br/>
+
+                                                        <div class="close1" onclick="Delete(contain`+ data + `)"> &times; </div>
+
+                                                    <label style="width=10px;height:auto;" for="SLT"> <input style="width:100px;height:25px;" type="checkbox" id="SLT" class="Rank" name="rankC" value="SLT">SLT</label><br>
+
+                                                    <label for="LT"><input style="width:100px;height:25px;" type="checkbox" id="LT" name="rankC" class="Rank" value="LT">LT</label><br>
+
+                                                    <label for="LT CDR"> <input style="width:100px;height:25px;" type="checkbox" id="LT CDR" class="Rank" name="rankC" value="LT CDR">LT CDR</label><br>
+
+                                                    <label for="CDR"> <input style="width:100px;height:25px;" type="checkbox" id="CDR" class="Rank" name="rankC" value="CDR">CDR</label><br>
+
+                                                    <label for="CAPT"><input style="width:100px;height:25px;" type="checkbox" id="CAPT" class="Rank" name="rankC" value="CAPT">CAPT</label><br>
+
+                                                    <label for="CMDE"><input style="width:100px;height:25px;" type="checkbox" id="CMDE" class="Rank" name="rankC" value="CMDE">CMDE</label><br>
+                                                </td>
+</div>
+                                                <br/>`
+
+            }
+            else if (data == "yearsOfServices") {
+
+
+                document.getElementById("contain" + data).innerHTML += `<div class="close1" onclick="Delete(contain` + data + `)"> &times; </div><input name="yearsOfServicesC" type="number" class="textbox1"
+                                                           placeholder="Enter duration in years" min="1" max="50"><br/>`
+            }
+            else if (data == "age") {
+                document.getElementById("contain" + data).innerHTML += `<div class="close1" onclick="Delete(contain` + data + `)"> &times; </div><!DOCTYPE html>
+
+       <div class="range_container">
+        <div class="sliders_control">
+            <input id="fromSlider" type="range" value="10" min="0" max="100" />
+            <input id="toSlider" type="range" value="30" min="0" max="100" />
+        </div>
+        <div class="form_control">
+            <div class="form_control_container">
+                <div class="form_control_container__time">Min</div>
+                <input class="form_control_container__time__input" type="number" id="fromInput" value="10" min="0"
+                    max="100" />
+            </div>
+            <div class="form_control_container">
+                <div class="form_control_container__time">Max</div>
+                <input class="form_control_container__time__input" type="number" id="toInput" value="30" min="0"
+                    max="100" />
+            </div>
+        </div>
+        
+    </div>`
+                run();
+            }
+            else if (data == "gender") {
+                document.getElementById("contain" + data).innerHTML += `<div class="close1" onclick="Delete(contain` + data + `)"> &times; </div>
+<select name="genderC" required>
+    <option value=""> Choose the Gender </option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Both">Both</option>
+</select>
+<br />`
+            }
+            else if (data == "medical") {
+                document.getElementById("contain" + data).innerHTML += `<div class="close1" onclick="Delete(contain` + data + `)"> &times; </div>
+<select name="medicalC" required>
+    <option value=""> Select medical status </option>
+    <option value="S1A1">S1A1</option>
+    <option value="S2A1">S2A1</option>
+    <option value="S1A2">S1A2</option>
+    <option value="S2A2">S2A2</option>
+</select>
+<br />`
+            }
+            else if (data == "residualService") {
+                document.getElementById("contain" + data).innerHTML += `<div class="close1" onclick="Delete(contain` + data + `)"> &times; </div>
+<input name="residualServiceC" type="number" class="textbox1"
+       placeholder=" Enetr years of Residual Service" min="2" max="70" required>
+<br />`
+            }
+            else if (data == "qualification") {
+                document.getElementById("contain" + data).innerHTML += `<div class="close1" onclick="Delete(contain` + data + `)"> &times; </div>
+<select name="qualificationC" required>
+    <option value="">
+        Select your qualification
+    </option>
+    <option value="B.TECH(CSE)">B.TECH(CSE)</option>
+    <option value="B.TECH(IT)">B.TECH(IT)</option>
+    <option value="B.TECH(ECE)">B.TECH(ECE)</option>
+    <option value="B.TECH(MECH)">B.TECH(MECH)</option>
+    <option value="BBA">BBA</option>
+    <option value="BCA">BCA</option>
+    <option value="MCA">MCA</option>
+    <option value="MBA">MBA</option>
+    <option value="MTECH">MTECH</option>
+    <option value="PHD">PHD</option>
+    <option value="Other">Other</option>
+</select>
+<br />`
+            }
+            else if (data == "acrMarks") {
+                document.getElementById("contain" + data).innerHTML += `<div class="close1" onclick="Delete(contain` + data + `)"> &times; </div>
+<input name="acrMarksC" type="number" class="textbox1"
+       placeholder="Enter Required ACR Marks" required>
+<br />`
+            }
+            else if (data == "watchKeeping") {
+                document.getElementById("contain" + data).innerHTML += `<div class="close1" onclick="Delete(contain)"> &times; </div>
+<select name="watchKeepingC" required>
+    <option value=""> Choose The Option </option>
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+</select>
+<br />`
+            }
+        }
+        function allowDrop2(ev) {
+            ev.preventDefault();
+        }
+
+        function drag2(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop2(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var dropZone2 = document.getElementById("dropZone2");
+            var container = document.createElement("div");
+
+            container.id = "contain" + data;
+            dropZone2.appendChild(container);
+            container.appendChild(document.getElementById(data));
+
+            if (data == "path") {
+                document.getElementById("contain" + data).innerHTML += `<div class="close1" onclick="Delete(contain` + data + `)"> &times; </div><textarea id="Path" name="pathI" placeholder="Type career path" class="textbox1" rows="7" cols="50" required>`
+            }
+            else if (data == "posting") {
+                document.getElementById("contain" + data).innerHTML += `<div class="close1" onclick="Delete(contain` + data + `)"> &times; </div><select name="postingI" id="Posting" required>
+<option value=""> Select Posting Location </option>
+<option value="INS KALAVARI">INS KALVARI</option>
+<option value="INS VELA">INS VELA</option>
+<option value="INS ZAMORIN">INS ZAMORIN</option>
+<option value="INS VALSURA">INS VALSURA</option>
+<option value="INS SHIVAJI">INS SHIVAJI</option>
+<option value="INS INDIA">INS INDIA</option>
+<option value="INS DELHI">INS DELHI</option>
+<option value="INS VIKRANT">INS VIKRANT</option>
+<option value="INS VIKRAMADITYA">INS VIKRAMADITYA</option>
+<option value="INS MUMBAI">INS MUMBAI</option>
+<option value="INS KOLKATA">INS KOLKATA</option>
+<option value="INS VALSURA">INS VALSURA</option>
+                                    </select>`
+            }
+            else if (data == "field") {
+                document.getElementById("contain" + data).innerHTML += `<div class="close1" onclick="Delete(contain` + data + `)"> &times; </div><select name="fieldI" id="fieldOfPosting" required>
+<option value=""> Select the field</option>
+<option value="STAFF POSTING">STAFF POSTING </option>
+<option value="INSTRUCTOR">INSTRUCTOR</option>
+<option value="SPECILIASED DIVER">SPECILIASED DIVER</option>
+<option value="AFLOAT POSTING">AFLOAT POSTING</option>
+<option value="SHIP POSTING">SHIP POSTING</option>
+                                    </select>`
+            }
+
+        }
+    </script>
+<meta charset="UTF-8">
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<link href="~/Content/demoStyle.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    .range_container {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: 100px auto;
+    }
+
+    .sliders_control {
+        position: relative;
+        min-height: 30px;
+    }
+
+    .form_control {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        font-size: 16px;
+        color: #635a5a;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        pointer-events: all;
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px #C6C6C6;
+        cursor: pointer;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        -webkit-appearance: none;
+        pointer-events: all;
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px #C6C6C6;
+        cursor: pointer;
+    }
+
+    input[type=range]::-webkit-slider-thumb:hover {
+        background: #f7f7f7;
+    }
+
+    input[type=range]::-webkit-slider-thumb:active {
+        box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+        -webkit-box-shadow: inset 0 0 3px #387bbe, 0 0 9px #387bbe;
+    }
+
+    input[type="number"] {
+        color: #8a8383;
+        width: 50px;
+        height: 20px;
+        font-size: 16px;
+        border: none;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        opacity: 1;
+    }
+
+    input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 2px;
+        width: 100%;
+        position: absolute;
+        background-color: #C6C6C6;
+        pointer-events: none;
+    }
+
+    #fromSlider {
+        height: 0;
+        z-index: 1;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 50px;
+        padding: 70px;
+        border: 1px solid #888;
+        width: 70%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        margin-left: 40px;
+        margin-top: 0%;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .close1 {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        margin-left: 80px;
+        margin-top: 0%;
+    }
+
+        .close1:hover,
+        .close1:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+</style>
+
+</head>
+
+<body>
+<div class="sidebar">
+
+<ul class="nav-links">
+<li>
+<a>
+<form method="post" action="/admin/adminprofile">
+<input type="hidden" name="email" value="@Session["Email"]">
+<button style="background: none; border: none;" type="submit">
+<i class='bx bxs-user'></i>
+<span class="links_name">My Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+<li>
+<a>
+<form action="/admin/courselist" method="post">
+
+<input type="hidden" value="@Session["Email"]" name="email">
+<button style="background: none; border: none;" type="submit">
+<i class='bx bx-book'></i>
+<span class="links_name">
+                                Course
+                                List
+                            </span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+
+<li>
+<a>
+<form action="/admin/addCourses" method="post">
+
+<input type="hidden" value="@Session["Email"]" name="email">
+<button style="background: none; border: none;" type="submit">
+<i class='bx bx-add-to-queue'></i>
+<span class="links_name">
+                                Add
+                                Course
+                            </span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+<li>
+<a href="http://3.111.19.117/" target="_blank">
+<i class="bx bx-message"></i>
+<span class="links_name">SmatBot</span>
+                </a>
+            </li>
+<li>
+<a>
+<form action="/admin/register" method="get">
+
+<button style="background: none; border: none;" type="submit">
+<i class='bx bx-log-out'></i>
+<span class="links_name">Logout</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+        </ul>
+    </div>
+<section class="home-section">
+<nav>
+<div class="sidebar-button">
+<i class='bx bx-menu sidebarBtn'></i>
+<span class="bannerImage">
+<img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
+                </span>
+<span class="dop">Directorate of Personnel</span>
+<span class="adminSitetext"> Admin Site</span>
+            </div>
+        </nav>
+    </section>
+    <!--<div class="pagecard">
+        <form action="/admin/existing" method="POST" id="existing">
+            <div class="card">
+                <div class="detailsc">
+                    SELECT EXISTING COURSE
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <select name="courseSelection" onchange="select_existed()">
+                            <option value="">Select course name</option>
+                            @*@foreach (var x in Model.Course)*@
+                            {
+                                <option value=" @*@x.course_name*@">@*@@x.course_name*@</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="row"><div class="col">OR</div></div>
+            </div>-->
+    @*@{
+            var details = ViewBag.message;
+
+            var selected_name = details["course_name"];
+            var selected_branch = details["branch"];
+            var selected_location = details["location"];
+            var selected_duration = details["duration"];
+            var selected_cdate = details["commencement_date"];
+            var selected_ddate = details["due_date"];
+        }*@
+    <!--</form>
+    </div>-->
+<div class="pagecard">
+<form method="post" action="/admin/coursedetails" onsubmit="return confirm('Do you really want to submit the form?');">
+
+<div class="card">
+<div class="detailsc">
+                    COURSE DETAILS
+                </div>
+<div class="row">
+<div class="col">
+                        Course Name:
+<input type="text" name="course_name" id="courseName" placeholder="Type the course name" class="textbox1" required>
+                    </div>
+                </div>
+
+<div class="row">
+<div class="col">
+                        Location:
+<select name="location" id="Location" required>
+<option value="">Select course location</option>
+<option value="INS HAMLA">INS HAMLA</option>
+<option value="INS VALSURA">INS VALSURA</option>
+<option value="INS SHIVAJI">INS SHIVAJI</option>
+<option value="INS VENDURUTHY">INS VENDURUTHY</option>
+<option value="INS ABHIMANYU">INS ABHIMANYU</option>
+<option value="INS ANGRE">INS ANGRE</option>
+<option value="INS ZAMORIN">INS ZAMORIN</option>
+<option value="INS INDIA">INS INDIA</option>
+                        </select>
+                    </div>
+<div class="col">
+                        Branch:
+<select name="branch" id="Branch" required>
+<option value="">Select the Branch</option>
+<option value="ELECTRICAL">ELECTRICAL</option>
+<option value="ENGINEERING">ENGINEERING</option>
+<option value="ATC">ATC</option>
+<option value="EXECUTIVE">EXECUTIVE</option>
+<option value="EDUCATION">EDUCATION</option>
+<option value="LOGISTICS">LOGISTICS</option>
+<option value="PILOT">PILOT</option>
+                        </select>
+                    </div>
+<div class="col">
+                        Commencement date:
+<input name="commencement_date" id="Date" type="date" class="textbox1"
+       placeholder="Enter start date of Course" required>
+
+                    </div>
+                </div>
+<div class="row">
+
+<div class="col">
+                        Course Duration:
+<input name="duration" type="number" id="Duration" class="textbox1"
+       placeholder="Enter duration in weeks" min="1" max="100" required>
+                    </div>
+<div class="col">
+                        Last date to apply:
+<input name="due_date" type="date" class="textbox1" placeholder="Enter start date of Course" required>
+
+                    </div>
+<div class="col">
+                        Admin:
+<select name="admin" required>
+<option value="Option 1" disabled selected hidden>Select admin</option>
+<option value="ce">CDR per 'E'</option>
+<option value="cx">CDR per 'X'</option>
+<option value="cl">CDR per 'L'</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+<div class="card">
+<div class="conditionc">COURSE CONDITIONS</div>
+
+<div class="card">
+
+<table class="table" style="margin-left:100px;">
+<thead class="thead-dark">
+<tr>
+<th>Conditions</th>
+<th>Condition value</th>
+
+                            </tr>
+                        </thead>
+<tbody style="background:red">
+<tr style="background-color:blue;">
+<td style="width: 20%; height: auto; border: 2px solid black; background: whitesmoke; ">
+<ul style="list-style:none">
+                                        @foreach (var item in Model.Condition)
+                                        {
+
+<li>
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+<div style="   font-size: x-large; height: 50px; width: fit-content; padding: 3px;" id="@item.condition_name" draggable="true" ondragstart="drag(event)">
+                                                        @item.condition_name.ToUpper()<br />
+                                                    </div>
+                                                </div>
+
+                                            </li>
+<br />
+
+                                            @*<script>console.log("Hi")</script>*@
+                                        }
+<button type="button" onclick="addInputField()" id="add">Add Condition</button>
+                                    </ul>
+                                </td>
+<td id="dropZone" style="width: 150px; font-size: x-large; height: auto; border: 2px solid black;border-left:none; background: whitesmoke " ondrop="drop(event)" ondragover="allowDrop(event)">
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            </div>
+<div class="card">
+<div class="implicationc">COURSE IMPLICATION</div>
+<table class="table" style="margin-left:100px;">
+<thead class="thead-dark">
+<tr>
+<th>Conditions</th>
+<th>Condition value</th>
+
+                        </tr>
+                    </thead>
+<tbody style="background:red">
+<tr style="background-color:blue;">
+<td style="width: 20%; height: auto; border: 2px solid black; background: whitesmoke; ">
+<ul style="list-style:none">
+
+<li>
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+<div style="   font-size: x-large; height: 50px; width: fit-content; padding: 3px;" id="path" draggable="true" ondragstart="drag(event)">
+                                                PATH CAREER
+<br />
+                                            </div>
+                                        </div>
+                                    </li>
+
+<li>
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+<div style="   font-size: x-large; height: 50px; width: fit-content; padding: 3px;" id="field" draggable="true" ondragstart="drag(event)">
+                                                FIELD OF POSTING
+<br />
+                                            </div>
+                                        </div>
+                                    </li>
+
+<li>
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+<div style="   font-size: x-large; height: 50px; width: fit-content; padding: 3px;" id="posting" draggable="true" ondragstart="drag(event)">
+                                                POSTING LOCATION
+<br />
+                                            </div>
+                                        </div>
+
+                                    </li>
+
+
+
+<br />
+<button type="button" onclick="addInputField2()" id="add">Add Implication</button>
+                                </ul>
+                            </td>
+<td id="dropZone2" style="width: 150px; font-size: x-large; height: auto; border: 2px solid black;border-left:none; background: whitesmoke " ondrop="drop2(event)" ondragover="allowDrop2(event)">
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+<div class="row">
+<div class="col-publish-btn">
+<button type="button" id="btn" onclick="getDetails()">Preview</button>
+
+                    </div>
+                </div>
+
+<div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+<div class="modal-content">
+
+<div class="close"> &times; </div>
+
+                        @{
+                            var dateAndTime = DateTime.Now;
+                            var date = dateAndTime.Date.ToString();
+
+                            var getDate = date.Split('/');
+
+                            String s = dateAndTime.ToString("HH:mm");
+                            var time = s.Split(':');
+
+                        }
+<div>
+<table style="margin-top:50px;">
+<tr>
+<td style="width: 900px">
+<table>
+<tr>
+<td style="width: 150px">DTG</td>
+<td style="width: 150px">@getDate[1]@time[0]@time[1]</td>
+                                            </tr>
+<tr>
+<td>FROM</td>
+<td>NHQ</td>
+                                            </tr>
+<tr>
+<td>TO</td>
+<td>221IG</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+
+<td>
+<table>
+<tr>
+<td>
+<select name="" required>
+<option value="">Select</option>
+<option value="FLASH">FLASH (Z)</option>
+<option value="OPERATIONAL IMMEDIATE">OPERATIONAL IMMEDIATE (O)</option>
+<option value="PRIORITY">PRIORITY (P)</option>
+<option value="ROUTINE"> ROUTINE (R)</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+<tr>
+<td>
+<select name="" required>
+<option value="">Select</option>
+<option value="TOPSEC">TOPSEC</option>
+<option value="SEC">SEC</option>
+<option value="CONFD">CONFD</option>
+<option value="RESTD">RESTD</option>
+<option value="UNCLAS">UNCLAS</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+<hr>
+
+<div>
+<script>
+
+
+</script>
+
+
+<p>
+                                    For TRI-SERVICES USE SELF CANCELLING VOLUNTEERS REQUIRED OF RANK <span id="rankRequired"></span> of <span id="branch"></span>  for <span id="course_name"> COURSE </span> at <span id="location"></span>
+                                    FOR DURATION OF <span id="duration"></span> WEEKS STARTING FROM <span id="date"></span> TO <span id="enddate"></span>.
+<br />
+                                    UPON CLEARING THE COURSE THE PATH OF CAREER FOR THE OFFICER WILL BE :<span id="pathOfCareer"></span>
+<br />
+                                    QUALIFIED OFFICERS WILL BE CONSIDERED FOR APPOINTMENT TO <span id="postingLocation"></span> AS <span id="field_Posting"></span>
+                                </p>
+
+                            </div>
+
+
+<input type="submit" value="PUBLISH" id="submit" />
+                        </div>
+                    </div>
+                </div>
+
+
+        </form>
+    </div>
+
+<script>
+
+    function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
+        const [from, to] = getParsed(fromInput, toInput);
+        fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+        if (from > to) {
+            fromSlider.value = to;
+            fromInput.value = to;
+        } else {
+            fromSlider.value = from;
+        }
+    }
+
+    function controlToInput(toSlider, fromInput, toInput, controlSlider) {
+        const [from, to] = getParsed(fromInput, toInput);
+        fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+        setToggleAccessible(toInput);
+        if (from <= to) {
+            toSlider.value = to;
+            toInput.value = to;
+        } else {
+            toInput.value = from;
+        }
+    }
+
+    function controlFromSlider(fromSlider, toSlider, fromInput) {
+        const [from, to] = getParsed(fromSlider, toSlider);
+        fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+        if (from > to) {
+            fromSlider.value = to;
+            fromInput.value = to;
+        } else {
+            fromInput.value = from;
+        }
+    }
+
+    function controlToSlider(fromSlider, toSlider, toInput) {
+        const [from, to] = getParsed(fromSlider, toSlider);
+        fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+        setToggleAccessible(toSlider);
+        if (from <= to) {
+            toSlider.value = to;
+            toInput.value = to;
+        } else {
+            toInput.value = from;
+            toSlider.value = from;
+        }
+    }
+
+    function getParsed(currentFrom, currentTo) {
+        const from = parseInt(currentFrom.value, 10);
+        const to = parseInt(currentTo.value, 10);
+        return [from, to];
+    }
+
+    function fillSlider(from, to, sliderColor, rangeColor, controlSlider) {
+        const rangeDistance = to.max - to.min;
+        const fromPosition = from.value - to.min;
+        const toPosition = to.value - to.min;
+        controlSlider.style.background = `linear-gradient(
+      to right,
+      ${sliderColor} 0%,
+      ${sliderColor} ${(fromPosition) / (rangeDistance) * 100}%,
+      ${rangeColor} ${((fromPosition) / (rangeDistance)) * 100}%,
+      ${rangeColor} ${(toPosition) / (rangeDistance) * 100}%, 
+      ${sliderColor} ${(toPosition) / (rangeDistance) * 100}%, 
+      ${sliderColor} 100%)`;
+    }
+
+    function setToggleAccessible(currentTarget) {
+        const toSlider = document.querySelector('#toSlider');
+        if (Number(currentTarget.value) <= 0) {
+            toSlider.style.zIndex = 2;
+        } else {
+            toSlider.style.zIndex = 0;
+        }
+    }
+
+    function run() {
+
+
+        const fromSlider = document.querySelector('#fromSlider');
+        const toSlider = document.querySelector('#toSlider');
+        const fromInput = document.querySelector('#fromInput');
+        const toInput = document.querySelector('#toInput');
+        fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+        setToggleAccessible(toSlider);
+
+        fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);
+        toSlider.oninput = () => controlToSlider(fromSlider, toSlider, toInput);
+        fromInput.oninput = () => controlFromInput(fromSlider, fromInput, toInput, toSlider);
+        toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
+    }
+
+        //let sidebar = document.querySelector(".sidebar");
+
+        //let sidebarBtn = document.querySelector(".sidebarBtn");
+
+
+        //sidebarBtn.onclick = function () {
+
+        //    sidebar.classList.toggle("active");
+        //    if (sidebar.classList.contains("active")) {
+        //        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        //    }
+        //    else
+        //        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        //}
+
+
+        @*function select_existed() {
+            document.getElementById("existing").submit();
+            //console.log("Hii");
+            @{
+                var details = ViewBag.message;
+
+                //var selected_name = details["course_name"];
+                var selected_branch = details["branch"];
+                var selected_location = details["location"];
+                var selected_duration = details["duration"];
+                var selected_cdate = details["commencement_date"];
+                var selected_ddate = details["due_date"];
+
+                Response.Write(selected_branch);
+            }
+        }*@
+
+
+    </script>
+
+<script>
+            function addInputField() {
+
+
+                // Prompt user for input field type
+                var fieldType = prompt("Enter the input field type (text, number, select, radio, checkbox):");
+
+                // Prompt user for input field name
+                var fieldName = prompt("Enter the input field name:");
+
+                if (fieldType == null || fieldName == null) {
+                    return;
+                }
+                let cnt = 0;
+                if (fieldType === "text" || fieldType === "number") {
+
+                    cnt = cnt + 1;
+
+                    dropZone.innerHTML += `< div id = ` + fieldName + ` >
+
+<div class="close1" onclick="Delete(`+ fieldName + `)"> &times; </div>
+                                       <div style="   font-size: x-large; height: 50px; width: fit-content; padding: 3px;">`+ fieldName + `</div>
+                                        <input type=`+ fieldType + ` id = "1` + fieldName + `" name = "` + fieldName + `C" required />
+                                        </div > `
+                }
+                else if (fieldType === "select") {
+                    // Prompt user for options
+                    var options = prompt("Enter options for the select dropdown (comma-separated):");
+                    var optionsArray = options.split(",");
+
+                    var select = document.createElement("select");
+                    select.name = fieldName + "C";
+
+                    // Create option elements and add them to the select dropdown
+                    for (var i = 0; i < optionsArray.length; i++) {
+                        var option = document.createElement("option");
+                        option.value = optionsArray[i];
+                        option.text = optionsArray[i];
+                        select.appendChild(option);
+                    }
+                    var implication_div = document.createElement("div");
+                    implication_div.id = fieldName;
+                    console.log(implication_div.id);
+                    console.log(fieldName);
+                    implication_div.innerHTML += `
+
+                < div class="close1" onclick = "Delete(  ` + fieldName + `)" > & times; </div > `
+                    implication_div.innerHTML += `< div style = "   font-size: x-large; height: 50px; width: fit-content; padding: 3px;" > ` + fieldName + `</div > `;
+                    implication_div.appendChild(select);
+
+                    dropZone.appendChild(implication_div);
+
+
+                }
+                else if (fieldType == "radio") {
+                    var options = prompt("Enter options for the select dropdown (comma-separated):");
+                    var optionsArray = options.split(",");
+                    var container = document.createElement("div");
+                    container.id = fieldName + "C";
+                    container.innerHTML += `
+                < div class="close1" onclick = "Delete(  ` + container.id + `)" > & times; </div > `
+                    container.innerHTML += `< div style = "   font-size: x-large; height: 50px; width: fit-content; padding: 3px;" > ` + fieldName + `</div > `
+                    for (var i = 0; i < optionsArray.length; i++) {
+                        container.innerHTML += `< input style = "width:100px;height:25px;"  type = "radio" id = ` + optionsArray[i] + ` name = ` + fieldName + ` value = ` + optionsArray[i] + ` >
+                <label for=`+ optionsArray[i] + ` > ` + optionsArray[i] + `</label > `
+                    }
+                    dropZone.appendChild(container);
+                }
+
+                else if (fieldType == "checkbox") {
+                    var options = prompt("Enter options for the select dropdown (comma-separated):");
+                    var optionsArray = options.split(",");
+                    var aa = document.createElement("div");
+                    aa.id = fieldName;
+                    aa.innerHTML += `< div class="close1" onclick = "Delete(  ` + aa.id + `)" > & times; </div > `
+                    aa.innerHTML += `< div style = "   font-size: x-large; height: 50px; width: fit-content; padding: 3px;" > ` + fieldName + `</div > `
+                    for (var i = 0; i < optionsArray.length; i++) {
+                        aa.innerHTML += `< input style = "width:100px;height:25px;"  type = "checkbox" name = "` + optionsArray[i] + `C" value = ` + optionsArray[i] + ` >
+                <label for=`+ optionsArray[i] + ` > ` + optionsArray[i] + `</label > `
+                    }
+                    dropZone.appendChild(aa);
+                }
+
+            }
+
+            function Delete(r) {
+
+
+
+                var id = r.id;
+                console.log(id)
+                const element = document.getElementById(id);
+
+                element.remove();
+
+            }
+
+            function addInputField2() {
+
+
+                // Prompt user for input field type
+                var fieldType = prompt("Enter the input field type (text, number, select,checkbox,radio):");
+
+                // Prompt user for input field name
+                var fieldName = prompt("Enter the input field name:");
+
+                if (fieldType == null || fieldName == null) {
+                    return;
+                }
+
+                if (fieldType === "text" || fieldType === "number") {
+
+
+                    dropZone2.innerHTML += `< div id = ` + fieldName + ` >
+<div class="close1" onclick="Delete(`+ fieldName + `)"> &times; </div>
+                                       <div style="   font-size: x-large; height: 50px; width: fit-content; padding: 3px;">`+ fieldName + `</div>
+                                        <input type=`+ fieldType + ` id = "1` + fieldName + `" name = "` + fieldName + `I" required />
+                                        </div > `
+                }
+                else if (fieldType === "select") {
+                    // Prompt user for options
+                    var options = prompt("Enter options for the select dropdown (comma-separated):");
+                    var optionsArray = options.split(",");
+
+                    var select = document.createElement("select");
+                    select.name = fieldName + "I";
+
+                    // Create option elements and add them to the select dropdown
+                    for (var i = 0; i < optionsArray.length; i++) {
+                        var option = document.createElement("option");
+                        option.value = optionsArray[i];
+                        option.text = optionsArray[i];
+                        select.appendChild(option);
+                    }
+                    var implication_div2 = document.createElement("div");
+                    implication_div2.id = fieldName;
+                    console.log(implication_div2.id);
+                    console.log(fieldName);
+                    implication_div2.innerHTML += `< div class="close1" onclick = "Delete(  ` + fieldName + `)" > & times; </div > `
+                    implication_div2.innerHTML += `< div style = "   font-size: x-large; height: 50px; width: fit-content; padding: 3px;" > ` + fieldName + `</div > `;
+                    implication_div2.appendChild(select);
+
+                    dropZone2.appendChild(implication_div2);
+
+                }
+                else if (fieldType == "radio") {
+                    var options = prompt("Enter options for the select dropdown (comma-separated):");
+                    var optionsArray = options.split(",");
+                    var container2 = document.createElement("div");
+                    container2.id = fieldName;
+                    container2.innerHTML += `< div class="close1" onclick = "Delete(  ` + container2.id + `)" > & times; </div > `
+                    container2.innerHTML += `< div style = "   font-size: x-large; height: 50px; width: fit-content; padding: 3px;" > ` + fieldName + `</div > `
+                    for (var i = 0; i < optionsArray.length; i++) {
+                        container2.innerHTML += `< input style = "width:100px;height:25px;"  type = "radio" id = ` + optionsArray[i] + ` name = "` + fieldName + `I" value = ` + optionsArray[i] + ` >
+                <label for=`+ optionsArray[i] + ` > ` + optionsArray[i] + `</label > `
+                    }
+                    dropZone2.appendChild(container2);
+                }
+
+                else if (fieldType == "checkbox") {
+                    var options = prompt("Enter options for the select dropdown (comma-separated):");
+                    var optionsArray = options.split(",");
+                    var aa2 = document.createElement("div");
+                    aa2.id = fieldName;
+                    aa2.innerHTML += `< div class="close1" onclick = "Delete(  ` + aa2.id + `)" > & times; </div > `
+                    aa2.innerHTML += `< div style = "   font-size: x-large; height: 50px; width: fit-content; padding: 3px;" > ` + fieldName + `</div > `
+                    for (var i = 0; i < optionsArray.length; i++) {
+                        aa2.innerHTML += `< input style = "width:100px;height:25px;"  type = "checkbox" name = "I` + optionsArray[i] + `I" value = ` + optionsArray[i] + ` >
+                <label for=`+ optionsArray[i] + ` > ` + optionsArray[i] + `</label > `
+                    }
+                    dropZone2.appendChild(aa2);
+                }
+            }
+
+
+
+
+
+            // Get the modal
+            var modal = document.getElementById("myModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("btn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal
+            btn.onclick = function () {
+                modal.style.display = "block";
+                getDetails();
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            function getDetails() {
+
+
+
+                var name = document.getElementById("courseName").value;
+                var rank = document.querySelector(".Rank:checked").value;
+                var location = document.querySelector("#Location").value;
+                var duration = document.querySelector("#Duration").value;
+                var posting = document.querySelector("#Posting").value;
+                var fieldOfPosting = document.querySelector("#fieldOfPosting").value;
+                var path = document.querySelector("#Path").value;
+                var date = document.querySelector("#Date").value;
+                var end_date = new Date(Date.parse(date) + duration * 7 * 60 * 60 * 24 * 1000).toISOString().split('T')[0];
+                var branch = document.querySelector("#Branch").value;
+                var checkedValue = null;
+                var checkboxes = document.getElementsByName('rank[]');
+                var vals = "";
+                for (var i = 0, n = checkboxes.length; i < n; i++) {
+                    if (checkboxes[i].checked) {
+                        vals += "," + checkboxes[i].value;
+                    }
+                }
+                if (vals) vals = vals.substring(1);
+                console.log(vals);
+                console.log(rank);
+                console.log(posting);
+                console.log(fieldOfPosting);
+
+                document.querySelector("#rankRequired").innerHTML = vals;
+                document.querySelector("#location").innerHTML = location;
+                document.querySelector("#course_name").innerHTML = name;
+                document.querySelector("#postingLocation").innerHTML = posting;
+                document.querySelector("#field_Posting").innerHTML = fieldOfPosting;
+                document.querySelector("#duration").innerHTML = duration;
+                document.querySelector("#pathOfCareer").innerHTML = path;
+                document.querySelector("#date").innerHTML = date;
+                document.querySelector("#enddate").innerHTML = end_date;
+                document.querySelector("#branch").innerHTML = branch;
+
+            }
+
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,251 @@
+﻿
+
+
+@model WebApplication2.ViewModel.AdminViewModel
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/updateUserStyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Available Courses </title>
+    <script>var chatbot_id = 2967; !function () { var t, e, a = document, s = "smatbot-chatbot"; a.getElementById(s) || (t = a.createElement("script"), t.id = s, t.type = "text/javascript", t.src = "http://3.111.19.117/js/chatbot.js", e = a.getElementsByTagName("script")[0], e.parentNode.insertBefore(t, e)) }();</script>
+    <script src="http://3.111.19.117/cdnfiles/fingerprint2.min.js"></script>
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul class="nav-links">
+            <li>
+                <a>
+                    <form method="post" action="/user/learnerprofile">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-user'></i>
+                            <span class="links_name">My Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/updateuser" method="post">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-user'></i>
+                            <span class="links_name">Update Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/mycourses" method="post">
+
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-book'></i>
+                            <span class="links_name">My Courses</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/applycourse" method="post">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-book'></i>
+                            <span class="links_name">Apply Course</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/login" method="get">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <i class='bx bxs-log-out'></i>
+                        <button style="background: none; border: none;" type="submit">
+                            <span class="links_name">Logout</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="bannerImage">
+                    <img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
+                </span>
+                <span class="dop">Directorate of Personnel</span>
+                <span class="adminSitetext">User Site</span>
+            </div>
+        </nav>
+    </section>
+
+    <div class="wrapper">
+        <section class="form signup" id="fm">
+            <header> Update Profile </header>
+            <form action="/user/update" method="POST">
+                @{
+                    string email = Session["Email"].ToString();
+                    var prevdata = Model.Users.First(s => s.email.Equals(email));
+
+                }
+                <h3>@Session["Error"]</h3>
+                <div class="name-details">
+                    <div class="field input">
+                        <label>Full Name</label>
+                        <input type="text" name="name" value="@prevdata.name" required>
+                    </div>
+                    <div class="rank-select">
+                        <div class="field input">
+                            <label>Rank</label>
+                            <select name="rank" required>
+                                <option value="@prevdata.rank">@prevdata.rank</option>
+                                <option value="SLT">SLT</option>
+                                <option value="LT">LT</option>
+                                <option value="LT CDR">LT CDR</option>
+                                <option value="CDR">CDR</option>
+                                <option value="CMDE">CMDE</option>
+                                <option value="CAPT">CAPT</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field input">
+                    <label>Email Address</label>
+                    <input type="email" name="email" value="@prevdata.email" required>
+                </div>
+                <div class="rank-gender">
+                    <div class="field input">
+                        <label>Branch</label>
+                        <select name="branch" required>
+                            <option value="@prevdata.branch">@prevdata.branch</option>
+                            <option value="ELECTRICAL">ELECTRICAL</option>
+                            <option value="ENGINEERING">ENGINEERING</option>
+                            <option value="ATC">ATC</option>
+                            <option value="EXECUTIVE">EXECUTIVE</option>
+                            <option value="EDUCATION">EDUCATION</option>
+                            <option value="LOGISTICS">LOGISTICS</option>
+                        </select>
+                    </div>
+                    <div class="field input">
+                        <label>Gender</label>
+                        <select name="gender" required>
+                            <option value="@prevdata.gender"> @prevdata.gender </option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="rank-gender">
+                    <div class="field input">
+                        <label>Medicals</label>
+                        <select name="medical" required>
+                            <option value="@prevdata.medical"> @prevdata.medical </option>
+                            <option value="S1A1">S1A1</option>
+                            <option value="S2A1">S2A1</option>
+                            <option value="S1A2">S1A2</option>
+                            <option value="S2A2">S2A2</option>
+                        </select>
+
+
+                    </div>
+                    <div class="field input">
+                        <label>Qualification</label>
+                        <select name="qualification" required>
+                            <option value="@prevdata.qualification">@prevdata.qualification </option>
+                            <option value="B.TECH(CSE)">B.TECH(CSE)</option>
+                            <option value="B.TECH(IT)">B.TECH(IT)</option>
+                            <option value="B.TECH(ECE)">B.TECH(ECE)</option>
+                            <option value="B.TECH(MECH)">B.TECH(MECH)</option>
+                            <option value="BBA">BBA</option>
+                            <option value="BCA">BCA</option>
+                            <option value="MCA">MCA</option>
+                            <option value="MBA">MBA</option>
+                            <option value="MTECH">MTECH</option>
+                            <option value="PHD">PHD</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="rank-gender">
+                    <div class="field input">
+                        <label>Field of location</label>
+                        <select name="location" required>
+                            <option value="@prevdata.location">@prevdata.location</option>
+                            <option value="STAFF POSTING">STAFF POSTING </option>
+                            <option value="INSTRUCTOR">INSTRUCTOR</option>
+                            <option value="SUBMARINE">SUBMARINE</option>
+                            <option value="SPECILIASED DIVER">SPECILIASED DIVER</option>
+                            <option value="AFLOAT POSTING">AFLOAT POSTING</option>
+                            <option value="SHIP POSTING">SHIP POSTING</option>
+                        </select>
+
+
+                    </div>
+                    <div class="field input">
+                        <label>Posting</label>
+                        <select name="posting" required>
+                            <option value="@prevdata.posting"> @prevdata.posting</option>
+                            <option value="INS KALAVARI">INS KALAVARI</option>
+                            <option value="INS VELA">INS VELA</option>
+                            <option value="INS ZAMORIN">INS ZAMORIN</option>
+                            <option value="INS VALSURA">INS VALSURA</option>
+                            <option value="INS SHIVAJI">INS SHIVAJI</option>
+                            <option value="INS INDIA">INS INDIA</option>
+                            <option value="INS DELHI">INS DELHI</option>
+                            <option value="INS VIKRANT">INS VIKRANT</option>
+                            <option value="INS VIKRAMADITYA">INS VIKRAMADITYA</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="name-details">
+                    <div class="field input">
+                        <label>Age</label>
+                        <input type="number" name="age" value="@prevdata.age" required>
+                    </div>
+                    <div class="field input">
+                        <label>Service Duration</label>
+                        <input type="Number" name="yearsOfServices" value="@prevdata.yearsOfServices" required>
+                    </div>
+                </div>
+
+
+                <div class="field input">
+                    <label>Password</label>
+                    <input type="password" name="password" value="@prevdata.password" required>
+                    <i class="fas fa-eye"></i>
+                </div>
+
+
+                <div class="field button">
+                    <input type="submit" name="submit" value="Update">
+                </div>
+            </form>
+    <div class="link">Already have an account? <a href="/user/login">SignIn</a></div>
+    </section>
+    </div>
+
+
+
+
+</body>
+</html>
+

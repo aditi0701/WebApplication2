@@ -1,0 +1,368 @@
+﻿@model WebApplication2.ViewModel.AdminViewModel
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/courseListStyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        .button-17 {
+            align-items: center;
+            appearance: none;
+            background-color: #fff;
+            border-radius: 24px;
+            border-style: none;
+            box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+            box-sizing: border-box;
+            color: #3c4043;
+            cursor: pointer;
+            display: inline-flex;
+            fill: currentcolor;
+            font-family: "Google Sans",Roboto,Arial,sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            height: 48px;
+            justify-content: center;
+            letter-spacing: .25px;
+            line-height: normal;
+            max-width: 100%;
+            overflow: visible;
+            padding: 2px 24px;
+            position: relative;
+            text-align: center;
+            text-transform: none;
+            transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: auto;
+            will-change: transform,opacity;
+            z-index: 0;
+            margin: 10px;
+        }
+
+            .button-17:hover {
+                background: #F6F9FE;
+                color: #174ea6;
+            }
+
+            .button-17:active {
+                box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+                outline: none;
+            }
+
+            .button-17:focus {
+                outline: none;
+                border: 2px solid #4285f4;
+            }
+
+            .button-17:not(:disabled) {
+                box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+            }
+
+                .button-17:not(:disabled):hover {
+                    box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+                }
+
+                .button-17:not(:disabled):focus {
+                    box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+                }
+
+                .button-17:not(:disabled):active {
+                    box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+                }
+
+            .button-17:disabled {
+                box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+
+        <ul class="nav-links">
+            <li>
+                <a>
+                    <form method="post" action="/admin/adminprofile">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-user'></i>
+                            <span class="links_name">My Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form method="get" action="/admin/updateadmin">
+
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-user'></i>
+                            <span class="links_name">Update Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+
+                    <form action="/admin/courselist" method="post">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-book'></i>
+                            <span class="links_name">Course List</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+
+
+
+            <li>
+                <a>
+                    <form action="/admin/addcourses" method="post">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-add-to-queue'></i>
+                            <span class="links_name">
+                                Add
+                                Course
+                            </span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a href="http://11.0.0.183/" target="_blank">
+                    <i class="bx bx-message"></i>
+                    <span class="links_name">SmatBot</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/admin/login" method="get">
+                        <button style="background: none; border: none;" type="submit" onsubmit="return confirm('Are you sure you want to logout?');">
+                            <i class='bx bx-log-out'></i>
+                            <span class="links_name">Logout</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="bannerImage">
+                    <img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
+                </span>
+                <span class="dop">Directorate of Personnel</span>
+                <span class="adminSitetext"> Admin Site</span>
+            </div>
+        </nav>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container" style="margin-left:300px;margin-right:50px;">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Gender</th>
+                        <th>Age</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        //fetching the course id when the particular course is selected in courselist page
+                        int course_id = Int16.Parse(ViewBag.id);
+                        var admin = Session["Name"];  // current admin name
+
+                        var n = Model.Users.Count();
+
+                        //users eligible for a particular course
+                        foreach (var item in Model.Users)
+                        {
+                            // course conditions of selected course
+                            var data = Model.CourseCondition.Where(s => s.course_id.Equals(course_id)).ToArray();
+
+                            //checking whether user has applied or not
+                            var uc = Model.UserCourses.Where(s => s.course_id.Equals(course_id) && s.user_id.Equals(item.user_id)).ToArray();
+                            var status = "Not applied";
+
+                            // if count not equal to 0 the status is shown otherwise not applied
+                            if (uc.Count() != 0)
+                            {
+                                status = uc[0].status;
+                            }
+
+
+                            bool flag = true;
+
+                            //checking the eligibility of a particular user for a specific course
+                            for (var i = 0; i < data.Length; i++)
+                            {
+                                var mv = Model.Condition.FirstOrDefault(s => s.condition_id.Equals(data[i].condition_id));
+
+                                var temp = mv.condition_name;
+
+                                if (temp.Equals("rank"))
+                                {
+
+                                    if (!item.rank.Equals(data[i].condition_value))
+                                    {
+                                        flag = false;
+                                    }
+                                }
+                                if (temp.Equals("minAge"))
+                                {
+                                    if (item.age < Int16.Parse(data[i].condition_value))
+                                    {
+                                        flag = false;
+                                    }
+                                }
+                                if (temp.Equals("maxAge"))
+                                {
+                                    if (item.age > Int16.Parse(data[i].condition_value))
+                                    {
+                                        flag = false;
+                                    }
+                                }
+                                if (temp.Equals("qualification"))
+                                {
+                                    if (!item.qualification.Equals(data[i].condition_value))
+                                    {
+                                        flag = false;
+                                    }
+                                }
+                                if (temp.Equals("gender"))
+                                {
+                                    if (!data[i].condition_value.Equals("Both") && !item.gender.Equals(data[i].condition_value))
+                                    {
+                                        flag = false;
+                                    }
+                                }
+                                if (temp.Equals("medical"))
+                                {
+                                    if (!item.medical.Equals(data[i].condition_value))
+                                    {
+                                        flag = false;
+                                    }
+                                }
+                                if (temp.Equals("yearsOfServices"))
+                                {
+                                    var tt = Int16.Parse(data[i].condition_value);
+                                    if (!(item.yearsOfServices == tt))
+                                    {
+                                        flag = false;
+                                    }
+                                }
+                                if (temp.Equals("acrMarks"))
+                                {
+                                    var tt = Int16.Parse(data[i].condition_value);
+                                    if (!(item.acrMarks >= tt))
+                                    {
+                                        flag = false;
+
+                                    }
+                                }
+                            }
+
+                            //if flag is true user is eligible and the details is shown
+                            if (flag == true)
+                            {
+                                <tr>
+                                    <th>@item.name</th>
+                                    <th>@item.email</th>
+                                    <th>@item.gender</th>
+                                    <th>@item.age</th>
+                                    <th style="white-space:nowrap;">
+                                        @{
+                                            //string lst_char = admin.ToString().Substring(admin.ToString().Length - 2);
+                                            //int temp = Int16.Parse(lst_char.);
+                                            // if pending request is at the stage of current admin then approve and reject button is shown
+                                            if (status.Equals("Pending_" + @admin))
+                                            {
+                                                <form action="/admin/approve" method="POST" id="@course_id+form">
+                                                    <input type="hidden" value="@item.user_id" name="user">
+                                                    <input type="hidden" value="@admin" name="admin" />
+                                                    <input type="hidden" value="@course_id" name="link">
+                                                </form>
+                                                <button type="submit" form="@course_id+form" class='btn btn-default button-17' role="button">Approve</button>
+
+                                                <form action="/admin/reject" method="POST" id="@course_id+reject">
+                                                    <input type="hidden" value="@item.user_id" name="user">
+                                                    <input type="hidden" value="@admin" name="admin" />
+                                                    <input type="hidden" value="@course_id" name="link">
+                                                     
+                                                    @*remark only if rejecting*@
+                                                </form>
+                                                
+                                                <button type="submit" form="@course_id+reject" class='btn btn-default button-17' role="button" onclick="func()">Reject</button>
+                                                @*<textarea id="remark" name="remark" value=" "></textarea>
+                                                <form method="POST" action="/admin/message">
+                                                    <script>
+                                                        
+                                                        
+                                                    </script>
+                                                </form>*@
+                                            }
+                                            //Else the status is shown
+                                            else
+                                            {
+                                                @status;
+                                            }
+
+                                        }
+                                    </th>
+                                </tr>
+
+
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+            <div style="display:flex;justify-content:center;align-items:center;">
+                <a href="/admin/courselist"><button type="button" class="button-17" role="button">Back to CourseList</button></a>
+            </div>
+        </div>
+    </section>
+  
+    <script>
+        function func() {
+            document.getElementById("remark").style.display = "block";
+        }
+        let sidebar = document.querySelector(".sidebar");
+
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+
+
+        sidebarBtn.onclick = function () {
+
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            }
+            else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+</body>
+
+</html>
+
+
+

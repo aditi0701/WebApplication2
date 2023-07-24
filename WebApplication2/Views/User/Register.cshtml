@@ -1,0 +1,186 @@
+﻿@model WebApplication2.context.user
+
+<html lang="en">
+<!-- Registration page for user -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/userRegisterStyle.css" />
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    </style>
+    <title>DOP SignUp</title>
+</head>
+
+<body>
+
+    <div class="home-section">
+        <nav>
+            <span class="bannerImage">
+                <img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
+            </span>
+        </nav>
+    </div>
+
+    <div class="wrapper">
+        <section class="form signup">
+            <header> SignUp </header>
+            <form action="/user/register" method="POST">
+                <h3>@Session["Error"]</h3>
+                <div class="name-details">
+                    <div class="field input">
+                        <label>Full Name</label>
+                        <input type="text" name="name" placeholder="Full name" required>
+                    </div>
+                    <div class="rank-select">
+                        <div class="field input">
+                            <label>Rank</label>
+                            <select name="rank" required>
+                                <option value="">Select your rank</option>
+                                <option value="SLT">SLT</option>
+                                <option value="LT">LT</option>
+                                <option value="LT CDR">LT CDR</option>
+                                <option value="CDR">CDR</option>
+                                <option value="CMDE">CMDE</option>
+                                <option value="CAPT">CAPT</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="field input">
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <div class="rank-gender">
+                    <div class="field input">
+                        <label>Branch</label>
+                        <select name="branch" required>
+                            <option value="">Select your branch</option>
+                            <option value="ELECTRICAL">ELECTRICAL</option>
+                            <option value="ENGINEERING">ENGINEERING</option>
+                            <option value="ATC">ATC</option>
+                            <option value="EXECUTIVE">EXECUTIVE</option>
+                            <option value="EDUCATION">EDUCATION</option>
+                            <option value="LOGISTICS">LOGISTICS</option>
+                        </select>
+                    </div>
+                    <div class="field input">
+                        <label>Gender</label>
+                        <select name="gender" required>
+                            <option value=""> Select your gender </option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="rank-gender">
+                    <div class="field input">
+                        <label>Medicals</label>
+                        <select name="medical" required>
+                            <option value=""> Select your status </option>
+                            <option value="S1A1">S1A1</option>
+                            <option value="S2A1">S2A1</option>
+                            <option value="S1A2">S1A2</option>
+                            <option value="S2A2">S2A2</option>
+                        </select>
+
+
+                    </div>
+                    <div class="field input">
+                        <label>Qualification</label>
+                        <select name="qualification" required>
+                            <option value=""> Select your qualification </option>
+                            <option value="B.TECH(CSE)">B.TECH(CSE)</option>
+                            <option value="B.TECH(IT)">B.TECH(IT)</option>
+                            <option value="B.TECH(ECE)">B.TECH(ECE)</option>
+                            <option value="B.TECH(MECH)">B.TECH(MECH)</option>
+                            <option value="BBA">BBA</option>
+                            <option value="BCA">BCA</option>
+                            <option value="MCA">MCA</option>
+                            <option value="MBA">MBA</option>
+                            <option value="MTECH">MTECH</option>
+                            <option value="PHD">PHD</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="rank-gender">
+                    <div class="field input">
+                        <label>Field of location</label>
+                        <select name="location" required>
+                            <option value=""> Select your field</option>
+                            <option value="STAFF POSTING">STAFF POSTING </option>
+                            <option value="INSTRUCTOR">INSTRUCTOR</option>
+                            <option value="SUBMARINE">SUBMARINE</option>
+                            <option value="SPECILIASED DIVER">SPECILIASED DIVER</option>
+                            <option value="AFLOAT POSTING">AFLOAT POSTING</option>
+                            <option value="SHIP POSTING">SHIP POSTING</option>
+                        </select>
+
+
+                    </div>
+                    <div class="field input">
+                        <label>Posting</label>
+                        <select name="posting" required>
+                            <option value=""> Select your location </option>
+                            <option value="INS KALAVARI">INS KALAVARI</option>
+                            <option value="INS VELA">INS VELA</option>
+                            <option value="INS ZAMORIN">INS ZAMORIN</option>
+                            <option value="INS VALSURA">INS VALSURA</option>
+                            <option value="INS SHIVAJI">INS SHIVAJI</option>
+                            <option value="INS INDIA">INS INDIA</option>
+                            <option value="INS DELHI">INS DELHI</option>
+                            <option value="INS VIKRANT">INS VIKRANT</option>
+                            <option value="INS VIKRAMADITYA">INS VIKRAMADITYA</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="name-details">
+                    <div class="field input">
+                        <label>Age</label>
+                        <input type="number" name="age" placeholder="Age in years" required>
+                    </div>
+                    <div class="field input">
+                        <label>Service Duration</label>
+                        <input type="Number" name="yearsOfServices" placeholder="Service in years" required>
+                    </div>
+                </div>
+
+
+                <div class="field input">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Enter new password" required>
+                    <i class="fas fa-eye"></i>
+                </div>
+
+
+                <div class="field button">
+                    <input type="submit" name="submit" value="SignUp">
+                </div>
+            </form>
+            <div class="link">Already have an account? <a href="/user/login">SignIn</a></div>
+        </section>
+    </div>
+    <script>
+        const pswrdField = document.querySelector(".form input[type='password']"),
+            toggleIcon = document.querySelector(".form .field i");
+        toggleIcon.onclick = () => {
+            if (pswrdField.type === "password") {
+                pswrdField.type = "text";
+                toggleIcon.classList.add("active");
+            } else {
+                pswrdField.type = "password";
+                toggleIcon.classList.remove("active");
+            }
+        }
+
+    </script>
+</body>
+
+</html>

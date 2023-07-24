@@ -1,0 +1,348 @@
+﻿@model WebApplication2.ViewModel.AdminViewModel
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/ApplyCoursesStyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Available Courses </title>
+    <script>var chatbot_id = 2967; !function () { var t, e, a = document, s = "smatbot-chatbot"; a.getElementById(s) || (t = a.createElement("script"), t.id = s, t.type = "text/javascript", t.src = "http://3.111.19.117/js/chatbot.js", e = a.getElementsByTagName("script")[0], e.parentNode.insertBefore(t, e)) }();</script>
+    <script src="http://3.111.19.117/cdnfiles/fingerprint2.min.js"></script>
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+        .button-17 {
+            align-items: center;
+            appearance: none;
+            background-color: #fff;
+            border-radius: 24px;
+            border-style: none;
+            box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+            box-sizing: border-box;
+            color: #3c4043;
+            cursor: pointer;
+            display: inline-flex;
+            fill: currentcolor;
+            font-family: "Google Sans",Roboto,Arial,sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            height: 48px;
+            justify-content: center;
+            letter-spacing: .25px;
+            line-height: normal;
+            max-width: 100%;
+            overflow: visible;
+            padding: 2px 24px;
+            position: relative;
+            text-align: center;
+            text-transform: none;
+            transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: auto;
+            will-change: transform,opacity;
+            z-index: 0;
+            margin:5px;
+        }
+
+            .button-17:hover {
+                background: #F6F9FE;
+                color: #174ea6;
+            }
+
+            .button-17:active {
+                box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+                outline: none;
+            }
+
+            .button-17:focus {
+                outline: none;
+                border: 2px solid #4285f4;
+            }
+
+            .button-17:not(:disabled) {
+                box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+            }
+
+                .button-17:not(:disabled):hover {
+                    box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+                }
+
+                .button-17:not(:disabled):focus {
+                    box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+                }
+
+                .button-17:not(:disabled):active {
+                    box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+                }
+
+            .button-17:disabled {
+                box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+            }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul class="nav-links">
+            <li>
+                <a>
+                    <form method="post" action="/user/learnerprofile">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <i class='bx bxs-user'></i>
+                        <button style="background: none; border: none;" type="submit">
+                            <span class="links_name">My Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/updateuser" method="post">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <i class='bx bxs-user'></i>
+                        <button style="background: none; border: none;" type="submit">
+                            <span class="links_name">Update Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/mycourses" method="post">
+                        <i class='bx bx-book'></i>
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <span class="links_name">My Courses</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/applycourses" method="post">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <i class='bx bxs-book'></i>
+                        <button style="background: none; border: none;" type="submit">
+                            <span class="links_name">Apply Course</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a href="http://11.0.0.183/" target="_blank">
+                    <i class="bx bx-message"></i>
+                    <span class="links_name">SmatBot</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/user/login" method="get">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <i class='bx bxs-log-out'></i>
+                        <button style="background: none; border: none;" type="submit">
+                            <span class="links_name">Logout</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                @*<i class='bx bx-menu sidebarBtn'></i>*@
+                <span class="bannerImage">
+                    <img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
+                </span>
+                <span class="dop"><b>DIRECTORATE OF PERSONNEL</b></span>
+            </div>
+            <span class="adminSitetext"> User Site</span>
+
+        </nav>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container" style="margin-left:300px;margin-right:50px;">
+            <table class="table" id="apply">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Branch</th>
+                        <th>Duration(Months)</th>
+                        <th>Location</th>
+                        <th>Commencement Date</th>
+                        <th>Last Date to Apply</th>
+                       
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        //email of current user
+                        string email = Session["Email"].ToString();
+
+                        //fetching the user data from email
+                        var userdata = Model.Users.FirstOrDefault(s => s.email.Equals(email));
+                    }
+
+                   
+                    @foreach (var item in Model.Course)
+                    {
+                        bool jk = true;
+
+
+                        //checking if the user has applied the course
+                        if (Model.UserCourses.Count() > 0)
+                        {
+
+                            var already = Model.UserCourses.Where(s => s.course_id.Equals(item.course_id) && s.user_id.Equals(userdata.user_id)).ToList();
+
+                            if (already.Count() > 0)
+                            {
+                                jk = false;
+                            }
+                        }
+
+                        //already applied
+                        if (jk == false)
+                        {
+                            continue;
+                        }
+
+                        //fetching course conditions of the course
+                        var data = Model.CourseCondition.Where(s => s.course_id.Equals(item.course_id)).ToArray();
+
+                        //checking eligibility of user for each course
+                        bool flag = true;
+                        for (var i = 0; i < data.Length; i++)
+                        {
+                            var mv = Model.Condition.FirstOrDefault(s => s.condition_id.Equals(data[i].condition_id));
+                            var temp = mv.condition_name;
+                            if (temp.Equals("rank"))
+                            {
+
+                                if (!userdata.rank.Equals(data[i].condition_value))
+                                {
+                                    flag = false;
+
+                                }
+                            }
+                            if (temp.Equals("age"))
+                            {
+                                if (!userdata.age.Equals(Int16.Parse(data[i].condition_value)))
+                                {
+                                    flag = false;
+
+                                }
+                            }
+                            if (temp.Equals("qualification"))
+                            {
+                                if (!userdata.qualification.Equals(data[i].condition_value))
+                                {
+                                    flag = false;
+
+                                }
+                            }
+                            if (temp.Equals("gender"))
+                            {
+                                if (!userdata.gender.Equals(data[i].condition_value))
+                                {
+                                    flag = false;
+
+                                }
+                            }
+                            if (temp.Equals("medical"))
+                            {
+                                if (!userdata.medical.Equals(data[i].condition_value))
+                                {
+                                    flag = false;
+
+                                }
+                            }
+                            if (temp.Equals("yearsOfServices"))
+                            {
+                                var tt = Int16.Parse(data[i].condition_value);
+                                if (!(userdata.yearsOfServices == tt))
+                                {
+                                    flag = false;
+
+                                }
+                            }
+                            if (temp.Equals("acrMarks"))
+                            {
+                                var tt = Int16.Parse(data[i].condition_value);
+                                if (!(userdata.acrMarks >= tt))
+                                {
+                                    flag = false;
+
+                                }
+                            }
+                        }
+
+
+
+
+                        //user is eligible
+                        if (flag == true)
+                        {
+                            var id = @item.course_id;
+
+                            <tr >
+                                <th>@item.course_name</th>
+                                <th>@item.branch</th>
+                                <th>@item.duration</th>
+                                <th>@item.location</th>
+                                <th>@item.commencement_date</th>
+                                <th>@item.due_date</th>
+                                
+                                <th>
+                                    @* to view the implications of the course *@
+                                    <form action="/user/getdetails" method="POST" id="@item.course_id">
+                                        <input type="hidden" name="id" value="@item.course_id" />
+                                    </form>
+                                    <button  type="submit"  style="padding-top:3px;" form="@item.course_id" class="button-17" role="button">View Implications</button>
+                                </th>
+                                <th>
+                                    @* to apply the course *@
+                                    <form action="/user/demo" method="POST" id="form1" onsubmit="return confirm('Do you really want to apply for course?');">
+                                        <input type="hidden" value="@userdata.user_id" name="user">
+                                        <input type="hidden" value="@item.course_id" name="link">
+                                    </form>
+                                    <button type="submit"  onclick="Delete(this)" form="form1" class='btn btn-default button-17' role="button">Apply</button>
+                                </th>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        
+
+        let sidebar = document.querySelector(".sidebar");
+
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+
+
+        sidebarBtn.onclick = function () {
+
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            }
+            else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,67 @@
+﻿@model WebApplication2.context.user
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/userLoginStyle.css" />
+    <title>DOP SignIn</title>
+    <script>var chatbot_id = 2967; !function () { var t, e, a = document, s = "smatbot-chatbot"; a.getElementById(s) || (t = a.createElement("script"), t.id = s, t.type = "text/javascript", t.src = "http://3.111.19.117/js/chatbot.js", e = a.getElementsByTagName("script")[0], e.parentNode.insertBefore(t, e)) }();</script>
+    <script src="http://3.111.19.117/cdnfiles/fingerprint2.min.js"></script>
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    </style>
+</head>
+<body>
+
+    <div class="home-section">
+        <nav>
+            <span class="bannerImage">
+                <img src="https://drive.google.com/uc?export=view&id=1H2Hj76D4yPRYxYXvpl-jpE3wvv_IiZGF" />
+            </span>
+        </nav>
+    </div>
+
+    <div class="wrapper">
+        <section class="form signup">
+            <header> SignIn </header>
+            <h3>@Session["Error"]</h3>
+            <form action="/user/login" method="POST" autocomplete="off">
+                <div class="field input">
+                    <label>Email Address</label>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="field input">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Enter new password" required>
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="field button">
+                    <input type="submit" name="submit" value="Sign In">
+                </div>
+            </form>
+            <div class="link">Don't have an account? <a href="/user/register">SignUp</a></div>
+            <h4 style="margin-left:170px;"><a class="link" href="/admin/login">Admin Login?</a></h4>
+        </section>
+    </div>
+
+    <script>
+
+        const pswrdField = document.querySelector(".form input[type='password']"),
+            toggleIcon = document.querySelector(".form .field i");
+
+        toggleIcon.onclick = () => {
+            if (pswrdField.type === "password") {
+                pswrdField.type = "text";
+                toggleIcon.classList.add("active");
+            } else {
+                pswrdField.type = "password";
+                toggleIcon.classList.remove("active");
+            }
+        }
+
+    </script>
+</body>
+</html>

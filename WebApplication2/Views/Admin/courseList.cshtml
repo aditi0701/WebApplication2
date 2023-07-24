@@ -1,0 +1,300 @@
+﻿@model WebApplication2.ViewModel.AdminViewModel
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/Content/courseListStyle.css">
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+        .button-17 {
+            align-items: center;
+            appearance: none;
+            background-color: #fff;
+            border-radius: 24px;
+            border-style: none;
+            box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+            box-sizing: border-box;
+            color: #3c4043;
+            cursor: pointer;
+            display: inline-flex;
+            fill: currentcolor;
+            font-family: "Google Sans",Roboto,Arial,sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            height: 24px;
+            justify-content: center;
+            letter-spacing: .25px;
+            line-height: normal;
+            max-width: 100%;
+            overflow: visible;
+            padding: 2px 24px;
+            position: relative;
+            text-align: center;
+            text-transform: none;
+            transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: auto;
+            will-change: transform,opacity;
+            z-index: 0;
+            padding: 5px;
+        }
+
+            .button-17:hover {
+                background: #F6F9FE;
+                color: #174ea6;
+            }
+
+            .button-17:active {
+                box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+                outline: none;
+            }
+
+            .button-17:focus {
+                outline: none;
+                border: 2px solid #4285f4;
+            }
+
+            .button-17:not(:disabled) {
+                box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+            }
+
+                .button-17:not(:disabled):hover {
+                    box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+                }
+
+                .button-17:not(:disabled):focus {
+                    box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+                }
+
+                .button-17:not(:disabled):active {
+                    box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+                }
+
+            .button-17:disabled {
+                box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+
+        <ul class="nav-links">
+            <li>
+                <a>
+                    <form method="post" action="/admin/adminprofile">
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-user'></i>
+                            <span class="links_name">My Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form method="get" action="/admin/updateadmin">
+
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-user'></i>
+                            <span class="links_name">Update Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/admin/courselist" method="post">
+
+                        <input type="hidden" value="@Session["Email"]" name="email">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-book'></i>
+                            <span class="links_name">
+                                Course
+                                List
+                            </span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+
+            <li>
+                <a>
+                    <form action="/admin/addCourses" method="post">
+
+                        <input type="hidden" value="@Session["Email"]" name="email">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-add-to-queue'></i>
+                            <span class="links_name">
+                                Add
+                                Course
+                            </span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a href="http://11.0.0.183/" target="_blank">
+                    <i class="bx bx-message"></i>
+                    <span class="links_name">SmatBot</span>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form action="/admin/register" method="get" onsubmit="return confirm('Are you sure you want to logout?');">
+
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-log-out'></i>
+                            <span class="links_name">Logout</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="bannerImage">
+                    <img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
+                </span>
+                <span class="dop">Directorate of Personnel</span>
+                <span class="adminSitetext"> Admin Site</span>
+            </div>
+        </nav>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container" style="margin-left:300px;margin-right:50px;">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Branch</th>
+                        <th>Duration(Weeks)</th>
+                        <th>Commencement Date</th>
+                        <th>Last Date to Apply</th>
+                        <th>Time of publish/approve</th>
+                        <th>Status</th>
+
+                        <th>&nbsp;</th>
+
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{ 
+                        string username = Session["Name"].ToString();
+                        
+                    }
+
+                    @*For each course in courses table display their details*@
+                    @foreach (var item in Model.Course)
+                     {
+                                    if (username != "master" && (username.Equals("cdrE") || username.Equals("cdrX") || username.Equals("cdrL")) && !item.createdBy.Equals(username))
+                                    {
+                                        continue;
+                                    }
+                                    var id = @item.course_id;
+
+                        <tr>
+
+                            <th>@item.course_name</th>
+                            <th>@item.branch</th>
+                            <th>@item.duration</th>
+                            <th>@item.commencement_date</th>
+                            <th>@item.due_date</th>
+                            <th>@item.time</th>
+                            @if (username.Equals("master") && item.status.Equals("Pending with master"))
+                            {
+                                <th>
+
+
+                                    <form action="/admin/approve2" method="POST" id="@id+accept">
+                                        <input type="hidden" value="@id" name="link2">
+                                    </form>
+                                    <button type="submit" form="@id+accept" class='btn btn-default button-17' role="button">Approve</button>
+
+                                    <form action="/admin/reject2" method="POST" id="@id+reject">
+                                        <input type="hidden" value="@id" name="link3">
+                                    </form>
+                                    <button type="submit" form="@id+reject" class='btn btn-default button-17' role="button">Reject</button>
+
+                                    @*<form action="/admin/preview2" method="POST" id="@id+preview">
+            <input type="hidden" value="@id" name="link4">
+        </form>
+
+        <button type="submit" form="@id+preview" class='btn btn-default button-17' role="button">Preview</button>*@
+
+                                    <form action="/admin/Preview" method="POST" id="@id+preview">
+                                        <input type="hidden" name="link4" value="@id" />
+                                    </form>
+                                    <button class="button-17 btn btn-default" role="button" id="todelete" form="@id+preview" type="submit">Preview</button>
+                                </th>
+                            }
+                           
+                          
+                            else
+                            {
+                                <th>@item.status </th>
+                            }
+
+
+                            <th>
+                                @*form to display course conditions and implications*@
+                                <form action="/admin/getdetails" method="POST" id="@item.course_id">
+                                    <input type="hidden" name="id" value="@item.course_id" />
+                                </form>
+                                <button class="button-17 btn btn-default" role="button" id="todelete" form="@item.course_id" type="submit">View Conditions</button>
+                            </th>
+                            
+                            <th>
+
+                                @*form to display eligible learners*@
+                                <form action="/admin/details" method="POST" id="1+@item.course_id">
+                                    <input type="hidden" value="@item.course_id" name="link">
+                                </form>
+
+                                <button class="button-17" role="button" type="submit" id="todelete" form="1+@item.course_id" class='btn btn-default'>Eligible Learners</button>
+                            </th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    
+
+    <script>
+
+        let sidebar = document.querySelector(".sidebar");
+
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+
+
+        sidebarBtn.onclick = function () {
+
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            }
+            else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+</body>
+
+</html>
+

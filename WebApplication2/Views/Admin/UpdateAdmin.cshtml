@@ -1,0 +1,184 @@
+﻿@model WebApplication2.ViewModel.AdminViewModel
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/Content/updateUserStyle.css" rel="stylesheet" type="text/css" />
+    <style>
+        @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="sidebar">
+        <ul class="nav-links">
+            <li>
+                <a>
+                    <form method="post" action="/admin/adminprofile">
+
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-user'></i>
+                            <span class="links_name">My Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+                    <form method="get" action="/admin/updateadmin">
+
+                        <input type="hidden" name="email" value="@Session["Email"]">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-user'></i>
+                            <span class="links_name">Update Profile</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a>
+
+                    <form action="/admin/courselist" method="post">
+                        <input type="hidden" value="@Session["Email"]" name="email">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-book'></i>
+                            <span class="links_name">
+                                Course
+                                List
+                            </span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+
+            <li>
+                <a>
+                    <form action="/admin/addCourses" method="post">
+                        <input type="hidden" value="@Session["Email"]" name="email">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-book'></i>
+                            <span class="links_name">
+                                Add
+                                Course
+                            </span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a href="http://11.0.0.183" target="_blank">
+                    <i class="bx bx-message"></i>
+                    <span class="links_name">SmatBot</span>
+                </a>
+            </li>
+
+            <li>
+                <a>
+                    <form action="/admin/login" method="get">
+
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-log-out'></i>
+                            <span class="links_name">Logout</span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+
+
+        </ul>
+    </div>
+   
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <i class='bx bx-menu sidebarBtn'></i>
+                <span class="bannerImage">
+                    <img src="~/App_Data/mainLogo.jpg" />
+                </span>
+                <span class="dop">Directorate of Personnel</span>
+                <span class="adminSitetext"> Admin Site</span>
+            </div>
+        </nav>
+    </section>
+
+    <div class="wrapper" style="height: fit-content;">
+        <section class="form signup" id="fm">
+            <header> Update Profile </header>
+            <form action="/admin/update" method="POST">
+                @{
+                    //Fetching admin data to autofill the details
+                    string email = Session["Email"].ToString();
+                    var prevdata = Model.Admins.FirstOrDefault(s => s.email.Equals(email));
+                }
+
+                <i class="fas fa-user"></i>
+                <div class="field input">
+
+                    <input type="text" name="name" placeholder="Name" value="@prevdata.name" required />
+                </div>
+                <br />
+                <i class="fas fa-envelope"></i>
+                <div class="field input">
+
+                    <input type="email" name="email" placeholder="Email" value="@prevdata.email" required />
+                </div>
+                <br />
+                <i class="fas fa-user"></i>
+                <div class="field input">
+
+                    <input type="text" name="branch" placeholder="Admin Branch" value="@prevdata.branch" required />
+
+                </div>
+                <br />
+                <i class="fas fa-phone"></i>
+                <div class="field input">
+
+                    <input type="text" name="mobile" placeholder="Phone" value="@prevdata.mobile" minlength="10" maxlength="10" pattern="[0-9.]+" required />
+                </div>
+                <br />
+                <i class="fas fa-lock"></i>
+                <div class="field input">
+
+                    <input type="password" name="password" placeholder="Password" value="@prevdata.password" required />
+                </div>
+
+
+                <div class="field button">
+                    <input type="submit" name="submit" value="Update">
+                </div>
+            </form>
+        </section>
+    </div>
+
+
+
+
+    <script>
+
+        let sidebar = document.querySelector(".sidebar");
+
+        let sidebarBtn = document.querySelector(".sidebarBtn");
+
+
+        sidebarBtn.onclick = function () {
+
+            sidebar.classList.toggle("active");
+            if (sidebar.classList.contains("active")) {
+                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+            }
+            else
+                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        }
+    </script>
+</body>
+
+</html>
+
