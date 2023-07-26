@@ -174,12 +174,12 @@ body {
 .home-section nav .sidebar-button {
     display: flex;
     align-items: center;
-    font-size: 79%;
+    font-size: 83%;
     font-weight: 500;
     color: #0a3059;
     background-color: white;
-    padding-top: 20px;
-    padding-bottom: 12px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 nav .sidebar-button i {
@@ -189,8 +189,7 @@ nav .sidebar-button i {
 
 .home-section nav .adminSitetext {
     font-size: 18px;
-    /*    background-color: white;
-*/ border-style: solid;
+    border-style: solid;
     border-width: thin;
     border-color: white;
     border-radius: 6px;

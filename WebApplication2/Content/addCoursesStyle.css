@@ -86,6 +86,7 @@
 }
 
 
+
 .sidebar {
     position: fixed;
     height: 100%;
@@ -187,7 +188,6 @@
     position: fixed;
     width: 100%;
     z-index: 100;
-    padding: 0 20px;
     transition: all 0.5s ease;
 }
 
@@ -199,9 +199,12 @@
 .home-section nav .sidebar-button {
     display: flex;
     align-items: center;
-    font-size: 24px;
+    font-size: 83%;
     font-weight: 500;
-    color: white;
+    color: #0a3059;
+    background-color: white;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 nav .sidebar-button i {
@@ -210,12 +213,15 @@ nav .sidebar-button i {
 }
 
 .home-section nav .adminSitetext {
-    font-size: 15px;
-    background-color: #0311cc;
-    border-radius: 3px;
-    padding-left: 8px;
-    padding-right: 8px;
+    font-size: 18px;
+    border-style: solid;
+    border-width: thin;
+    border-color: white;
+    border-radius: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-left: 20px;
+    color: white;
 }
 
 .home-section nav .dop {
@@ -226,9 +232,8 @@ nav .sidebar-button i {
 
 
 .home-section nav .bannerImage {
-    padding-left: 15px;
-    padding-right: 5px;
-    margin-top: 10px;
+    width: 65px;
+    height: auto;
 }
 
 /*main CSS Start*/

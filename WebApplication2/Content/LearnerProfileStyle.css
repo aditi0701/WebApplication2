@@ -9,6 +9,7 @@
 
 /* Start of Sidebar and header */
 
+
 .sidebar {
     position: fixed;
     height: 100%;
@@ -90,7 +91,6 @@
             .sidebar .nav-links li a .links_name {
                 color: #fff;
                 font-size: 20px;
-               
                 font-weight: 400;
                 white-space: nowrap;
                 overflow: hidden;
@@ -111,7 +111,6 @@
     position: fixed;
     width: 100%;
     z-index: 100;
-    padding: 0 0px;
     transition: all 0.5s ease;
 }
 
@@ -119,7 +118,7 @@
     left: 60px;
     width: calc(100% - 60px);
 }
-/*88888888888888888888888888888888888*/
+
 .home-section nav .sidebar-button {
     display: flex;
     align-items: center;
@@ -135,7 +134,7 @@ nav .sidebar-button i {
     font-size: 35px;
     margin-right: 10px;
 }
-/*888888888888888888888888888888888888*/
+
 .home-section nav .adminSitetext {
     font-size: 18px;
     border-style: solid;
@@ -149,17 +148,16 @@ nav .sidebar-button i {
 }
 
 .home-section nav .dop {
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
     margin-left: 1 0px;
 }
 
-/*88888888888888888888888888888888*/
+
 .home-section nav .bannerImage {
     width: 65px;
     height: auto;
 }
-
 /* End of Sidebar and header */
 
 /* Start of Admin profile */
