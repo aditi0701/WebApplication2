@@ -103,8 +103,9 @@
                 <a>
                     <form action="/user/updateuser" method="post">
                         <input type="hidden" name="email" value="@Session["Email"]">
-                        <i class='bx bxs-user'></i>
+
                         <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-user'></i>
                             <span class="links_name">Update Profile</span>
                         </button>
                     </form>
@@ -113,9 +114,10 @@
             <li>
                 <a>
                     <form action="/user/mycourses" method="post">
-                        <i class='bx bx-book'></i>
+
                         <input type="hidden" name="email" value="@Session["Email"]">
                         <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-book'></i>
                             <span class="links_name">My Courses</span>
                         </button>
                     </form>
@@ -125,8 +127,9 @@
                 <a>
                     <form action="/user/applycourses" method="post">
                         <input type="hidden" name="email" value="@Session["Email"]">
-                        <i class='bx bxs-book'></i>
+
                         <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-book'></i>
                             <span class="links_name">Apply Course</span>
                         </button>
                     </form>
@@ -142,8 +145,9 @@
                 <a>
                     <form action="/user/login" method="get">
                         <input type="hidden" name="email" value="@Session["Email"]">
-                        <i class='bx bxs-log-out'></i>
+
                         <button style="background: none; border: none;" type="submit">
+                            <i class='bx bxs-log-out'></i>
                             <span class="links_name">Logout</span>
                         </button>
                     </form>
@@ -155,13 +159,14 @@
     <section class="home-section">
         <nav>
             <div class="sidebar-button">
-                <i class='bx bx-menu sidebarBtn'></i>
+                @*<i class='bx bx-menu sidebarBtn'></i>*@
                 <span class="bannerImage">
                     <img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
                 </span>
-                <span class="dop">Directorate of Personnel</span>
-                <span class="adminSitetext"> User Site</span>
+                <span class="dop"><b>DIRECTORATE OF PERSONNEL</b></span>
             </div>
+            <span class="adminSitetext"> User Site</span>
+
         </nav>
     </section>
 
@@ -176,7 +181,7 @@
 
     }
 
-    <section class="ftco-section" style="padding:7em 0; padding-bottom:1em;" >
+    <section class="ftco-section" style="padding:7em 0; padding-bottom:1em;">
         <div class="container" style="margin-left:300px;margin-right:50px;">
             <h1 style="justify-content: center; align-items: center; align-content: center; display: flex; font-size: xx-large; color: white;  margin: 10px;">
                 @course_details.course_name

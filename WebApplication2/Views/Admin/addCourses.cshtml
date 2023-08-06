@@ -37,17 +37,17 @@
 
                 document.getElementById("contain" + data).innerHTML += `<td><br/>
 
-                                                            <label style="width=10px;height:auto;" for="SLT"> <input style="width:100px;height:25px;" type="checkbox" id="SLT" class="Rank" name="rankC" value="SLT">SLT</label><br>
+                                                             <input style="width:100px;height:25px;" type="checkbox" id="SLT" class="Rank" name="rankC" value="SLT">SLT<br>
 
-                                                            <label for="LT"><input style="width:100px;height:25px;" type="checkbox" id="LT" name="rankC" class="Rank" value="LT">LT</label><br>
+                                                            <input style="width:100px;height:25px;" type="checkbox" id="LT" name="rankC" class="Rank" value="LT">LT<br>
 
-                                                            <label for="LT CDR"> <input style="width:100px;height:25px;" type="checkbox" id="LT CDR" class="Rank" name="rankC" value="LT CDR">LT CDR</label><br>
+                                                            <input style="width:100px;height:25px;" type="checkbox" id="LT CDR" class="Rank" name="rankC" value="LT CDR">LTCDR<br>
 
-                                                            <label for="CDR"> <input style="width:100px;height:25px;" type="checkbox" id="CDR" class="Rank" name="rankC" value="CDR">CDR</label><br>
+                                                            <input style="width:100px;height:25px;" type="checkbox" id="CDR" class="Rank" name="rankC" value="CDR">CDR<br>
 
-                                                            <label for="CAPT"><input style="width:100px;height:25px;" type="checkbox" id="CAPT" class="Rank" name="rankC" value="CAPT">CAPT</label><br>
+                                                            <input style="width:100px;height:25px;" type="checkbox" id="CAPT" class="Rank" name="rankC" value="CAPT">CAPT<br>
 
-                                                            <label for="CMDE"><input style="width:100px;height:25px;" type="checkbox" id="CMDE" class="Rank" name="rankC" value="CMDE">CMDE</label><br>
+                                                            <input style="width:100px;height:25px;" type="checkbox" id="CMDE" class="Rank" name="rankC" value="CMDE">CMDE<br>
                                                                <div class="close1" onclick="Delete(contain`+ data + `)"> &times; </div>
                                                             </td></div>
                                                         <br/>`
@@ -422,6 +422,7 @@
             <li>
                 <a>
                     <form method="post" action="/admin/adminprofile">
+
                         <input type="hidden" name="email" value="@Session["Email"]">
                         <button style="background: none; border: none;" type="submit">
                             <i class='bx bxs-user'></i>
@@ -444,8 +445,8 @@
             </li>
             <li>
                 <a>
-                    <form action="/admin/courselist" method="post">
 
+                    <form action="/admin/courselist" method="post">
                         <input type="hidden" value="@Session["Email"]" name="email">
                         <button style="background: none; border: none;" type="submit">
                             <i class='bx bx-book'></i>
@@ -461,10 +462,9 @@
             <li>
                 <a>
                     <form action="/admin/addCourses" method="post">
-
                         <input type="hidden" value="@Session["Email"]" name="email">
                         <button style="background: none; border: none;" type="submit">
-                            <i class='bx bx-add-to-queue'></i>
+                            <i class='bx bx-book'></i>
                             <span class="links_name">
                                 Add
                                 Course
@@ -474,14 +474,29 @@
                 </a>
             </li>
             <li>
-                <a href="http://11.0.0.183/" target="_blank">
+                <a>
+                    <form action="/admin/allCourses" method="post">
+                        <input type="hidden" value="@Session["Email"]" name="email">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-book'></i>
+                            <span class="links_name">
+                                View All
+                                Course
+                            </span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
+                <a href="http://11.0.0.183" target="_blank">
                     <i class="bx bx-message"></i>
                     <span class="links_name">SmatBot</span>
                 </a>
             </li>
+
             <li>
                 <a>
-                    <form action="/admin/register" method="get">
+                    <form action="/admin/login" method="get" onsubmit="return confirm('Are you sure you want to logout?');">
 
                         <button style="background: none; border: none;" type="submit">
                             <i class='bx bx-log-out'></i>
@@ -490,8 +505,11 @@
                     </form>
                 </a>
             </li>
+
+
         </ul>
     </div>
+
     <section class="home-section">
         <nav>
             <div class="sidebar-button">
@@ -499,12 +517,13 @@
                 <span class="bannerImage">
                     <img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
                 </span>
-                <span class="dop">Directorate of Personnel</span>
-                <span class="adminSitetext"> Admin Site</span>
+                <span class="dop"><b>DIRECTORATE OF PERSONNEL</b></span>
             </div>
+            <span class="adminSitetext"> Admin Site</span>
+
         </nav>
     </section>
-    
+
     <div class="pagecard">
         <form method="post" action="/admin/coursedetails" onsubmit="return confirm('Do you really want to submit the form?');">
 
@@ -639,7 +658,7 @@
                                     <ul style="list-style:none" class="conditionList">
                                         @foreach (var item in Model.Condition)
                                         {
-                                            if(item.condition_name.Equals("minAge") || item.condition_name.Equals("maxAge"))
+                                            if (item.condition_name.Equals("minAge") || item.condition_name.Equals("maxAge"))
                                             {
                                                 continue;
                                             }
@@ -677,253 +696,256 @@
 
 
             </div>
-                    <div class="card" id="card3">
-                        <div class="implicationc">COURSE IMPLICATION</div>
-                        <table class="table" style="margin-left:100px;">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>Implication</th>
-                                    <th>Implication value</th>
+            <div class="card" id="card3">
+                <div class="implicationc">COURSE IMPLICATION</div>
+                <table class="table" style="margin-left:100px;">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Implication</th>
+                            <th>Implication value</th>
 
-                                </tr>
-                            </thead>
-                            <tbody style="background:red">
-                                <tr style="background-color:blue;">
-                                    <td style="width: 20%; height: auto; border: 2px solid black; background: whitesmoke; ">
-                                        <ul class="implicationList" style="list-style:none">
-                                            @foreach (var item in Model.Implication)
-                                            {
+                        </tr>
+                    </thead>
+                    <tbody style="background:red">
+                        <tr style="background-color:blue;">
+                            <td style="width: 20%; height: auto; border: 2px solid black; background: whitesmoke; ">
+                                <ul class="implicationList" style="list-style:none">
+                                    @foreach (var item in Model.Implication)
+                                    {
 
-                                                <li>
-                                                    <div id="div2" style="display: flex; align-items: center; justify-content: center;" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                                        <div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;" id="@item.implication_name" draggable="true" ondragstart="drag(event)">
-                                                            @item.implication_name.ToUpper()
-                                                            <br />
-                                                        </div>
-                                                    </div>
+                                        <li>
+                                            <div id="div2" style="display: flex; align-items: center; justify-content: center;" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                                <div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;" id="@item.implication_name" draggable="true" ondragstart="drag(event)">
+                                                    @item.implication_name.ToUpper()
+                                                    <br />
+                                                </div>
+                                            </div>
 
-                                                </li>
-                                                <br />
-
-
-                                            }
+                                        </li>
+                                        <br/>
 
 
-
-                                            <br />
-
-                                        </ul>
-                                        <button type="button" class="button-17" role="button" onclick="addInputField2()" id="add">Add Implication</button>
-                                    </td>
-                                    <td id="dropZone2" style="width: 150px; font-size: large; height: auto; border: 2px solid black;border-left:none; background: whitesmoke " ondrop="drop2(event)" ondragover="allowDrop2(event)">
-                                    </td>
-                                </tr>
-                            </tbody>
-
-                        </table>
-
-                        <div class="row">
-                            <div class="col-publish-btn">
-                                <button type="button" id="btn2" onclick="navigate3()">Course Conditions</button>
-
-                            </div>
-                            <div class="col-publish-btn">
-                                <button type="button" id="btn" onclick="getDetails()">Preview</button>
-
-                            </div>
-                        </div>
-
-                        @*preview div*@
-                        <div id="myModal" class="modal">
-
-                            <div class="modal-content">
-
-                                <div class="close"> &times; </div>
-
-                                @{
-                                    //getting the current date and time
-                                    var dateAndTime = DateTime.Now;
-                                    var date = dateAndTime.Date.ToString();
-
-                                    var getDate = date.Split('/');
-
-                                    String s = dateAndTime.ToString("HH:mm");
-                                    var time = s.Split(':');
-
-                                }
-                                <div>
-                                    <table style="margin-top:50px;">
-                                        <tr>
-                                            <td style="width: 900px">
-                                                <table>
-                                                    <tr>
-                                                        <td style="width: 150px">DTG</td>
-                                                        <td style="width: 150px">@getDate[1]@time[0]@time[1]</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>FROM</td>
-                                                        <td>NHQ</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>TO</td>
-                                                        <td>221IG</td>
-                                                    </tr>
-                                                </table>
-                                            </td>
+                                    }
 
 
-                                            <td>
-                                                <table>
-                                                    <tr>
-                                                        <td>
-                                                            <select name="" required>
-                                                                <option value="">Select</option>
-                                                                <option value="FLASH">FLASH (Z)</option>
-                                                                <option value="OPERATIONAL IMMEDIATE">OPERATIONAL IMMEDIATE (O)</option>
-                                                                <option value="PRIORITY">PRIORITY (P)</option>
-                                                                <option value="ROUTINE"> ROUTINE (R)</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <select name="" required>
-                                                                <option value="">Select</option>
-                                                                <option value="TOPSEC">TOPSEC</option>
-                                                                <option value="SEC">SEC</option>
-                                                                <option value="CONFD">CONFD</option>
-                                                                <option value="RESTD">RESTD</option>
-                                                                <option value="UNCLAS">UNCLAS</option>
-                                                            </select>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </table>
 
-                                    <hr>
+                                    <br />
 
-                                    <div>
-                                        <script>
+                                </ul>
+                                <button type="button" class="button-17" role="button" onclick="addInputField2()" id="add">Add Implication</button>
+                            </td>
+                            <td id="dropZone2" style="width: 150px; font-size: large; height: auto; border: 2px solid black;border-left:none; background: whitesmoke " ondrop="drop2(event)" ondragover="allowDrop2(event)">
+                            </td>
+                        </tr>
+                    </tbody>
 
+                </table>
 
-</script>
-
-
-                                        <p>
-                                            For TRI-SERVICES USE SELF CANCELLING VOLUNTEERS REQUIRED OF RANK <span id="rankRequired"></span> of <span id="branch"></span>  for <span id="course_name"> COURSE </span>(<span id="course_no"></span>) at <span id="location"></span>
-                                            FOR DURATION OF <span id="duration"></span> WEEKS STARTING FROM <span id="date"></span> TO <span id="enddate"></span>.
-                                            <br />
-                                            UPON CLEARING THE COURSE THE PATH OF CAREER FOR THE OFFICER WILL BE :<span id="pathOfCareer"></span>
-                                            <br />
-                                            QUALIFIED OFFICERS WILL BE CONSIDERED FOR APPOINTMENT TO <span id="postingLocation"></span> AS <span id="field_Posting"></span>
-                                        </p>
-
-                                    </div>
-
-
-                                    <input type="submit" class="button-17" value="PUBLISH" id="submit" />
-                                </div>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col-publish-btn">
+                        <button type="button" id="btn2" onclick="navigate3()">Course Conditions</button>
 
                     </div>
-</form>
+                    <div class="col-publish-btn">
+                        <button type="button" id="btn" onclick="getDetails()">Preview</button>
+
+                    </div>
+                </div>
+
+                @*preview div*@
+                <div id="myModal" class="modal">
+
+                    <div class="modal-content">
+
+                        <div class="close"> &times; </div>
+
+                        @{
+                            //getting the current date and time
+                            var dateAndTime = DateTime.Now;
+                            var date = dateAndTime.Date.ToString();
+
+                            var getDate = date.Split('-');
+
+                            String s = dateAndTime.ToString("HH:mm");
+                            var time = s.Split(':');
+
+                            //Response.Write(date);
+
+                        }
+                        <div>
+                            <table style="margin-top:50px;">
+                                <tr>
+                                    <td style="width: 900px">
+                                        <table>
+                                            <tr>
+                                                <td style="width: 150px">DTG</td>
+                                                <td style="width: 150px">@getDate[1]@time[0]@time[1]</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>FROM</td>
+                                                <td>NHQ</td>
+                                            </tr>
+                                            <tr>
+                                                <td>TO</td>
+                                                <td>221IG</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <select name="" required>
+                                                        <option value="">Select</option>
+                                                        <option value="FLASH">FLASH (Z)</option>
+                                                        <option value="OPERATIONAL IMMEDIATE">OPERATIONAL IMMEDIATE (O)</option>
+                                                        <option value="PRIORITY">PRIORITY (P)</option>
+                                                        <option value="ROUTINE"> ROUTINE (R)</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <select name="" required>
+                                                        <option value="">Select</option>
+                                                        <option value="TOPSEC">TOPSEC</option>
+                                                        <option value="SEC">SEC</option>
+                                                        <option value="CONFD">CONFD</option>
+                                                        <option value="RESTD">RESTD</option>
+                                                        <option value="UNCLAS">UNCLAS</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <hr>
+
+                            <div>
+                                <script>
+
+
+                                </script>
+
+
+                                <p>
+                                    For TRI-SERVICES USE SELF CANCELLING VOLUNTEERS REQUIRED OF RANK <span id="rankRequired"></span> of <span id="branch"></span>  for <span id="course_name"> COURSE </span>(<span id="course_no"></span>) at <span id="location"></span>
+                                    FOR DURATION OF <span id="duration"></span> WEEKS STARTING FROM <span id="date"></span> TO <span id="enddate"></span>.
+                                    <br />
+                                    UPON CLEARING THE COURSE THE PATH OF CAREER FOR THE OFFICER WILL BE :<span id="pathOfCareer"></span>
+                                    <br />
+                                    QUALIFIED OFFICERS WILL BE CONSIDERED FOR APPOINTMENT TO <span id="postingLocation"></span> AS <span id="field_Posting"></span>
+                                </p>
+
+                            </div>
+
+
+                            <input type="submit" class="button-17" value="PUBLISH" id="submit" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
     </div>
 
-       <script>
-           function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
-               const [from, to] = getParsed(fromInput, toInput);
-               fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
-               if (from > to) {
-                   fromSlider.value = to;
-                   fromInput.value = to;
-               } else {
-                   fromSlider.value = from;
-               }
-           }
+    <script>
+        function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
+            const [from, to] = getParsed(fromInput, toInput);
+            fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+            if (from > to) {
+                fromSlider.value = to;
+                fromInput.value = to;
+            } else {
+                fromSlider.value = from;
+            }
+        }
 
-           function controlToInput(toSlider, fromInput, toInput, controlSlider) {
-               const [from, to] = getParsed(fromInput, toInput);
-               fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
-               setToggleAccessible(toInput);
-               if (from <= to) {
-                   toSlider.value = to;
-                   toInput.value = to;
-               } else {
-                   toInput.value = from;
-               }
-           }
+        function controlToInput(toSlider, fromInput, toInput, controlSlider) {
+            const [from, to] = getParsed(fromInput, toInput);
+            fillSlider(fromInput, toInput, '#C6C6C6', '#25daa5', controlSlider);
+            setToggleAccessible(toInput);
+            if (from <= to) {
+                toSlider.value = to;
+                toInput.value = to;
+            } else {
+                toInput.value = from;
+            }
+        }
 
-           function controlFromSlider(fromSlider, toSlider, fromInput) {
-               const [from, to] = getParsed(fromSlider, toSlider);
-               fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
-               if (from > to) {
-                   fromSlider.value = to;
-                   fromInput.value = to;
-               } else {
-                   fromInput.value = from;
-               }
-           }
+        function controlFromSlider(fromSlider, toSlider, fromInput) {
+            const [from, to] = getParsed(fromSlider, toSlider);
+            fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+            if (from > to) {
+                fromSlider.value = to;
+                fromInput.value = to;
+            } else {
+                fromInput.value = from;
+            }
+        }
 
-           function controlToSlider(fromSlider, toSlider, toInput) {
-               const [from, to] = getParsed(fromSlider, toSlider);
-               fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
-               setToggleAccessible(toSlider);
-               if (from <= to) {
-                   toSlider.value = to;
-                   toInput.value = to;
-               } else {
-                   toInput.value = from;
-                   toSlider.value = from;
-               }
-           }
+        function controlToSlider(fromSlider, toSlider, toInput) {
+            const [from, to] = getParsed(fromSlider, toSlider);
+            fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+            setToggleAccessible(toSlider);
+            if (from <= to) {
+                toSlider.value = to;
+                toInput.value = to;
+            } else {
+                toInput.value = from;
+                toSlider.value = from;
+            }
+        }
 
-           function getParsed(currentFrom, currentTo) {
-               const from = parseInt(currentFrom.value, 10);
-               const to = parseInt(currentTo.value, 10);
-               return [from, to];
-           }
+        function getParsed(currentFrom, currentTo) {
+            const from = parseInt(currentFrom.value, 10);
+            const to = parseInt(currentTo.value, 10);
+            return [from, to];
+        }
 
-           function fillSlider(from, to, sliderColor, rangeColor, controlSlider) {
-               const rangeDistance = to.max - to.min;
-               const fromPosition = from.value - to.min;
-               const toPosition = to.value - to.min;
-               controlSlider.style.background = `linear-gradient(
-      to right,
-      ${sliderColor} 0%,
-      ${'rgba(0 0 0 / 0)'} ${(fromPosition + 3) / (rangeDistance) * 100}%,
-      ${rangeColor} ${((fromPosition) / (rangeDistance)) * 100}%,
-      ${rangeColor} ${(toPosition) / (rangeDistance) * 100}%, 
-      ${sliderColor} ${(toPosition) / (rangeDistance) * 100}%, 
-      ${sliderColor} 100%)`;
-           }
+        function fillSlider(from, to, sliderColor, rangeColor, controlSlider) {
+            const rangeDistance = to.max - to.min;
+            const fromPosition = from.value - to.min;
+            const toPosition = to.value - to.min;
+            controlSlider.style.background = `linear-gradient(
+          to right,
+          ${sliderColor} 0%,
+          ${'rgba(0 0 0 / 0)'} ${(fromPosition + 3) / (rangeDistance) * 100}%,
+          ${rangeColor} ${((fromPosition) / (rangeDistance)) * 100}%,
+          ${rangeColor} ${(toPosition) / (rangeDistance) * 100}%,
+          ${sliderColor} ${(toPosition) / (rangeDistance) * 100}%,
+          ${sliderColor} 100%)`;
+        }
 
-           function setToggleAccessible(currentTarget) {
-               const toSlider = document.querySelector('#toSlider');
-               if (Number(currentTarget.value) <= 0) {
-                   toSlider.style.zIndex = 2;
-               } else {
-                   toSlider.style.zIndex = 0;
-               }
-           }
+        function setToggleAccessible(currentTarget) {
+            const toSlider = document.querySelector('#toSlider');
+            if (Number(currentTarget.value) <= 0) {
+                toSlider.style.zIndex = 2;
+            } else {
+                toSlider.style.zIndex = 0;
+            }
+        }
 
-           function run() {
+        function run() {
 
 
-               const fromSlider = document.querySelector('#fromSlider');
-               const toSlider = document.querySelector('#toSlider');
-               const fromInput = document.querySelector('#fromInput');
-               const toInput = document.querySelector('#toInput');
-               fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
-               setToggleAccessible(toSlider);
+            const fromSlider = document.querySelector('#fromSlider');
+            const toSlider = document.querySelector('#toSlider');
+            const fromInput = document.querySelector('#fromInput');
+            const toInput = document.querySelector('#toInput');
+            fillSlider(fromSlider, toSlider, '#C6C6C6', '#25daa5', toSlider);
+            setToggleAccessible(toSlider);
 
-               fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);
-               toSlider.oninput = () => controlToSlider(fromSlider, toSlider, toInput);
-               fromInput.oninput = () => controlFromInput(fromSlider, fromInput, toInput, toSlider);
-               toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
-           }
+            fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);
+            toSlider.oninput = () => controlToSlider(fromSlider, toSlider, toInput);
+            fromInput.oninput = () => controlFromInput(fromSlider, fromInput, toInput, toSlider);
+            toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
+        }
         let sidebar = document.querySelector(".sidebar");
 
         let sidebarBtn = document.querySelector(".sidebarBtn");
@@ -938,308 +960,308 @@
             else
                 sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
         }
-       </script>
+    </script>
 
-            <script>
-                //javascript function to add new condition
-                function addInputField() {
+    <script>
+        //javascript function to add new condition
+        function addInputField() {
 
-                    // Prompt user for input field type
-                    var fieldType = prompt("Enter the input field type (text, number, select, radio, checkbox):");
+            // Prompt user for input field type
+            var fieldType = prompt("Enter the input field type (text, number, select, radio, checkbox):");
 
-                    // Prompt user for input field name
-                    var fieldName = prompt("Enter the input field name:");
+            // Prompt user for input field name
+            var fieldName = prompt("Enter the input field name:");
 
-                    if (fieldType == null || fieldName == null) {
-                        return;
-                    }
+            if (fieldType == null || fieldName == null) {
+                return;
+            }
 
-                    let cnt = 0;
-                    if (fieldType === "text" || fieldType === "number") {
+            let cnt = 0;
+            if (fieldType === "text" || fieldType === "number") {
 
-                        cnt = cnt + 1;
+                cnt = cnt + 1;
 
-                        dropZone.innerHTML += `<div id="contain` + fieldName + `">
-                                          <input type="hidden" name = "textname`+ cnt + `" value="` + fieldType + `" />
+                dropZone.innerHTML += `<div id="contain` + fieldName + `">
+                                              <input type="hidden" name = "textname`+ cnt + `" value="` + fieldType + `" />
 
-                                                       <div style="font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">`+ fieldName + `</div>
-                                                        <input type=`+ fieldType + ` id="1` + fieldName + `" name="` + fieldName + `C" required /><div class="close1" onclick="Delete(contain` + fieldName + ` )"> &times; </div>
-                                                        </div>`
-                        document.getElementById("contain" + fieldName).style = "display:flex;padding:20px";
-                    }
+                                                           <div style="font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">`+ fieldName + `</div>
+                                                            <input type=`+ fieldType + ` id="1` + fieldName + `" name="` + fieldName + `C" required /><div class="close1" onclick="Delete(contain` + fieldName + ` )"> &times; </div>
+                                                            </div>`
+                document.getElementById("contain" + fieldName).style = "display:flex;padding:20px";
+            }
 
-                    else if (fieldType === "select") {
-                        // Prompt user for options
-                        var options = prompt("Enter options for the select dropdown (comma-separated):");
-                        var optionsArray = options.split(",");
+            else if (fieldType === "select") {
+                // Prompt user for options
+                var options = prompt("Enter options for the select dropdown (comma-separated):");
+                var optionsArray = options.split(",");
 
-                        var select = document.createElement("select");
-                        select.name = fieldName + "C";
-                        select.id = fieldName;
+                var select = document.createElement("select");
+                select.name = fieldName + "C";
+                select.id = fieldName;
 
-                        // Create option elements and add them to the select dropdown
-                        for (var i = 0; i < optionsArray.length; i++) {
-                            var option = document.createElement("option");
-                            option.value = optionsArray[i];
-                            option.text = optionsArray[i];
-                            select.appendChild(option);
-                        }
-                        var implication_div = document.createElement("div");
-                        implication_div.id = fieldName;
-                       
-                        implication_div.innerHTML += `
-                        <input type="hidden" name = "selectname`+ cnt + `" value="` + fieldType + `" />
-                        <input type="hidden" name = "options" value="` + optionsArray + `" />`
-                        implication_div.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`;
-                        implication_div.appendChild(select);
-                        implication_div.style = "display:flex;padding:20px";
-                        implication_div.innerHTML += `<div class="close1" onclick="Delete( ` + fieldName + `)"> &times; </div>`
-                        dropZone.appendChild(implication_div);
-                    }
-
-                    else if (fieldType == "radio") {
-                        var options = prompt("Enter options for the select dropdown (comma-separated):");
-                        var optionsArray = options.split(",");
-                        var container = document.createElement("div");
-                        container.id = fieldName;
-                        container.innerHTML += `<input type="hidden" name = "radioname` + cnt + `" value="` + fieldType + `" /><input type="hidden" name = "options" value="` + optionsArray + `" />`
-                        container.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`
-                        for (var i = 0; i < optionsArray.length; i++) {
-                            container.innerHTML += `<input style="width:100px;height:25px;"  type="radio" id=` + optionsArray[i] + ` name=` + fieldName + ` value=` + optionsArray[i] + `>
-                                  <label for=`+ optionsArray[i] + `>` + optionsArray[i] + `</label>`
-                        }
-                        container.style = "display:flex;padding:20px";
-                        container.innerHTML += `<div class="close1" onclick="Delete( ` + fieldName + `)"> &times; </div>`
-                        dropZone.appendChild(container);
-                    }
-
-                    else if (fieldType == "checkbox") {
-                        var options = prompt("Enter options for the select dropdown (comma-separated):");
-                        var optionsArray = options.split(",");
-                        var aa = document.createElement("div");
-                        aa.id = fieldName;
-                        aa.innerHTML += `<input type="hidden" name = "checkname` + cnt + `" value="` + fieldType + `" /><input type="hidden" name = "options" value="` + optionsArray + `" />`
-                        aa.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`
-                        for (var i = 0; i < optionsArray.length; i++) {
-                            aa.innerHTML += `<input style="width:100px;height:25px;"  type="checkbox" name="` + optionsArray[i] + `C" value=` + optionsArray[i] + `>
-                                  <label for=`+ optionsArray[i] + `>` + optionsArray[i] + `</label>`
-                        }
-                        aa.style = "display:flex;padding:20px";
-                        aa.innerHTML += `<div class="close1" onclick="Delete( ` + fieldName + `)"> &times; </div>`
-                        dropZone.appendChild(aa);
-                    }
-
+                // Create option elements and add them to the select dropdown
+                for (var i = 0; i < optionsArray.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = optionsArray[i];
+                    option.text = optionsArray[i];
+                    select.appendChild(option);
                 }
-                //this function is use to delete the element from the dropzone conditions
-                function Delete(r) {
+                var implication_div = document.createElement("div");
+                implication_div.id = fieldName;
 
-                    var id = r.id;
-                    const element = document.getElementById(id);
-                    element.remove();
+                implication_div.innerHTML += `
+                            <input type="hidden" name = "selectname`+ cnt + `" value="` + fieldType + `" />
+                            <input type="hidden" name = "options" value="` + optionsArray + `" />`
+                implication_div.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`;
+                implication_div.appendChild(select);
+                implication_div.style = "display:flex;padding:20px";
+                implication_div.innerHTML += `<div class="close1" onclick="Delete( ` + fieldName + `)"> &times; </div>`
+                dropZone.appendChild(implication_div);
+            }
 
-                    id = id.substring(7, id.length);
-                    //appending the deleted conditions back in the menubar of conditions
-                    document.querySelector(".conditionList").innerHTML += `<li><div id="div1" style="display: flex;justify-content: center;" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                                                <div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;" id="`+ id + `" draggable="true" ondragstart="drag(event)">
-                                                                    `+ id.toUpperCase() + `<br />
-                                                                </div></div></li>`
+            else if (fieldType == "radio") {
+                var options = prompt("Enter options for the select dropdown (comma-separated):");
+                var optionsArray = options.split(",");
+                var container = document.createElement("div");
+                container.id = fieldName;
+                container.innerHTML += `<input type="hidden" name = "radioname` + cnt + `" value="` + fieldType + `" /><input type="hidden" name = "options" value="` + optionsArray + `" />`
+                container.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`
+                for (var i = 0; i < optionsArray.length; i++) {
+                    container.innerHTML += `<input style="width:100px;height:25px;"  type="radio" id=` + optionsArray[i] + ` name=` + fieldName + ` value=` + optionsArray[i] + `>
+                                      <label for=`+ optionsArray[i] + `>` + optionsArray[i] + `</label>`
                 }
-                //this function is use to delete the element from the dropzone implications
-                function Delete2(r) {
+                container.style = "display:flex;padding:20px";
+                container.innerHTML += `<div class="close1" onclick="Delete( ` + fieldName + `)"> &times; </div>`
+                dropZone.appendChild(container);
+            }
 
-
-
-                    var id = r.id;
-
-                    console.log(id)
-                    const element = document.getElementById(id);
-
-                    element.remove();
-                    id = id.substring(7, id.length);
-                    document.querySelector(".implicationList").innerHTML += `<li>
-                                                    <div id="div2" style="display: flex;justify-content: center;" ondrop="drop(event)" ondragover="allowDrop(event)">
-                                                                <div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;" id="`+ id + `" draggable="true" ondragstart="drag(event)">
-                                                                    `+ id.toUpperCase() + `<br />
-                                                                </div></div></li>`
+            else if (fieldType == "checkbox") {
+                var options = prompt("Enter options for the select dropdown (comma-separated):");
+                var optionsArray = options.split(",");
+                var aa = document.createElement("div");
+                aa.id = fieldName;
+                aa.innerHTML += `<input type="hidden" name = "checkname` + cnt + `" value="` + fieldType + `" /><input type="hidden" name = "options" value="` + optionsArray + `" />`
+                aa.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`
+                for (var i = 0; i < optionsArray.length; i++) {
+                    aa.innerHTML += `<input style="width:100px;height:25px;"  type="checkbox" name="` + optionsArray[i] + `C" value=` + optionsArray[i] + `>
+                                      <label for=`+ optionsArray[i] + `>` + optionsArray[i] + `</label>`
                 }
+                aa.style = "display:flex;padding:20px";
+                aa.innerHTML += `<div class="close1" onclick="Delete( ` + fieldName + `)"> &times; </div>`
+                dropZone.appendChild(aa);
+            }
 
-                //this function is used to add new implications in the dropzone
-                function addInputField2() {
+        }
+        //this function is use to delete the element from the dropzone conditions
+        function Delete(r) {
 
-                    // Prompt user for input field type
-                    var fieldType = prompt("Enter the input field type (text, number, select,checkbox,radio):");
+            var id = r.id;
+            const element = document.getElementById(id);
+            element.remove();
 
-                    // Prompt user for input field name
-                    var fieldName = prompt("Enter the input field name:");
+            id = id.substring(7, id.length);
+            //appending the deleted conditions back in the menubar of conditions
+            document.querySelector(".conditionList").innerHTML += `<li><div id="div1" style="display: flex;justify-content: center;" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                                                    <div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;" id="`+ id + `" draggable="true" ondragstart="drag(event)">
+                                                                        `+ id.toUpperCase() + `<br />
+                                                                    </div></div></li>`
+        }
+        //this function is use to delete the element from the dropzone implications
+        function Delete2(r) {
 
-                    if (fieldType == null || fieldName == null) {
-                        return;
-                    }
-
-                    if (fieldType === "text" || fieldType === "number") {
 
 
-                        dropZone2.innerHTML += `<div id=` + fieldName + `><div class="close1" onclick="Delete(`+ fieldName + `)"> &times; </div>
-                                                       <div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">`+ fieldName + `</div>
-                                                        <input type=`+ fieldType + ` id="1` + fieldName + `" name="` + fieldName + `I" required />
-                                                        </div>`
-                    }
-                    else if (fieldType === "select") {
-                        // Prompt user for options
-                        var options = prompt("Enter options for the select dropdown (comma-separated):");
-                        var optionsArray = options.split(",");
+            var id = r.id;
 
-                        var select = document.createElement("select");
-                        select.name = fieldName + "I";
+            console.log(id)
+            const element = document.getElementById(id);
 
-                        // Create option elements and add them to the select dropdown
-                        for (var i = 0; i < optionsArray.length; i++) {
-                            var option = document.createElement("option");
-                            option.value = optionsArray[i];
-                            option.text = optionsArray[i];
-                            select.appendChild(option);
-                        }
-                        var implication_div2 = document.createElement("div");
-                        implication_div2.id = fieldName;
-                        
-                        implication_div2.innerHTML += `<div class="close1" onclick="Delete(  ` + fieldName + `)"> &times; </div>`
-                        implication_div2.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`;
-                        implication_div2.appendChild(select);
+            element.remove();
+            id = id.substring(7, id.length);
+            document.querySelector(".implicationList").innerHTML += `<li>
+                                                        <div id="div2" style="display: flex;justify-content: center;" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                                                    <div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;" id="`+ id + `" draggable="true" ondragstart="drag(event)">
+                                                                        `+ id.toUpperCase() + `<br />
+                                                                    </div></div></li>`
+        }
 
-                        dropZone2.appendChild(implication_div2);
+        //this function is used to add new implications in the dropzone
+        function addInputField2() {
 
-                    }
-                    else if (fieldType == "radio") {
-                        var options = prompt("Enter options for the select dropdown (comma-separated):");
-                        var optionsArray = options.split(",");
-                        var container2 = document.createElement("div");
-                        container2.id = fieldName;
-                        container2.innerHTML += `<div class="close1" onclick="Delete(  ` + container2.id + `)"> &times; </div>`
-                        container2.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`
-                        for (var i = 0; i < optionsArray.length; i++) {
-                            container2.innerHTML += `<input style="width:100px;height:25px;"  type="radio" id=` + optionsArray[i] + ` name="` + fieldName + `I" value=` + optionsArray[i] + `>
-                                  <label for=`+ optionsArray[i] + `>` + optionsArray[i] + `</label>`
-                        }
-                        dropZone2.appendChild(container2);
-                    }
+            // Prompt user for input field type
+            var fieldType = prompt("Enter the input field type (text, number, select,checkbox,radio):");
 
-                    else if (fieldType == "checkbox") {
-                        var options = prompt("Enter options for the select dropdown (comma-separated):");
-                        var optionsArray = options.split(",");
-                        var aa2 = document.createElement("div");
-                        aa2.id = fieldName;
-                        aa2.innerHTML += `<div class="close1" onclick="Delete(  ` + aa2.id + `)"> &times; </div>`
-                        aa2.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`
-                        for (var i = 0; i < optionsArray.length; i++) {
-                            aa2.innerHTML += `<input style="width:100px;height:25px;"  type="checkbox" name="I` + optionsArray[i] + `I" value=` + optionsArray[i] + `>
-                                  <label for=`+ optionsArray[i] + `>` + optionsArray[i] + `</label>`
-                        }
-                        dropZone2.appendChild(aa2);
-                    }
+            // Prompt user for input field name
+            var fieldName = prompt("Enter the input field name:");
+
+            if (fieldType == null || fieldName == null) {
+                return;
+            }
+
+            if (fieldType === "text" || fieldType === "number") {
+
+
+                dropZone2.innerHTML += `<div id=` + fieldName + `><div class="close1" onclick="Delete(` + fieldName + `)"> &times; </div>
+                                                           <div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">`+ fieldName + `</div>
+                                                            <input type=`+ fieldType + ` id="1` + fieldName + `" name="` + fieldName + `I" required />
+                                                            </div>`
+            }
+            else if (fieldType === "select") {
+                // Prompt user for options
+                var options = prompt("Enter options for the select dropdown (comma-separated):");
+                var optionsArray = options.split(",");
+
+                var select = document.createElement("select");
+                select.name = fieldName + "I";
+
+                // Create option elements and add them to the select dropdown
+                for (var i = 0; i < optionsArray.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = optionsArray[i];
+                    option.text = optionsArray[i];
+                    select.appendChild(option);
                 }
+                var implication_div2 = document.createElement("div");
+                implication_div2.id = fieldName;
 
-                // Get the modal
-                var modal = document.getElementById("myModal");
+                implication_div2.innerHTML += `<div class="close1" onclick="Delete(  ` + fieldName + `)"> &times; </div>`
+                implication_div2.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`;
+                implication_div2.appendChild(select);
 
-                // Get the button that opens the modal
-                var btn = document.getElementById("btn");
+                dropZone2.appendChild(implication_div2);
 
-                // Get the <span> element that closes the modal
-                var span = document.getElementsByClassName("close")[0];
-
-                // When the user clicks the button, open the modal
-                btn.onclick = function () {
-                    modal.style.display = "block";
-                    getDetails();
+            }
+            else if (fieldType == "radio") {
+                var options = prompt("Enter options for the select dropdown (comma-separated):");
+                var optionsArray = options.split(",");
+                var container2 = document.createElement("div");
+                container2.id = fieldName;
+                container2.innerHTML += `<div class="close1" onclick="Delete(  ` + container2.id + `)"> &times; </div>`
+                container2.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`
+                for (var i = 0; i < optionsArray.length; i++) {
+                    container2.innerHTML += `<input style="width:100px;height:25px;"  type="radio" id=` + optionsArray[i] + ` name="` + fieldName + `I" value=` + optionsArray[i] + `>
+                                      <label for=`+ optionsArray[i] + `>` + optionsArray[i] + `</label>`
                 }
+                dropZone2.appendChild(container2);
+            }
 
-                // When the user clicks on <span> (x), close the modal
-                span.onclick = function () {
-                    modal.style.display = "none";
+            else if (fieldType == "checkbox") {
+                var options = prompt("Enter options for the select dropdown (comma-separated):");
+                var optionsArray = options.split(",");
+                var aa2 = document.createElement("div");
+                aa2.id = fieldName;
+                aa2.innerHTML += `<div class="close1" onclick="Delete(  ` + aa2.id + `)"> &times; </div>`
+                aa2.innerHTML += `<div style="   font-size: large; height: 30px; width: fit-content; padding: 3px;margin-right:25px;">` + fieldName + `</div>`
+                for (var i = 0; i < optionsArray.length; i++) {
+                    aa2.innerHTML += `<input style="width:100px;height:25px;"  type="checkbox" name="I` + optionsArray[i] + `I" value=` + optionsArray[i] + `>
+                                      <label for=`+ optionsArray[i] + `>` + optionsArray[i] + `</label>`
                 }
+                dropZone2.appendChild(aa2);
+            }
+        }
 
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("btn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+            getDetails();
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+
+        document.getElementById("card2").style.display = "none";
+        document.getElementById("card3").style.display = "none";
+
+
+        function navigate() {
+            document.getElementById("card1").style.display = "none";
+            document.getElementById("card2").style.display = "block";
+        }
+
+        function navigate2() {
+
+            document.getElementById("card1").style.display = "none";
+            document.getElementById("card2").style.display = "none";
+            document.getElementById("card3").style.display = "block";
+        }
+
+        function navigate3() {
+
+            document.getElementById("card1").style.display = "none";
+            document.getElementById("card2").style.display = "block";
+            document.getElementById("card3").style.display = "none";
+        }
+
+        function navigate4() {
+
+            document.getElementById("card1").style.display = "block";
+            document.getElementById("card2").style.display = "none";
+            document.getElementById("card3").style.display = "none";
+        }
+
+
+        //fetch details from input field when user clicks on preview button
+        function getDetails() {
+
+
+            var name = document.getElementById("courseName").value;
+            var number = document.getElementById("courseNo").value;
+
+            var location = document.querySelector("#Location").value;
+            var duration = document.querySelector("#Duration").value;
+            var posting = document.querySelector("#Posting").value;
+            var fieldOfPosting = document.querySelector("#fieldOfPosting").value;
+            var path = document.querySelector("#Path").value;
+            var date = document.querySelector("#Date").value;
+            var end_date = new Date(Date.parse(date) + duration * 7 * 60 * 60 * 24 * 1000).toISOString().split('T')[0];
+            var branch = document.querySelector("#Branch").value;
+
+            var checkboxes = document.getElementsByName('rankC');
+            var vals = "";
+            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                if (checkboxes[i].checked) {
+                    vals += "," + checkboxes[i].value;
                 }
-
-                
-
-                document.getElementById("card2").style.display = "none";
-                document.getElementById("card3").style.display = "none";
+            }
+            if (vals) vals = vals.substring(1);
 
 
-                function navigate() {
-                    document.getElementById("card1").style.display = "none";
-                    document.getElementById("card2").style.display = "block";
-                }
+            document.querySelector("#rankRequired").innerHTML = vals;
+            document.querySelector("#location").innerHTML = location;
+            document.querySelector("#course_name").innerHTML = name;
+            document.querySelector("#course_no").innerHTML = number;
+            document.querySelector("#postingLocation").innerHTML = posting;
+            document.querySelector("#field_Posting").innerHTML = fieldOfPosting;
+            document.querySelector("#duration").innerHTML = duration;
+            document.querySelector("#pathOfCareer").innerHTML = path;
+            document.querySelector("#date").innerHTML = date;
+            document.querySelector("#enddate").innerHTML = end_date;
+            document.querySelector("#branch").innerHTML = branch;
 
-                function navigate2() {
-                    
-                    document.getElementById("card1").style.display = "none";
-                    document.getElementById("card2").style.display = "none";
-                    document.getElementById("card3").style.display = "block";
-                }
+        }
 
-                function navigate3() {
-                    
-                    document.getElementById("card1").style.display = "none";
-                    document.getElementById("card2").style.display = "block";
-                    document.getElementById("card3").style.display = "none";
-                }
+    </script>
 
-                function navigate4() {
-
-                    document.getElementById("card1").style.display = "block";
-                    document.getElementById("card2").style.display = "none";
-                    document.getElementById("card3").style.display = "none";
-                }
-
-
-                //fetch details from input field when user clicks on preview button
-                function getDetails() {
-
-                    
-                    var name = document.getElementById("courseName").value;
-                    var number = document.getElementById("courseNo").value;
-                   
-                    var location = document.querySelector("#Location").value;
-                    var duration = document.querySelector("#Duration").value;
-                    var posting = document.querySelector("#Posting").value;
-                    var fieldOfPosting = document.querySelector("#fieldOfPosting").value;
-                    var path = document.querySelector("#Path").value;
-                    var date = document.querySelector("#Date").value;
-                    var end_date = new Date(Date.parse(date) + duration * 7 * 60 * 60 * 24 * 1000).toISOString().split('T')[0];
-                    var branch = document.querySelector("#Branch").value;
-                   
-                    var checkboxes = document.getElementsByName('rankC');
-                    var vals = "";
-                    for (var i = 0, n = checkboxes.length; i < n; i++) {
-                        if (checkboxes[i].checked) {
-                            vals += "," + checkboxes[i].value;
-                        }
-                    }
-                    if (vals) vals = vals.substring(1);
-                    
-
-                    document.querySelector("#rankRequired").innerHTML = vals;
-                    document.querySelector("#location").innerHTML = location;
-                    document.querySelector("#course_name").innerHTML = name;
-                    document.querySelector("#course_no").innerHTML = number;
-                    document.querySelector("#postingLocation").innerHTML = posting;
-                    document.querySelector("#field_Posting").innerHTML = fieldOfPosting;
-                    document.querySelector("#duration").innerHTML = duration;
-                    document.querySelector("#pathOfCareer").innerHTML = path;
-                    document.querySelector("#date").innerHTML = date;
-                    document.querySelector("#enddate").innerHTML = end_date;
-                    document.querySelector("#branch").innerHTML = branch;
-
-                }
-
-            </script>
-
-        </body>
+</body>
 
     </html>

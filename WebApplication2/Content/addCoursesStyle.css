@@ -14,9 +14,8 @@
     cursor: pointer;
 }
 
-#btn,#btn2 {
-    
-    margin-left: 130px;
+#btn, #btn2 {
+    margin-left: 100px;
     margin-top: 20px;
     appearance: none;
     background-color: #fff;
@@ -84,8 +83,6 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
-
 
 .sidebar {
     position: fixed;
@@ -199,12 +196,9 @@
 .home-section nav .sidebar-button {
     display: flex;
     align-items: center;
-    font-size: 83%;
+    font-size: 24px;
     font-weight: 500;
-    color: #0a3059;
-    background-color: white;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    color: white;
 }
 
 nav .sidebar-button i {
@@ -214,7 +208,8 @@ nav .sidebar-button i {
 
 .home-section nav .adminSitetext {
     font-size: 18px;
-    border-style: solid;
+    /*    background-color: white;
+*/ border-style: solid;
     border-width: thin;
     border-color: white;
     border-radius: 6px;
@@ -232,8 +227,26 @@ nav .sidebar-button i {
 
 
 .home-section nav .bannerImage {
-    width: 65px;
-    height: auto;
+    padding-left: 15px;
+    padding-right: 5px;
+    margin-top: 10px;
+}
+
+.ftco-section {
+    padding: 7em 0;
+}
+
+.ftco-no-pt {
+    padding-top: 0;
+}
+
+.ftco-no-pb {
+    padding-bottom: 0;
+}
+
+.heading-section {
+    font-size: 28px;
+    color: #000;
 }
 
 /*main CSS Start*/
@@ -246,7 +259,6 @@ nav .sidebar-button i {
     padding-right: 10%;
     border-radius: 5px;
     justify-content: space-between;
-    
 }
 
 .detailsc {
@@ -283,11 +295,14 @@ nav .sidebar-button i {
     padding-top: 130px;
 }
 
+#card1 {
+    margin-left: 200px;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    
     text-align: center;
     align-content: center;
     justify-content: center;
@@ -350,19 +365,16 @@ input[type="submit"] {
     font-size: 16px;
     font-weight: bold;
     border-radius: 5px;
- 
     border: none;
     cursor: pointer;
-    margin-left:500px;
-    margin-top:20px;
+    margin-left: 500px;
+    margin-top: 20px;
 }
 
 
 #add {
-   
     justify-content: space-between;
     align-content: center;
-    
 }
 
 .confirm {
@@ -407,94 +419,6 @@ input[type="submit"] {
     margin-left: 110px;
 }
 
-/* Responsive Media Query */
-@media (max-width: 1240px) {
-    .sidebar {
-        width: 70px;
-    }
-
-        .sidebar.active {
-            width: 250px;
-        }
-
-    .home-section {
-        width: calc(100% - 60px);
-        left: 60px;
-    }
-
-    .sidebar.active ~ .home-section {
-        width: calc(100% - 220px);
-        overflow: hidden;
-        left: 220px;
-    }
-
-    .home-section nav {
-        width: calc(100% - 60px);
-        left: 60px;
-    }
-
-    .sidebar.active ~ .home-section nav {
-        width: calc(100% - 220px);
-        left: 220px;
-    }
-}
-
-@media (max-width: 700px) {
-
-    nav .sidebar-button .dashboard,
-    nav .profile-details .admin_name,
-    nav .profile-details i {
-        display: none;
-    }
-
-
-    .home-content .sales-boxes .sales-details {
-        width: 560px;
-    }
-}
-
-@media (max-width: 550px) {
-    .overview-boxes .box {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-
-    .sidebar.active ~ .home-section nav .profile-details {
-        display: none;
-    }
-}
-
-@media (max-width: 400px) {
-    .sidebar {
-        width: 0;
-    }
-
-        .sidebar.active {
-            width: 60px;
-        }
-
-    .home-section {
-        width: 100%;
-        left: 0;
-    }
-
-    .sidebar.active ~ .home-section {
-        left: 60px;
-        width: calc(100% - 60px);
-    }
-
-    .home-section nav {
-        width: 100%;
-        left: 0;
-    }
-
-    .sidebar.active ~ .home-section nav {
-        left: 60px;
-        width: calc(100% - 60px);
-    }
-}
-
-
 .ftco-section {
     padding: 7em 0;
 }
@@ -521,7 +445,7 @@ input[type="submit"] {
     min-width: 800px !important;
     width: 100%;
     border-collapse: collapse;
-    padding:10px;
+    padding: 10px;
     /*border-spacing: 0 10px;*/
 }
 
@@ -621,6 +545,7 @@ input[type="submit"] {
     .table-responsive > .table-bordered {
         border: 0;
     }
-    #myModal{
-        margin-left:300px;
-    }
+
+#myModal {
+    margin-left: 300px;
+}

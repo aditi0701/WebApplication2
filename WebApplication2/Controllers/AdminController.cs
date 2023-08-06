@@ -21,7 +21,7 @@ namespace WebApplication2.Controllers
     {
         // GET: Admin
         //object of database
-        dopEntities1 db = new dopEntities1(); 
+        dopEntities2 db = new dopEntities2(); 
 
 
         public ActionResult Index()
@@ -222,7 +222,8 @@ namespace WebApplication2.Controllers
                 CourseCondition = db.CourseConditions.ToList(),
                 UserCourses = db.usercourses.ToList(),
                 CourseImplication = db.CourseImplications.ToList(),
-                Condition = db.conditions.ToList()
+                Condition = db.conditions.ToList(),
+                Remarks = db.Remarks.ToList()
             };
             return View(tables);
         }
@@ -237,7 +238,8 @@ namespace WebApplication2.Controllers
                 UserCourses = db.usercourses.ToList(),
                 CourseImplication = db.CourseImplications.ToList(),
                 Condition = db.conditions.ToList(),
-                Users = db.users.ToList()
+                Users = db.users.ToList(),
+                Remarks = db.Remarks.ToList()
             };
             return View(tables);
         }
@@ -253,7 +255,8 @@ namespace WebApplication2.Controllers
                 UserCourses = db.usercourses.ToList(),
                 CourseImplication = db.CourseImplications.ToList(),
                 Condition = db.conditions.ToList(),
-                Users = db.users.ToList()
+                Users = db.users.ToList(),
+                Remarks = db.Remarks.ToList()
             };
             return View("Candidates",tables);
         }
@@ -267,7 +270,8 @@ namespace WebApplication2.Controllers
                 UserCourses = db.usercourses.ToList(),
                 CourseImplication = db.CourseImplications.ToList(),
                 Condition = db.conditions.ToList(),
-                Users = db.users.ToList()
+                Users = db.users.ToList(), 
+                Remarks= db.Remarks.ToList() 
             };
 
             return View(tables);
@@ -292,7 +296,7 @@ namespace WebApplication2.Controllers
             c.time = currentDateTime;
             c.status = "Pending with master";
             c.createdBy = Session["Name"].ToString();
-            c.courseno = collection["course_no"];
+            c.courseno = Int16.Parse(collection["course_no"]);
 
             var courseID = -1;
 
@@ -323,7 +327,7 @@ namespace WebApplication2.Controllers
             var data = collection.AllKeys.ToArray();
             var n = data.Length;
 
-            var i = 7;  //first 6 are course details
+            var i = 11;  //first 11 are course details
             
             
             while(i<n)
@@ -747,6 +751,25 @@ namespace WebApplication2.Controllers
             return RedirectToAction("CourseList", tables);
         }
 
+
+        [HttpPost]
+        public ActionResult Message(FormCollection collection)
+        {
+            var from_admin = collection["hidden_admin"];
+            var to_admin = collection["to"];
+            var user_id= collection["hidden_user"];
+            var course_id = collection["hidden_course"];
+            var comment = collection["remark"];
+            Remark rm= new Remark();
+            rm.to_admin = to_admin;
+            rm.from_admin = from_admin;
+            rm.course_id = Int16.Parse(course_id);
+            rm.user_id = Int16.Parse(user_id);
+            rm.remark1 = comment;
+            db.Remarks.Add(rm);
+            db.SaveChanges();
+            return RedirectToAction("Candidates");
+        }
 
        
     }

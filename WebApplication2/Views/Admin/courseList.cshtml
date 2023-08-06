@@ -25,9 +25,9 @@
             display: inline-flex;
             fill: currentcolor;
             font-family: "Google Sans",Roboto,Arial,sans-serif;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 500;
-            height: 24px;
+            height: 48px;
             justify-content: center;
             letter-spacing: .25px;
             line-height: normal;
@@ -44,7 +44,7 @@
             width: auto;
             will-change: transform,opacity;
             z-index: 0;
-            padding: 5px;
+            margin: 5px;
         }
 
             .button-17:hover {
@@ -257,7 +257,7 @@
                                 <form action="/admin/getdetails" method="POST" id="@item.course_id">
                                     <input type="hidden" name="id" value="@item.course_id" />
                                 </form>
-                                <button class="button-17 btn btn-default" role="button" id="todelete" form="@item.course_id" type="submit">View Conditions</button>
+                                <button class="btn btn-default button-17" role="button" id="todelete" form="@item.course_id" type="submit">View Conditions</button>
                             </th>
                             
                             <th>
@@ -267,7 +267,7 @@
                                     <input type="hidden" value="@item.course_id" name="link">
                                 </form>
 
-                                <button class="button-17" role="button" type="submit" id="todelete" form="1+@item.course_id" class='btn btn-default'>Eligible Learners</button>
+                                <button class="btn btn-default button-17" role="button" type="submit" id="todelete" form="1+@item.course_id" >Eligible Learners</button>
                             </th>
                         </tr>
                     }
