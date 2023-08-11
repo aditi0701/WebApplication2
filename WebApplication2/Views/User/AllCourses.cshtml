@@ -198,8 +198,7 @@
                         <th>Branch</th>
                         <th>Duration(Weeks)</th>
                         <th>Commencement Date</th>
-                        <th>Last Date to Apply</th>
-                        <th>Time of publish/approve</th>
+                        
                         <th>Status</th>
 
                         <th>&nbsp;</th>
@@ -209,19 +208,12 @@
                 </thead>
                 <tbody>
 
-                    @{ 
-                        string username = Session["Name"].ToString();
-                        
-                    }
+                 
 
                     @*For each course in courses table display their details*@
                     @foreach (var item in Model.Course)
-                     {
-                                    if (username != "master" && (username.Equals("cdrE") || username.Equals("cdrX") || username.Equals("cdrL")) && !item.createdBy.Equals(username))
-                                    {
-                                        continue;
-                                    }
-                                    var id = @item.course_id;
+                    {
+                        var id = @item.course_id;
 
                         <tr>
 
@@ -229,42 +221,7 @@
                             <th>@item.branch</th>
                             <th>@item.duration</th>
                             <th>@item.commencement_date</th>
-                            <th>@item.due_date</th>
-                            <th>@item.time</th>
-                            @if (username.Equals("master") && item.status.Equals("Pending with master"))
-                            {
-                                <th>
-
-
-                                    <form action="/admin/approve2" method="POST" id="@id+accept">
-                                        <input type="hidden" value="@id" name="link2">
-                                    </form>
-                                    <button type="submit" form="@id+accept" class='btn btn-default button-17' role="button">Approve</button>
-
-                                    <form action="/admin/reject2" method="POST" id="@id+reject">
-                                        <input type="hidden" value="@id" name="link3">
-                                    </form>
-                                    <button type="submit" form="@id+reject" class='btn btn-default button-17' role="button">Reject</button>
-
-                                    @*<form action="/admin/preview2" method="POST" id="@id+preview">
-            <input type="hidden" value="@id" name="link4">
-        </form>
-
-        <button type="submit" form="@id+preview" class='btn btn-default button-17' role="button">Preview</button>*@
-
-                                    <form action="/admin/Preview" method="POST" id="@id+preview">
-                                        <input type="hidden" name="link4" value="@id" />
-                                    </form>
-                                    <button class="button-17 btn btn-default" role="button" id="todelete" form="@id+preview" type="submit">Preview</button>
-                                </th>
-                            }
-                           
-                          
-                            else
-                            {
-                                <th>@item.status </th>
-                            }
-
+                                                        
 
                             <th>
                                 @*form to display course conditions and implications*@
@@ -273,16 +230,9 @@
                                 </form>
                                 <button class="button-17 btn btn-default" role="button" id="todelete" form="@item.course_id" type="submit">View Conditions</button>
                             </th>
+
                             
-                            <th>
-
-                                @*form to display eligible learners*@
-                                <form action="/admin/details" method="POST" id="1+@item.course_id">
-                                    <input type="hidden" value="@item.course_id" name="link">
-                                </form>
-
-                                <button class="button-17" role="button" type="submit" id="todelete" form="1+@item.course_id" class='btn btn-default'>Eligible Learners</button>
-                            </th>
+                            
                         </tr>
                     }
                 </tbody>
@@ -290,7 +240,7 @@
         </div>
     </section>
 
-    
+
 
     <script>
 

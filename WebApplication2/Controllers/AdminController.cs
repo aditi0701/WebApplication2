@@ -226,7 +226,6 @@ namespace WebApplication2.Controllers
             };
             return View(tables);
         }
-
         //not used in the main website
         public ActionResult Demo()
         {

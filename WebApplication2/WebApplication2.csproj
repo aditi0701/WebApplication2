@@ -263,6 +263,7 @@
     <Content Include="Views\Admin\ConditionsImplications.cshtml" />
     <Content Include="Views\User\ImplicationDetail.cshtml" />
     <Content Include="Views\Admin\coursePreview.cshtml" />
+    <Content Include="Views\User\AllCourses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

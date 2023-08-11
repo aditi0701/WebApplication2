@@ -382,5 +382,19 @@ namespace WebApplication2.Controllers
             return View("ImplicationDetail", tables);
         }
 
+        public ActionResult AllCourses(FormCollection collection)
+        {
+            var tables = new AdminViewModel
+            {
+                Course = db.courses.ToList(),
+                CourseCondition = db.CourseConditions.ToList(),
+                UserCourses = db.usercourses.ToList(),
+                CourseImplication = db.CourseImplications.ToList(),
+                Condition = db.conditions.ToList()
+            };
+            return View("allCourses", tables);
+        }
+
+
     }
 }

@@ -113,24 +113,26 @@
     left: 60px;
     width: calc(100% - 60px);
 }
-
+/*999999999999999999999999999999*/
 .home-section nav .sidebar-button {
     display: flex;
     align-items: center;
-    font-size: 24px;
+    font-size: 83%;
     font-weight: 500;
-    color: white;
+    color: #0a3059;
+    background-color: white;
+    padding-top: 18px;
+    padding-bottom: 18px;
 }
 
 nav .sidebar-button i {
     font-size: 35px;
     margin-right: 10px;
 }
-
+/*99999999999999999*/
 .home-section nav .adminSitetext {
     font-size: 18px;
-    /*    background-color: white;
-*/ border-style: solid;
+    border-style: solid;
     border-width: thin;
     border-color: white;
     border-radius: 6px;
@@ -146,11 +148,10 @@ nav .sidebar-button i {
     margin-left: 1 0px;
 }
 
-
+/*999999999999999999*/
 .home-section nav .bannerImage {
-    padding-left: 15px;
-    padding-right: 5px;
-    margin-top: 10px;
+    width: 65px;
+    height: auto;
 }
 
 .ftco-section {

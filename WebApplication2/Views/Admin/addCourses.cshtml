@@ -159,7 +159,7 @@
             container.appendChild(document.getElementById(data));
 
             if (data == "path") {
-                document.getElementById("contain" + data).innerHTML += `<textarea id="Path" name="pathI" placeholder="Type career path" class="textbox1" rows="7" cols="50" required ></textarea><div class="close1" onclick="Delete2(contain` + data + `)"> &times; </div><br>`
+                document.getElementById("contain" + data).innerHTML += `<textarea id="Path" name="pathI" placeholder="Type the path of career" class="textbox1" rows="7" cols="50" required ></textarea><div class="close1" onclick="Delete2(contain` + data + `)"> &times; </div><br>`
                 document.getElementById("contain" + data).style = "display:flex;padding:20px";
             }
             else if (data == "posting") {
@@ -474,6 +474,20 @@
                 </a>
             </li>
             <li>
+                <a>
+                    <form action="/admin/allCourses" method="post">
+                        <input type="hidden" value="@Session["Email"]" name="email">
+                        <button style="background: none; border: none;" type="submit">
+                            <i class='bx bx-book'></i>
+                            <span class="links_name">
+                                View All
+                                Course
+                            </span>
+                        </button>
+                    </form>
+                </a>
+            </li>
+            <li>
                 <a href="http://11.0.0.183/" target="_blank">
                     <i class="bx bx-message"></i>
                     <span class="links_name">SmatBot</span>
@@ -500,8 +514,9 @@
                     <img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
                 </span>
                 <span class="dop">Directorate of Personnel</span>
-                <span class="adminSitetext"> Admin Site</span>
+
             </div>
+            <span class="adminSitetext"> Admin Site</span>
         </nav>
     </section>
     
@@ -924,20 +939,20 @@
                fromInput.oninput = () => controlFromInput(fromSlider, fromInput, toInput, toSlider);
                toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
            }
-        let sidebar = document.querySelector(".sidebar");
+        //let sidebar = document.querySelector(".sidebar");
 
-        let sidebarBtn = document.querySelector(".sidebarBtn");
+        //let sidebarBtn = document.querySelector(".sidebarBtn");
 
 
-        sidebarBtn.onclick = function () {
+        //sidebarBtn.onclick = function () {
 
-            sidebar.classList.toggle("active");
-            if (sidebar.classList.contains("active")) {
-                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-            }
-            else
-                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-        }
+        //    sidebar.classList.toggle("active");
+        //    if (sidebar.classList.contains("active")) {
+        //        sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        //    }
+        //    else
+        //        sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+        //}
        </script>
 
             <script>
@@ -1174,6 +1189,7 @@
                 function navigate() {
                     document.getElementById("card1").style.display = "none";
                     document.getElementById("card2").style.display = "block";
+                    document.getElementById("card3").style.display = "none";
                 }
 
                 function navigate2() {
@@ -1203,8 +1219,9 @@
 
                     
                     var name = document.getElementById("courseName").value;
+                    console.log(name);
                     var number = document.getElementById("courseNo").value;
-                   
+                    console.log(number);
                     var location = document.querySelector("#Location").value;
                     var duration = document.querySelector("#Duration").value;
                     var posting = document.querySelector("#Posting").value;
@@ -1221,6 +1238,7 @@
                             vals += "," + checkboxes[i].value;
                         }
                     }
+                    console.log(vals);
                     if (vals) vals = vals.substring(1);
                     
 
@@ -1243,3 +1261,4 @@
         </body>
 
     </html>
+
