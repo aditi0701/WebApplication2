@@ -248,12 +248,18 @@
 
                                 }
                             }
-                            if (temp.Equals("age"))
+                            if (temp.Equals("minAge"))
                             {
-                                if (!userdata.age.Equals(Int16.Parse(data[i].condition_value)))
+                                if (userdata.age < Int16.Parse(data[i].condition_value))
                                 {
                                     flag = false;
-
+                                }
+                            }
+                            if (temp.Equals("maxAge"))
+                            {
+                                if (userdata.age > Int16.Parse(data[i].condition_value))
+                                {
+                                    flag = false;
                                 }
                             }
                             if (temp.Equals("qualification"))
@@ -266,10 +272,9 @@
                             }
                             if (temp.Equals("gender"))
                             {
-                                if (!userdata.gender.Equals(data[i].condition_value))
+                                if (!data[i].condition_value.Equals("Both") && !userdata.gender.Equals(data[i].condition_value))
                                 {
                                     flag = false;
-
                                 }
                             }
                             if (temp.Equals("medical"))

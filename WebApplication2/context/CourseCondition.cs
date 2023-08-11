@@ -18,8 +18,5 @@ namespace WebApplication2.context
         public int condition_id { get; set; }
         public string condition_value { get; set; }
         public int id { get; set; }
-    
-        public virtual condition condition { get; set; }
-        public virtual cours cours { get; set; }
     }
 }

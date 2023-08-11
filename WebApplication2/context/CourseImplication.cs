@@ -14,12 +14,9 @@ namespace WebApplication2.context
     
     public partial class CourseImplication
     {
-        public Nullable<int> course_id { get; set; }
-        public int id { get; set; }
+        public int course_id { get; set; }
         public int implication_id { get; set; }
         public string implication_value { get; set; }
-    
-        public virtual cours cours { get; set; }
-        public virtual implication implication { get; set; }
+        public int id { get; set; }
     }
 }

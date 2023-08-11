@@ -4,24 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c649cb3a132943f48cbc72abedb7c2b8" Name="Diagram1">
-        <EntityTypeShape EntityType="dopModel.admin" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="dopModel.condition" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="dopModel.CourseCondition" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dopModel.CourseImplication" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dopModel.cours" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dopModel.implication" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dopModel.usercours" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dopModel.user" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dopModel.valueCondition" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dopModel.Remark" Width="1.5" PointX="5.75" PointY="4" IsExpanded="true" />
-        <AssociationConnector Association="dopModel.FK_CourseConditions_conditions" ManuallyRouted="false" />
-        <AssociationConnector Association="dopModel.FK_valueCondition_conditions" ManuallyRouted="false" />
-        <AssociationConnector Association="dopModel.FK_CourseConditions_courses" ManuallyRouted="false" />
-        <AssociationConnector Association="dopModel.FK_CourseImplications_courses" ManuallyRouted="false" />
-        <AssociationConnector Association="dopModel.FK_CourseImplications_implications" ManuallyRouted="false" />
-        <AssociationConnector Association="dopModel.FK_usercourses_courses" ManuallyRouted="false" />
-        <AssociationConnector Association="dopModel.FK_usercourses_users" ManuallyRouted="false" />
+      <Diagram DiagramId="fe4dfa4350654d0e99efa83d4c948939" Name="Diagram1">
+        <EntityTypeShape EntityType="dopModel.admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dopModel.condition" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dopModel.CourseCondition" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dopModel.CourseImplication" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dopModel.cours" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dopModel.implication" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dopModel.Remark" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dopModel.usercours" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dopModel.user" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dopModel.valueCondition" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -14,13 +14,6 @@ namespace WebApplication2.context
     
     public partial class cours
     {
-        public cours()
-        {
-            this.CourseConditions = new HashSet<CourseCondition>();
-            this.CourseImplications = new HashSet<CourseImplication>();
-            this.usercourses = new HashSet<usercours>();
-        }
-    
         public string course_name { get; set; }
         public int duration { get; set; }
         public System.DateTime commencement_date { get; set; }
@@ -28,14 +21,10 @@ namespace WebApplication2.context
         public string location { get; set; }
         public string branch { get; set; }
         public string admin { get; set; }
-        public int course_id { get; set; }
         public string status { get; set; }
-        public Nullable<System.DateTime> time { get; set; }
+        public System.DateTime time { get; set; }
         public string createdBy { get; set; }
-        public string courseno { get; set; }
-    
-        public virtual ICollection<CourseCondition> CourseConditions { get; set; }
-        public virtual ICollection<CourseImplication> CourseImplications { get; set; }
-        public virtual ICollection<usercours> usercourses { get; set; }
+        public int courseno { get; set; }
+        public int course_id { get; set; }
     }
 }

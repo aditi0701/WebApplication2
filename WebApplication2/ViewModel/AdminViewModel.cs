@@ -20,6 +20,8 @@ namespace WebApplication2.ViewModel
 
         public IEnumerable<usercours> UserCourses { get; set; }
 
-        public IEnumerable<implication> Implication { get; set; }   
+        public IEnumerable<implication> Implication { get; set; }
+
+        public IEnumerable<Remark> Remarks { get; set; }
     }
 }
