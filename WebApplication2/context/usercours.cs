@@ -16,8 +16,11 @@ namespace WebApplication2.context
     {
         public int user_id { get; set; }
         public int course_id { get; set; }
-        public string status { get; set; }
-        public System.DateTime applyTime { get; set; }
         public int id { get; set; }
+        public string status { get; set; }
+        public Nullable<System.DateTime> applyTime { get; set; }
+    
+        public virtual cours cours { get; set; }
+        public virtual user user { get; set; }
     }
 }

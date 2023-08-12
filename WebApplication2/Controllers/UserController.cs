@@ -16,7 +16,7 @@ namespace WebApplication2.Controllers
     public class UserController : Controller
     {
         // GET: User
-        dopEntities2 db = new dopEntities2();
+        dopEntities db = new dopEntities();
 
         public ActionResult Index()
         {

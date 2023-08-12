@@ -14,8 +14,15 @@ namespace WebApplication2.context
     
     public partial class implication
     {
+        public implication()
+        {
+            this.CourseImplications = new HashSet<CourseImplication>();
+        }
+    
         public string implication_name { get; set; }
-        public string implication_type { get; set; }
         public int id { get; set; }
+        public string implication_type { get; set; }
+    
+        public virtual ICollection<CourseImplication> CourseImplications { get; set; }
     }
 }

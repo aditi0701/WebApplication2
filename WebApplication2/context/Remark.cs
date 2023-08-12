@@ -16,8 +16,8 @@ namespace WebApplication2.context
     {
         public int user_id { get; set; }
         public int course_id { get; set; }
-        public string from_admin { get; set; }
-        public string to_admin { get; set; }
+        public int from_admin { get; set; }
+        public int to_admin { get; set; }
         public string remark1 { get; set; }
         public int id { get; set; }
     }

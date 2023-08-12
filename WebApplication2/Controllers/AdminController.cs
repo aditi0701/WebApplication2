@@ -21,7 +21,7 @@ namespace WebApplication2.Controllers
     {
         // GET: Admin
         //object of database
-        dopEntities2 db = new dopEntities2(); 
+        dopEntities db = new dopEntities() ;
 
 
         public ActionResult Index()
@@ -295,7 +295,7 @@ namespace WebApplication2.Controllers
             c.time = currentDateTime;
             c.status = "Pending with master";
             c.createdBy = Session["Name"].ToString();
-            c.courseno = Int16.Parse(collection["course_no"]);
+            c.courseno = collection["course_no"];
 
             var courseID = -1;
 
@@ -760,8 +760,8 @@ namespace WebApplication2.Controllers
             var course_id = collection["hidden_course"];
             var comment = collection["remark"];
             Remark rm= new Remark();
-            rm.to_admin = to_admin;
-            rm.from_admin = from_admin;
+            rm.to_admin = int.Parse(to_admin);
+            rm.from_admin = int.Parse(from_admin);
             rm.course_id = Int16.Parse(course_id);
             rm.user_id = Int16.Parse(user_id);
             rm.remark1 = comment;

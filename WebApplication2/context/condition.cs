@@ -14,8 +14,17 @@ namespace WebApplication2.context
     
     public partial class condition
     {
+        public condition()
+        {
+            this.CourseConditions = new HashSet<CourseCondition>();
+            this.valueConditions = new HashSet<valueCondition>();
+        }
+    
         public string condition_name { get; set; }
         public string condition_type { get; set; }
         public int condition_id { get; set; }
+    
+        public virtual ICollection<CourseCondition> CourseConditions { get; set; }
+        public virtual ICollection<valueCondition> valueConditions { get; set; }
     }
 }
