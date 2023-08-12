@@ -67,21 +67,14 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="implication_type" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'dop.dbo.Remarks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Remarks">
           <Key>
-            <PropertyRef Name="user_id" />
-            <PropertyRef Name="course_id" />
-            <PropertyRef Name="from_admin" />
-            <PropertyRef Name="to_admin" />
-            <PropertyRef Name="remark" />
             <PropertyRef Name="id" />
           </Key>
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="course_id" Type="int" Nullable="false" />
-          <Property Name="from_admin" Type="int" Nullable="false" />
-          <Property Name="to_admin" Type="int" Nullable="false" />
+          <Property Name="from_admin" Type="varchar" MaxLength="100" />
+          <Property Name="to_admin" Type="varchar" MaxLength="100" />
           <Property Name="remark" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
@@ -223,19 +216,10 @@ warning 6002: The table/view 'dop.dbo.Remarks' does not have a primary key defin
           <EntitySet Name="CourseImplications" EntityType="Self.CourseImplications" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="courses" EntityType="Self.courses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="implications" EntityType="Self.implications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Remarks" EntityType="Self.Remarks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usercourses" EntityType="Self.usercourses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="valueCondition" EntityType="Self.valueCondition" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Remarks" EntityType="Self.Remarks" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[Remarks].[user_id] AS [user_id], 
-[Remarks].[course_id] AS [course_id], 
-[Remarks].[from_admin] AS [from_admin], 
-[Remarks].[to_admin] AS [to_admin], 
-[Remarks].[remark] AS [remark], 
-[Remarks].[id] AS [id]
-FROM [dbo].[Remarks] AS [Remarks]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_CourseConditions_conditions" Association="Self.FK_CourseConditions_conditions">
             <End Role="conditions" EntitySet="conditions" />
             <End Role="CourseConditions" EntitySet="CourseConditions" />
@@ -342,6 +326,17 @@ FROM [dbo].[Remarks] AS [Remarks]</DefiningQuery>
           <Property Name="implication_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CourseImplications" Relationship="Self.FK_CourseImplications_implications" FromRole="implications" ToRole="CourseImplications" />
         </EntityType>
+        <EntityType Name="Remark">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="course_id" Type="Int32" Nullable="false" />
+          <Property Name="from_admin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="to_admin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="remark1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityType Name="usercours">
           <Key>
             <PropertyRef Name="id" />
@@ -382,22 +377,6 @@ FROM [dbo].[Remarks] AS [Remarks]</DefiningQuery>
           <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="condition" Relationship="Self.FK_valueCondition_conditions" FromRole="valueCondition" ToRole="conditions" />
-        </EntityType>
-        <EntityType Name="Remark">
-          <Key>
-            <PropertyRef Name="user_id" />
-            <PropertyRef Name="course_id" />
-            <PropertyRef Name="from_admin" />
-            <PropertyRef Name="to_admin" />
-            <PropertyRef Name="remark1" />
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="course_id" Type="Int32" Nullable="false" />
-          <Property Name="from_admin" Type="Int32" Nullable="false" />
-          <Property Name="to_admin" Type="Int32" Nullable="false" />
-          <Property Name="remark1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="FK_CourseConditions_conditions">
           <End Role="conditions" Type="Self.condition" Multiplicity="1">
@@ -493,17 +472,17 @@ FROM [dbo].[Remarks] AS [Remarks]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dopEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="dopEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="admins" EntityType="Self.admin" />
           <EntitySet Name="conditions" EntityType="Self.condition" />
           <EntitySet Name="CourseConditions" EntityType="Self.CourseCondition" />
           <EntitySet Name="CourseImplications" EntityType="Self.CourseImplication" />
           <EntitySet Name="courses" EntityType="Self.cours" />
           <EntitySet Name="implications" EntityType="Self.implication" />
+          <EntitySet Name="Remarks" EntityType="Self.Remark" />
           <EntitySet Name="usercourses" EntityType="Self.usercours" />
           <EntitySet Name="users" EntityType="Self.user" />
           <EntitySet Name="valueConditions" EntityType="Self.valueCondition" />
-          <EntitySet Name="Remarks" EntityType="Self.Remark" />
           <AssociationSet Name="FK_CourseConditions_conditions" Association="Self.FK_CourseConditions_conditions">
             <End Role="conditions" EntitySet="conditions" />
             <End Role="CourseConditions" EntitySet="CourseConditions" />
@@ -538,7 +517,7 @@ FROM [dbo].[Remarks] AS [Remarks]</DefiningQuery>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="dopModelStoreContainer" CdmEntityContainer="dopEntities">
+        <EntityContainerMapping StorageEntityContainer="dopModelStoreContainer" CdmEntityContainer="dopEntities3">
           <EntitySetMapping Name="admins">
             <EntityTypeMapping TypeName="dopModel.admin">
               <MappingFragment StoreEntitySet="admins">
@@ -607,6 +586,18 @@ FROM [dbo].[Remarks] AS [Remarks]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Remarks">
+            <EntityTypeMapping TypeName="dopModel.Remark">
+              <MappingFragment StoreEntitySet="Remarks">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="course_id" ColumnName="course_id" />
+                <ScalarProperty Name="from_admin" ColumnName="from_admin" />
+                <ScalarProperty Name="to_admin" ColumnName="to_admin" />
+                <ScalarProperty Name="remark1" ColumnName="remark" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="usercourses">
             <EntityTypeMapping TypeName="dopModel.usercours">
               <MappingFragment StoreEntitySet="usercourses">
@@ -643,18 +634,6 @@ FROM [dbo].[Remarks] AS [Remarks]</DefiningQuery>
               <MappingFragment StoreEntitySet="valueCondition">
                 <ScalarProperty Name="condition_id" ColumnName="condition_id" />
                 <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Remarks">
-            <EntityTypeMapping TypeName="dopModel.Remark">
-              <MappingFragment StoreEntitySet="Remarks">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="course_id" ColumnName="course_id" />
-                <ScalarProperty Name="from_admin" ColumnName="from_admin" />
-                <ScalarProperty Name="to_admin" ColumnName="to_admin" />
-                <ScalarProperty Name="remark1" ColumnName="remark" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

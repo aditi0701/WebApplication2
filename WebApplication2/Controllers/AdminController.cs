@@ -21,7 +21,7 @@ namespace WebApplication2.Controllers
     {
         // GET: Admin
         //object of database
-        dopEntities db = new dopEntities() ;
+        dopEntities3 db = new dopEntities3() ;
 
 
         public ActionResult Index()
@@ -326,7 +326,7 @@ namespace WebApplication2.Controllers
             var data = collection.AllKeys.ToArray();
             var n = data.Length;
 
-            var i = 11;  //first 11 are course details
+            var i = 8;  //first 11 are course details
             
             
             while(i<n)
@@ -756,12 +756,13 @@ namespace WebApplication2.Controllers
         {
             var from_admin = collection["hidden_admin"];
             var to_admin = collection["to"];
+            Response.Write(to_admin);
             var user_id= collection["hidden_user"];
             var course_id = collection["hidden_course"];
             var comment = collection["remark"];
             Remark rm= new Remark();
-            rm.to_admin = int.Parse(to_admin);
-            rm.from_admin = int.Parse(from_admin);
+            rm.to_admin = to_admin;
+            rm.from_admin = from_admin;
             rm.course_id = Int16.Parse(course_id);
             rm.user_id = Int16.Parse(user_id);
             rm.remark1 = comment;

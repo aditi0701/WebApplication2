@@ -13,10 +13,10 @@ namespace WebApplication2.context
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dopEntities : DbContext
+    public partial class dopEntities3 : DbContext
     {
-        public dopEntities()
-            : base("name=dopEntities")
+        public dopEntities3()
+            : base("name=dopEntities3")
         {
         }
     
@@ -31,9 +31,9 @@ namespace WebApplication2.context
         public DbSet<CourseImplication> CourseImplications { get; set; }
         public DbSet<cours> courses { get; set; }
         public DbSet<implication> implications { get; set; }
+        public DbSet<Remark> Remarks { get; set; }
         public DbSet<usercours> usercourses { get; set; }
         public DbSet<user> users { get; set; }
         public DbSet<valueCondition> valueConditions { get; set; }
-        public DbSet<Remark> Remarks { get; set; }
     }
 }
