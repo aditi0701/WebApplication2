@@ -13,10 +13,10 @@ namespace WebApplication2.context
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dopEntities3 : DbContext
+    public partial class dopEntities1 : DbContext
     {
-        public dopEntities3()
-            : base("name=dopEntities3")
+        public dopEntities1()
+            : base("name=dopEntities1")
         {
         }
     
@@ -27,6 +27,7 @@ namespace WebApplication2.context
     
         public DbSet<admin> admins { get; set; }
         public DbSet<condition> conditions { get; set; }
+        public DbSet<cor> cors { get; set; }
         public DbSet<CourseCondition> CourseConditions { get; set; }
         public DbSet<CourseImplication> CourseImplications { get; set; }
         public DbSet<cours> courses { get; set; }

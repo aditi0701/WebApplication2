@@ -211,7 +211,6 @@
                     {
                         bool jk = true;
 
-
                         //checking if the user has applied the course
                         if (Model.UserCourses.Count() > 0)
                         {
@@ -241,11 +240,16 @@
                             var temp = mv.condition_name;
                             if (temp.Equals("rank"))
                             {
-
-                                if (!userdata.rank.Equals(data[i].condition_value))
+                                string arr = data[i].condition_value;
+                                string[] res = arr.Split(',');
+                                flag = false;
+                                foreach (string x in res)
                                 {
-                                    flag = false;
-
+                                    if (!userdata.rank.Equals(x))
+                                    {
+                                        flag = true;
+                                        break;
+                                    }
                                 }
                             }
                             if (temp.Equals("minAge"))
@@ -253,6 +257,7 @@
                                 if (userdata.age < Int16.Parse(data[i].condition_value))
                                 {
                                     flag = false;
+                                    
                                 }
                             }
                             if (temp.Equals("maxAge"))
@@ -260,6 +265,7 @@
                                 if (userdata.age > Int16.Parse(data[i].condition_value))
                                 {
                                     flag = false;
+                                    
                                 }
                             }
                             if (temp.Equals("qualification"))
@@ -267,6 +273,7 @@
                                 if (!userdata.qualification.Equals(data[i].condition_value))
                                 {
                                     flag = false;
+                                    
 
                                 }
                             }
@@ -275,6 +282,7 @@
                                 if (!data[i].condition_value.Equals("Both") && !userdata.gender.Equals(data[i].condition_value))
                                 {
                                     flag = false;
+                                    
                                 }
                             }
                             if (temp.Equals("medical"))
@@ -282,7 +290,7 @@
                                 if (!userdata.medical.Equals(data[i].condition_value))
                                 {
                                     flag = false;
-
+                                    
                                 }
                             }
                             if (temp.Equals("yearsOfServices"))
@@ -291,7 +299,7 @@
                                 if (!(userdata.yearsOfServices == tt))
                                 {
                                     flag = false;
-
+                                    
                                 }
                             }
                             if (temp.Equals("acrMarks"))
@@ -300,7 +308,7 @@
                                 if (!(userdata.acrMarks >= tt))
                                 {
                                     flag = false;
-
+                                    
                                 }
                             }
                         }
@@ -330,11 +338,30 @@
                                 </th>
                                 <th>
                                     @* to apply the course *@
-                                    <form action="/user/demo" method="POST" id="form1" onsubmit="return confirm('Do you really want to apply for course?');">
-                                        <input type="hidden" value="@userdata.user_id" name="user">
-                                        <input type="hidden" value="@item.course_id" name="link">
-                                    </form>
-                                    <button type="submit"  onclick="Delete(this)" form="form1" class='btn btn-default button-17' role="button">Apply</button>
+                                    
+                                        <label>COR</label>
+                                        <select name="cor" id="cor" required>
+                                            <option value=""> Select your chain of request </option>
+                                            <option value="OIC">OIC</option>
+                                            <option value="TC">TC</option>
+                                            <option value="EXO">EXO</option>
+                                            <option value="CO">CO</option>
+
+                                        </select>
+                                        <button onclick="addItem()">Add</button>
+
+                                        <h4>Selected Admins:</h4>
+           
+                                        <input type="text" id="selectedItemsInput" readonly>
+                                            
+                                        
+                                        <form action="/user/demo" method="POST" id="form1">
+                                            <input type="hidden" value="@userdata.user_id" name="user">
+                                            <input type="hidden" value="@item.course_id" name="link">
+                                            <input type="hidden" value="" name="chain" id="chain"/>
+                                            
+                                        </form>
+                                    <button type="submit" onclick="func()" form="form1" class='btn btn-default button-17' role="button">Apply</button>
                                 </th>
                             </tr>
                         }
@@ -345,23 +372,34 @@
     </section>
 
     <script>
-        
+        function addItem() {
+            const select = document.getElementById("cor");
+            const selectedItem = select.value;
+            const selectedItemText = select.options[select.selectedIndex].text;
 
-        let sidebar = document.querySelector(".sidebar");
+            if (selectedItem) {
+                const selectedItemsInput = document.getElementById("selectedItemsInput");
 
-        let sidebarBtn = document.querySelector(".sidebarBtn");
+                // Check if the item is already added
+                if (!selectedItemsInput.value.includes(selectedItemText)) {
+                    if (selectedItemsInput.value.length > 0) {
+                        selectedItemsInput.value += ",";
+                    }
+                    selectedItemsInput.value += selectedItemText;
+                }
 
-
-        sidebarBtn.onclick = function () {
-
-            sidebar.classList.toggle("active");
-            if (sidebar.classList.contains("active")) {
-                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+                // Remove the selected item from the drop-down
+                select.removeChild(select.options[select.selectedIndex]);
             }
-            else
-                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
         }
 
+        function func() {
+            document.getElementById("chain").value = document.getElementById("selectedItemsInput").value;
+            console.log(document.getElementById("chain").value);
+            console.log("Hii");
+        }
+
+        
     </script>
 </body>
 </html>

@@ -12,7 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-        .button-17 {
+
+        .button-17, .addRemark {
             align-items: center;
             appearance: none;
             background-color: #fff;
@@ -88,13 +89,12 @@
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
             padding-top: 100px; /* Location of the box */
-            left:0;
-            margin-left:500px;
+            left: 0;
+            margin-left: 500px;
             top: 0;
             width: 40%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            
         }
 
         /* Modal Content */
@@ -138,7 +138,6 @@
                 text-decoration: none;
                 cursor: pointer;
             }
-
     </style>
 </head>
 
@@ -220,7 +219,7 @@
     <section class="home-section">
         <nav>
             <div class="sidebar-button">
-                <i class='bx bx-menu sidebarBtn'></i>
+
                 <span class="bannerImage">
                     <img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
                 </span>
@@ -246,7 +245,7 @@
                 <tbody>
                     @{
                         //fetching the course id when the particular course is selected in courselist page
-                        int course_id = Int16.Parse(ViewBag.id);
+                        int course_id = Int16.Parse(Session["selected_course"].ToString());
                         var admin = Session["Name"];  // current admin name
 
                         var n = Model.Users.Count();
@@ -279,10 +278,16 @@
 
                                 if (temp.Equals("rank"))
                                 {
-
-                                    if (!item.rank.Equals(data[i].condition_value))
+                                    string arr = data[i].condition_value;
+                                    string[] res = arr.Split(',');
+                                    flag = false;
+                                    foreach (string x in res)
                                     {
-                                        flag = false;
+                                        if (!item.rank.Equals(x))
+                                        {
+                                            flag = true;
+                                            break;
+                                        }
                                     }
                                 }
                                 if (temp.Equals("minAge"))
@@ -369,7 +374,7 @@
                                                     @*remark only if rejecting*@
                                                 </form>
 
-                                                <button type="submit" form="@course_id+reject" class='btn btn-default button-17' role="button" onclick="func()">Reject</button>
+                                                <button type="submit" form="@course_id+reject" class='btn btn-default button-17' role="button">Reject</button>
 
 
                                             }
@@ -382,24 +387,25 @@
                                         }
                                     </th>
                                     <th>
-                                        <button type="button" class="button-17" id="btn">Remarks</button>
-                                        <div id="myModal" class="modal">
+                                        
+                                            <button class="addRemark" id="button+@item.user_id@course_id" onclick="func(this)">Remarks</button>
 
-                                            <div class="modal-content">
+                                            <div id="myModal+@item.user_id@course_id" class="modal">
 
-                                                <div class="close"> &times;</div>
-                                                <form method="POST" action="/admin/message">
-                                                    <input type="hidden" name="hidden_course" value="@course_id" />
-                                                    <input type="hidden" name="hidden_user" value="@item.user_id" />
-                                                    <input type="hidden" name="hidden_admin" value="@admin" />
+                                                <div class="modal-content">
 
-                                                    <input type="text" placeholder="Add remark" name="remark" required />
-                                                    <br />
-                                                    <br />
-                                                    @{
+                                                    <div id="close+@item.user_id@course_id" class="close"> &times;</div>
+                                                    <form method="POST" action="/admin/message" id="@course_id+form+@item.user_id">
+                                                        <input type="hidden" name="hidden_course" value="@course_id" />
+                                                        <input type="hidden" name="hidden_user" value="@item.user_id" />
+                                                        <input type="hidden" name="hidden_admin" value="@admin" />
 
-                                                        if (admin.Equals("admin1"))
-                                                        {
+                                                        <input type="text" placeholder="Add remark" name="remark" required />
+                                                        <br />
+                                                        <br />
+                                                        @{
+
+
                                                             <select name="to" required>
                                                                 <option value="" disabled>Select Recipient</option>
                                                                 <option value="admin2">Admin2</option>
@@ -407,88 +413,97 @@
                                                                 <option value="admin4">Admin4</option>
                                                                 <option value="admin5">Admin5</option>
                                                                 <option value="admin6">Admin6</option>
+                                                                <option value="OIC">OIC</option>
+                                                                <option value="TC">TC</option>
+                                                                <option value="EXO">EXO</option>
                                                             </select>
+
+                                                            @*if (admin.Equals("admin2"))
+            {
+                <select name="to" required>
+                    <option value="" disabled>Select Recipient</option>
+
+                    <option value="admin3">Admin3</option>
+                    <option value="admin4">Admin4</option>
+                    <option value="admin5">Admin5</option>
+                    <option value="admin6">Admin6</option>
+                </select>
+            }
+            if (admin.Equals("admin3"))
+            {
+                <select name="to" required>
+                    <option value="" disabled>Select Recipient</option>
+
+                    <option value="admin4">Admin4</option>
+                    <option value="admin5">Admin5
+                    <option>
+                    <option value="admin6">Admin6</option>
+                </select>
+            }
+            if (admin.Equals("admin4"))
+            {
+                <select name="to" required>
+                    <option value="" disabled>Select Recipient</option>
+
+                    <option value="admin5">Admin5</option>
+                    <option value="admin6">Admin6</option>
+                </select>
+            }
+            if (admin.Equals("admin5"))
+            {
+                <select name="to" required>
+                    <option value="" selected disabled>Select Recipient</option>
+                    <option value="admin6">Admin6</option>
+                </select>
+            }*@
+                                                            <br />
+                                                            <button type="submit" form="@course_id+form+@item.user_id" role="button" class="btn btn-default button-17">Send</button>
                                                         }
-                                                        if (admin.Equals("admin2"))
-                                                        {
-                                                            <select name="to" required>
-                                                                <option value="" disabled>Select Recipient</option>
+                                                        @{
 
-                                                                <option value="admin3">Admin3</option>
-                                                                <option value="admin4">Admin4</option>
-                                                                <option value="admin5">Admin5</option>
-                                                                <option value="admin6">Admin6</option>
-                                                            </select>
+
+                                                            var remarks = Model.Remarks.Where(s => (s.from_admin.Equals(admin) || s.to_admin.Equals(admin)) && s.course_id.Equals(course_id) && s.user_id.Equals(item.user_id));
+                                                            //Response.Write(item.user_id);
+                                                            if (remarks != null)
+                                                            {
+                                                                var arr = remarks.ToArray();
+                                                                <table style="border-spacing: 30px;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <td>From</td>
+                                                                            <td>To</td>
+                                                                            <td>Remark</td>
+
+                                                                        </tr>
+                                                                    </thead>
+                                                                    @for (var i = 0; i < arr.Length; i++)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>
+                                                                                @arr[i].from_admin
+                                                                            </td>
+                                                                            <td>
+                                                                                @arr[i].to_admin
+                                                                            </td>
+                                                                            <td>
+                                                                                @arr[i].remark1
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                </table>
+                                                            }
+
+
                                                         }
-                                                        if (admin.Equals("admin3"))
-                                                        {
-                                                            <select name="to" required>
-                                                                <option value="" disabled>Select Recipient</option>
-
-                                                                <option value="admin4">Admin4</option>
-                                                                <option value="admin5">Admin5
-                                                                <option>
-                                                                <option value="admin6">Admin6</option>
-                                                            </select>
-                                                        }
-                                                        if (admin.Equals("admin4"))
-                                                        {
-                                                            <select name="to" required>
-                                                                <option value="" disabled>Select Recipient</option>
-
-                                                                <option value="admin5">Admin5</option>
-                                                                <option value="admin6">Admin6</option>
-                                                            </select>
-                                                        }
-                                                        if (admin.Equals("admin5"))
-                                                        {
-                                                            <select name="to" required>
-                                                                <option value="" selected disabled>Select Recipient</option>
-                                                                <option value="admin6">Admin6</option>
-                                                            </select>
-                                                        }
-                                                        <br />
-                                                        <input type="submit" value="Send" />
-                                                    }
-                                                    @{
-
-
-                                                        var remarks = Model.Remarks.Where(s => s.from_admin.Equals(admin) || s.to_admin.Equals(admin)).ToArray();
-                                                        //var remarks = Model.Remarks.Where(s => s.from_admin.Equals(admin)).ToArray();
-
-                                                        <table style="border-spacing: 30px;">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <td>From</td>
-                                                                        <td>To</td>
-                                                                        <td>Remark</td>
-
-                                                                    </tr>
-                                                                </thead>
-                                                                @for (var i = 0; i < remarks.Length; i++)
-                                                                {
-                                                                    <tr>
-                                                                        <td>
-                                                                            @remarks[i].from_admin
-                                                                        </td>
-                                                                        <td>
-                                                                            @remarks[i].to_admin
-                                                                        </td>
-                                                                        <td>
-                                                                            @remarks[i].remark1
-                                                                        </td>
-                                                                    </tr>
-                                                                }
-                                                           </table>
-                                                   }
 
 
                                                     </form>
+                                                </div>
                                             </div>
-                                        </div>
+                                        
                                     </th>
                                 </tr>
-
+                                
 
                             }
                         }
@@ -500,52 +515,47 @@
             </div>
         </div>
     </section>
-  
+
     <script>
-        function func() {
-            document.getElementById("remark").style.display = "block";
-        }
-        let sidebar = document.querySelector(".sidebar");
 
-        let sidebarBtn = document.querySelector(".sidebarBtn");
-
-
-        sidebarBtn.onclick = function () {
-
-            sidebar.classList.toggle("active");
-            if (sidebar.classList.contains("active")) {
-                sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-            }
-            else
-                sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-        }
-
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the button that opens the modal
-        var btn = document.getElementById("btn");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal
-        btn.onclick = function () {
+        
+        function func(r) {
+            var buttonid = r.id.toString().substring(7);
+            //console.log(buttonid);
+            var modal = document.getElementById("myModal+" + buttonid);
             modal.style.display = "block";
-            getDetails();
-        }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
+            // Get the button that opens the modal
+            /*var buttons = document.querySelectorAll(".addRemark");*/
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
+            // Get the <span> element that closes the modal
+            var span = document.getElementById("close+" + buttonid);
+
+            // When the user clicks the button, open the modal
+
+            //for (let a = 0; a < buttons.length; a++) {
+            //    buttons[a].onclick = function () {
+                    
+
+            //        modal = 
+                    
+            //    }
+            //}
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
                 modal.style.display = "none";
             }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
         }
+        
+        
     </script>
 </body>
 

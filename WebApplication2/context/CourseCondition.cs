@@ -14,8 +14,8 @@ namespace WebApplication2.context
     
     public partial class CourseCondition
     {
-        public int course_id { get; set; }
-        public int condition_id { get; set; }
+        public Nullable<int> course_id { get; set; }
+        public Nullable<int> condition_id { get; set; }
         public string condition_value { get; set; }
         public int id { get; set; }
     

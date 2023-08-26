@@ -23,5 +23,7 @@ namespace WebApplication2.ViewModel
         public IEnumerable<implication> Implication { get; set; }
 
         public IEnumerable<Remark> Remarks { get; set; }
+
+        public IEnumerable<cor> cors { get; set; }
     }
 }

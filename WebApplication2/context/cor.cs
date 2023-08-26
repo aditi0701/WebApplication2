@@ -12,17 +12,15 @@ namespace WebApplication2.context
     using System;
     using System.Collections.Generic;
     
-    public partial class implication
+    public partial class cor
     {
-        public implication()
-        {
-            this.CourseImplications = new HashSet<CourseImplication>();
-        }
-    
-        public string implication_name { get; set; }
-        public string implication_type { get; set; }
+        public int user_id { get; set; }
+        public int course_id { get; set; }
+        public string admin_name { get; set; }
+        public string status { get; set; }
         public int id { get; set; }
     
-        public virtual ICollection<CourseImplication> CourseImplications { get; set; }
+        public virtual cours cours { get; set; }
+        public virtual user user { get; set; }
     }
 }

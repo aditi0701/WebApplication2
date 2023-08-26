@@ -21,7 +21,7 @@ namespace WebApplication2.Controllers
     {
         // GET: Admin
         //object of database
-        dopEntities3 db = new dopEntities3() ;
+        dopEntities1 db = new dopEntities1() ;
 
 
         public ActionResult Index()
@@ -246,7 +246,7 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public ActionResult Details(FormCollection collection)
         {
-            ViewBag.id = collection["link"];
+            Session["selected_course"] = collection["link"];
             var tables = new AdminViewModel
             {
                 Course = db.courses.ToList(),
@@ -488,34 +488,57 @@ namespace WebApplication2.Controllers
             var user_id = Int16.Parse(collection["user"]);
             var admin = collection["admin"];
             usercours prevdata = new usercours();
-            prevdata = db.usercourses.FirstOrDefault(s => s.course_id.Equals(course_id) && s.user_id.Equals(user_id));
+            prevdata = db.usercourses.FirstOrDefault(s => s.course_id==course_id && s.user_id==user_id);
             prevdata.applyTime = DateTime.Now;
-            if (admin == "admin6")
+
+            cor ch = new cor();
+            ch=db.cors.FirstOrDefault(s => s.course_id == course_id && s.user_id == user_id && s.status.Equals("Pending"));
+            ch.status = "Approved";
+            try
             {
-                prevdata.status = "Pending_admin5";
-                
+                db.Entry(ch).State = System.Data.EntityState.Modified;
+                db.SaveChanges();
             }
-            else if (admin == "admin5")
+            catch (DbEntityValidationException ex)
             {
-                prevdata.status = "Pending_admin4";
-            }
-            else if (admin == "admin4")
-            {
-                prevdata.status = "Pending_admin3";
-            }
-            else if (admin == "admin3")
-            {
-                prevdata.status = "Pending_admin2";
-            }
-            else if (admin == "admin2")
-            {
-                prevdata.status = "Pending_master";
-            }
-            else if (admin == "master")
-            {
-                prevdata.status = "Approved";
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
             }
 
+            cor ch2 = new cor();
+            ch2 = db.cors.FirstOrDefault(s => s.course_id == course_id && s.user_id == user_id && s.status.Equals("Pending"));
+
+            //if (admin == "admin6")
+            //{
+            //    prevdata.status = "Pending_admin5";
+
+            //}
+            //else if (admin == "admin5")
+            //{
+            //    prevdata.status = "Pending_admin4";
+            //}
+            //else if (admin == "admin4")
+            //{
+            //    prevdata.status = "Pending_admin3";
+            //}
+            //else if (admin == "admin3")
+            //{
+            //    prevdata.status = "Pending_admin2";
+            //}
+            //else if (admin == "admin2")
+            //{
+            //    prevdata.status = "Pending_master";
+            //}
+            //else if (admin == "master")
+            //{
+            //    prevdata.status = "Approved";
+            //}
+            prevdata.status = "Pending_" + ch2.admin_name;
 
             ViewBag.id = course_id.ToString();
 
@@ -541,9 +564,10 @@ namespace WebApplication2.Controllers
                 UserCourses = db.usercourses.ToList(),
                 CourseImplication = db.CourseImplications.ToList(),
                 Condition = db.conditions.ToList(),
-                Users = db.users.ToList()
+                Users = db.users.ToList(),
+                Remarks=db.Remarks.ToList()
             };
-            return View("Candidates",tables);
+            return RedirectToAction("Candidates",tables);
         }
 
         [HttpPost]
@@ -553,32 +577,54 @@ namespace WebApplication2.Controllers
             var user_id = Int16.Parse(collection["user"]);
             var admin = collection["admin"];
             usercours prevdata = new usercours();
-            prevdata = db.usercourses.FirstOrDefault(s => s.course_id.Equals(course_id) && s.user_id.Equals(user_id));
-            if (admin == "admin6")
-            {
-                prevdata.status = "Rejected";
-            }
-            else if (admin == "admin5")
-            {
-                prevdata.status = "Pending_admin6";
-            }
-            else if (admin == "admin4")
-            {
-                prevdata.status = "Pending_admin5";
-            }
-            else if (admin == "admin3")
-            {
-                prevdata.status = "Pending_admin4";
-            }
-            else if (admin == "admin2")
-            {
-                prevdata.status = "Pending_admin3";
-            }
-            else if (admin == "master")
-            {
-                prevdata.status = "Pending_admin2";
-            }
+            prevdata = db.usercourses.FirstOrDefault(s => s.course_id==course_id && s.user_id==user_id);
+            //if (admin == "admin6")
+            //{
+            //    prevdata.status = "Rejected";
+            //}
+            //else if (admin == "admin5")
+            //{
+            //    prevdata.status = "Pending_admin6";
+            //}
+            //else if (admin == "admin4")
+            //{
+            //    prevdata.status = "Pending_admin5";
+            //}
+            //else if (admin == "admin3")
+            //{
+            //    prevdata.status = "Pending_admin4";
+            //}
+            //else if (admin == "admin2")
+            //{
+            //    prevdata.status = "Pending_admin3";
+            //}
+            //else if (admin == "master")
+            //{
+            //    prevdata.status = "Pending_admin2";
+            //}
+            cor ch = new cor();
+            ch = db.cors.FirstOrDefault(s => s.course_id == course_id && s.user_id == user_id && s.status.Equals("Pending"));
+            var cur_id = ch.id-1;
 
+            cor ch2 = new cor();
+            ch2 = db.cors.FirstOrDefault(s => s.course_id == course_id && s.user_id == user_id && s.id==cur_id);
+            ch2.status = "Pending";
+            prevdata.status = "Pending_" + ch2.admin_name;
+            try
+            {
+                db.Entry(ch2).State = System.Data.EntityState.Modified;
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
 
             ViewBag.id = course_id.ToString();
 
@@ -604,9 +650,10 @@ namespace WebApplication2.Controllers
                 UserCourses = db.usercourses.ToList(),
                 CourseImplication = db.CourseImplications.ToList(),
                 Condition = db.conditions.ToList(),
-                Users = db.users.ToList()
+                Users = db.users.ToList(),
+                Remarks=db.Remarks.ToList()
             };
-            return View("Candidates", tables);
+            return RedirectToAction("Candidates", tables);
         }
 
         public ActionResult ConditionsImplications()
@@ -648,8 +695,7 @@ namespace WebApplication2.Controllers
         public ActionResult GetDetails(FormCollection collection)
         {
             var course_id = collection["id"];
-           
-            ViewBag.course_id = course_id;
+            Session["selected_course"] = course_id;
             var tables = new AdminViewModel
             {
                 Course = db.courses.ToList(),
@@ -756,7 +802,7 @@ namespace WebApplication2.Controllers
         {
             var from_admin = collection["hidden_admin"];
             var to_admin = collection["to"];
-            Response.Write(to_admin);
+            
             var user_id= collection["hidden_user"];
             var course_id = collection["hidden_course"];
             var comment = collection["remark"];

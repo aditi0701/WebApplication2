@@ -14,7 +14,7 @@ namespace WebApplication2.context
     
     public partial class valueCondition
     {
-        public int condition_id { get; set; }
+        public Nullable<int> condition_id { get; set; }
         public string value { get; set; }
         public int id { get; set; }
     

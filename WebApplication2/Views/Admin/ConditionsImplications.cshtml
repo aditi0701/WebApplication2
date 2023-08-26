@@ -189,7 +189,7 @@
 
     @{
         //course id of selected course from course list page 
-        int course_id = Int16.Parse(ViewBag.course_id);
+        int course_id = Int16.Parse(Session["selected_course"].ToString());
         
         var course_details = Model.Course.FirstOrDefault(s => s.course_id.Equals(course_id));
 

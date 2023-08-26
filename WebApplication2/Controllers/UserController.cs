@@ -16,7 +16,7 @@ namespace WebApplication2.Controllers
     public class UserController : Controller
     {
         // GET: User
-        dopEntities3 db = new dopEntities3();
+        dopEntities1 db = new dopEntities1();
 
         public ActionResult Index()
         {
@@ -282,7 +282,8 @@ namespace WebApplication2.Controllers
                 UserCourses = db.usercourses.ToList(),
                 CourseImplication = db.CourseImplications.ToList(),
                 Condition = db.conditions.ToList(),
-                Users = db.users.ToList()
+                Users = db.users.ToList(),
+                cors =db.cors.ToList(), 
             };
 
 
@@ -290,13 +291,28 @@ namespace WebApplication2.Controllers
             {
                 var course_id = collection["link"];
                 var user_id = collection["user"];
+                string admins = collection["chain"];
+                string[] arr = admins.Split(',');
+
+                foreach(string x in arr)
+                {
+                    cor cr = new cor();
+                    cr.user_id= Int16.Parse(user_id);
+                    cr.course_id = Int16.Parse(course_id);
+                    cr.status = "Pending";
+                    cr.admin_name = x;
+                    db.cors.Add(cr);
+                    db.SaveChanges();
+                }
                 //Session["Email"] = user_id;
                 try
                 {
                     usercours uc = new usercours();
                     uc.course_id = Int16.Parse(course_id);
                     uc.user_id = Int16.Parse(user_id);
-                    uc.status = "Pending_admin6";
+                    //var current=db.cors.FirstOrDefault(s=>s.course_id.Equals(course_id) && s.user_id.Equals(user_id) && s.status.Equals("Pending")).admin_name;
+                    //Response.Write(current);
+                    uc.status = "Pending_" + arr[0];
                     uc.applyTime = DateTime.Now;
                     db.usercourses.Add(uc);
                     db.SaveChanges();

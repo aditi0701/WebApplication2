@@ -17,6 +17,7 @@ namespace WebApplication2.context
         public condition()
         {
             this.CourseConditions = new HashSet<CourseCondition>();
+            this.CourseImplications = new HashSet<CourseImplication>();
             this.valueConditions = new HashSet<valueCondition>();
         }
     
@@ -25,6 +26,7 @@ namespace WebApplication2.context
         public int condition_id { get; set; }
     
         public virtual ICollection<CourseCondition> CourseConditions { get; set; }
+        public virtual ICollection<CourseImplication> CourseImplications { get; set; }
         public virtual ICollection<valueCondition> valueConditions { get; set; }
     }
 }
