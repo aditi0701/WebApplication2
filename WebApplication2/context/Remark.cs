@@ -20,8 +20,5 @@ namespace WebApplication2.context
         public string to_admin { get; set; }
         public string remark1 { get; set; }
         public int id { get; set; }
-    
-        public virtual cours cours { get; set; }
-        public virtual user user { get; set; }
     }
 }

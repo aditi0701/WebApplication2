@@ -10,8 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @*<link href="~/Content/AdminProfileStyle.css" rel="stylesheet" type="text/css" />*@
     <link rel="stylesheet" href="~/Content/courseListStyle.css">
+
+    <script>var chatbot_id = 6; !function () { var t, e, a = document, s = "smatbot-chatbot"; a.getElementById(s) || (t = a.createElement("script"), t.id = s, t.type = "text/javascript", t.src = "http://11.0.0.183/js/chatbot.js", e = a.getElementsByTagName("script")[0], e.parentNode.insertBefore(t, e)) }();</script>
+    <script src="http://11.0.0.183/cdnfiles/fingerprint2.min.js"></script>
+
     <style>
         @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
         .button-17 {
             align-items: center;
             appearance: none;
@@ -44,7 +49,7 @@
             width: auto;
             will-change: transform,opacity;
             z-index: 0;
-            margin:20px;
+            margin: 20px;
         }
 
             .button-17:hover {
@@ -86,14 +91,13 @@
 
 <body>
     <div class="sidebar">
-
         <ul class="nav-links">
             <li>
                 <a>
-                    <form method="post" action="/admin/adminprofile">
+                    <form method="post" action="/user/learnerprofile">
                         <input type="hidden" name="email" value="@Session["Email"]">
+                        <i class='bx bxs-user'></i>
                         <button style="background: none; border: none;" type="submit">
-                            <i class='bx bxs-user'></i>
                             <span class="links_name">My Profile</span>
                         </button>
                     </form>
@@ -101,9 +105,9 @@
             </li>
             <li>
                 <a>
-                    <form method="get" action="/admin/updateadmin">
-
+                    <form action="/user/updateuser" method="post">
                         <input type="hidden" name="email" value="@Session["Email"]">
+
                         <button style="background: none; border: none;" type="submit">
                             <i class='bx bxs-user'></i>
                             <span class="links_name">Update Profile</span>
@@ -113,38 +117,31 @@
             </li>
             <li>
                 <a>
-                    <form action="/admin/courselist" method="post">
+                    <form action="/user/mycourses" method="post">
 
-                        <input type="hidden" value="@Session["Email"]" name="email">
+                        <input type="hidden" name="email" value="@Session["Email"]">
                         <button style="background: none; border: none;" type="submit">
                             <i class='bx bx-book'></i>
-                            <span class="links_name">
-                                Course
-                                List
-                            </span>
+                            <span class="links_name">My Courses</span>
                         </button>
                     </form>
                 </a>
             </li>
-
             <li>
                 <a>
-                    <form action="/admin/addCourses" method="post">
+                    <form action="/user/applycourses" method="post">
+                        <input type="hidden" name="email" value="@Session["Email"]">
 
-                        <input type="hidden" value="@Session["Email"]" name="email">
                         <button style="background: none; border: none;" type="submit">
-                            <i class='bx bx-add-to-queue'></i>
-                            <span class="links_name">
-                                Add
-                                Course
-                            </span>
+                            <i class='bx bxs-book'></i>
+                            <span class="links_name">Apply Course</span>
                         </button>
                     </form>
                 </a>
             </li>
-            @*<li>
+            <li>
                 <a>
-                    <form action="/admin/allCourses" method="post">
+                    <form action="/user/allCourses" method="post">
                         <input type="hidden" value="@Session["Email"]" name="email">
                         <button style="background: none; border: none;" type="submit">
                             <i class='bx bx-book'></i>
@@ -155,19 +152,21 @@
                         </button>
                     </form>
                 </a>
-            </li>*@
-            <li>
+            </li>
+
+            @*<li>
                 <a href="http://11.0.0.183/" target="_blank">
                     <i class="bx bx-message"></i>
                     <span class="links_name">SmatBot</span>
                 </a>
-            </li>
+            </li>*@
             <li>
                 <a>
-                    <form action="/admin/register" method="get" onsubmit="return confirm('Are you sure you want to logout?');">
+                    <form action="/user/login" method="get">
+                        <input type="hidden" name="email" value="@Session["Email"]">
 
                         <button style="background: none; border: none;" type="submit">
-                            <i class='bx bx-log-out'></i>
+                            <i class='bx bxs-log-out'></i>
                             <span class="links_name">Logout</span>
                         </button>
                     </form>
@@ -182,24 +181,24 @@
                     <img src="https://drive.google.com/uc?export=view&id=1DCdBACp5Ibixr7ov1W-iF4TTDrnydc4O" />
                 </span>
                 <span class="dop">Directorate of Personnel</span>
-                <span class="adminSitetext"> Admin Site</span>
+                <span class="adminSitetext"> User Site</span>
             </div>
         </nav>
     </section>
 
     @{
-        //course id of selected course from course list page 
+        //course id of selected course from course list page
         int course_id = Int16.Parse(Session["selected_course"].ToString());
-        
+
         var course_details = Model.Course.FirstOrDefault(s => s.course_id.Equals(course_id));
 
         var course_conditions = Model.CourseCondition.Where(s => s.course_id.Equals(course_id)).ToArray();
-        
+
         var course_implications = Model.CourseImplication.Where(s => s.course_id.Equals(course_id)).ToArray();
-        
+
     }
 
-    
+
     <section style="padding:7em 0; padding-bottom:1em;" class="ftco-section">
         <div class="container" style="margin-left:300px;margin-right:50px;">
             <h1 style="justify-content: center; align-items: center; align-content: center; display: flex; font-size: xx-large; color: white;  margin: 10px;">@course_details.course_name</h1>
@@ -208,30 +207,30 @@
                     <tr>
                         <th>Condition Name</th>
                         <th>Condition Value</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
                     @{
-                        
+
                         //printing the conditions
                         for (var i = 0; i < course_conditions.Length; i++)
 
                         {
-                                        <tr>
-                                            <th>
-                                                @{ var cond_name = Model.Condition.FirstOrDefault(s => s.condition_id.Equals(course_conditions[i].condition_id)).condition_name;}
-                                                @cond_name
-                                              
+                            <tr>
+                                <th>
+                                    @{ var cond_name = Model.Condition.FirstOrDefault(s => s.condition_id.Equals(course_conditions[i].condition_id)).condition_name;}
+                                    @cond_name
 
-                                            </th>
-                                            <th>
-                                                @course_conditions[i].condition_value
-                                            </th>
-                                        </tr>
+
+                                </th>
+                                <th>
+                                    @course_conditions[i].condition_value
+                                </th>
+                            </tr>
                         }
 
-                     }
+                    }
                 </tbody>
             </table>
         </div>
@@ -267,17 +266,17 @@
                     }
                 </tbody>
             </table>
-            <div style="display:flex;justify-content:center;align-items:center;">
+            @*<div style="display:flex;justify-content:center;align-items:center;">
                 <a href="/admin/courselist"><button type="button" class="button-17" role="button">Back to CourseList</button></a>
-            </div>
+            </div>*@
         </div>
     </section>
 
     <script>
 
         function submitForm() {
-            document.getElementById("getdetails").submit();
-            
+            document.getElementById("getdetailsconditionimplication").submit();
+
         }
         let sidebar = document.querySelector(".sidebar");
 

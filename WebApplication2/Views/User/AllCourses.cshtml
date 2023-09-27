@@ -9,6 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/Content/courseListStyle.css">
+
+    <script>var chatbot_id = 6; !function () { var t, e, a = document, s = "smatbot-chatbot"; a.getElementById(s) || (t = a.createElement("script"), t.id = s, t.type = "text/javascript", t.src = "http://11.0.0.183/js/chatbot.js", e = a.getElementsByTagName("script")[0], e.parentNode.insertBefore(t, e)) }();</script>
+    <script src="http://11.0.0.183/cdnfiles/fingerprint2.min.js"></script>
+
     <style>
         @@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
@@ -86,14 +90,13 @@
 
 <body>
     <div class="sidebar">
-
         <ul class="nav-links">
             <li>
                 <a>
-                    <form method="post" action="/admin/adminprofile">
+                    <form method="post" action="/user/learnerprofile">
                         <input type="hidden" name="email" value="@Session["Email"]">
+                        <i class='bx bxs-user'></i>
                         <button style="background: none; border: none;" type="submit">
-                            <i class='bx bxs-user'></i>
                             <span class="links_name">My Profile</span>
                         </button>
                     </form>
@@ -101,9 +104,9 @@
             </li>
             <li>
                 <a>
-                    <form method="get" action="/admin/updateadmin">
-
+                    <form action="/user/updateuser" method="post">
                         <input type="hidden" name="email" value="@Session["Email"]">
+
                         <button style="background: none; border: none;" type="submit">
                             <i class='bx bxs-user'></i>
                             <span class="links_name">Update Profile</span>
@@ -113,38 +116,31 @@
             </li>
             <li>
                 <a>
-                    <form action="/admin/courselist" method="post">
+                    <form action="/user/mycourses" method="post">
 
-                        <input type="hidden" value="@Session["Email"]" name="email">
+                        <input type="hidden" name="email" value="@Session["Email"]">
                         <button style="background: none; border: none;" type="submit">
                             <i class='bx bx-book'></i>
-                            <span class="links_name">
-                                Course
-                                List
-                            </span>
+                            <span class="links_name">My Courses</span>
                         </button>
                     </form>
                 </a>
             </li>
-
             <li>
                 <a>
-                    <form action="/admin/addCourses" method="post">
+                    <form action="/user/applycourses" method="post">
+                        <input type="hidden" name="email" value="@Session["Email"]">
 
-                        <input type="hidden" value="@Session["Email"]" name="email">
                         <button style="background: none; border: none;" type="submit">
-                            <i class='bx bx-add-to-queue'></i>
-                            <span class="links_name">
-                                Add
-                                Course
-                            </span>
+                            <i class='bx bxs-book'></i>
+                            <span class="links_name">Apply Course</span>
                         </button>
                     </form>
                 </a>
             </li>
             <li>
                 <a>
-                    <form action="/admin/allCourses" method="post">
+                    <form action="/user/allCourses" method="post">
                         <input type="hidden" value="@Session["Email"]" name="email">
                         <button style="background: none; border: none;" type="submit">
                             <i class='bx bx-book'></i>
@@ -156,18 +152,20 @@
                     </form>
                 </a>
             </li>
-            <li>
-                <a href="http://11.0.0.183/" target="_blank">
-                    <i class="bx bx-message"></i>
-                    <span class="links_name">SmatBot</span>
-                </a>
-            </li>
+
+            @*<li>
+                    <a href="http://11.0.0.183/" target="_blank">
+                        <i class="bx bx-message"></i>
+                        <span class="links_name">SmatBot</span>
+                    </a>
+                </li>*@
             <li>
                 <a>
-                    <form action="/admin/register" method="get" onsubmit="return confirm('Are you sure you want to logout?');">
+                    <form action="/user/login" method="get">
+                        <input type="hidden" name="email" value="@Session["Email"]">
 
                         <button style="background: none; border: none;" type="submit">
-                            <i class='bx bx-log-out'></i>
+                            <i class='bx bxs-log-out'></i>
                             <span class="links_name">Logout</span>
                         </button>
                     </form>
@@ -184,7 +182,7 @@
                 </span>
                 <span class="dop"><b>DIRECTORATE OF PERSONNEL</b></span>
             </div>
-            <span class="adminSitetext"> Admin Site</span>
+            <span class="adminSitetext"> User Site</span>
 
         </nav>
     </section>
@@ -198,7 +196,7 @@
                         <th>Branch</th>
                         <th>Duration(Weeks)</th>
                         <th>Commencement Date</th>
-                        
+
                         <th>Status</th>
 
                         <th>&nbsp;</th>
@@ -208,7 +206,7 @@
                 </thead>
                 <tbody>
 
-                 
+
 
                     @*For each course in courses table display their details*@
                     @foreach (var item in Model.Course)
@@ -221,18 +219,18 @@
                             <th>@item.branch</th>
                             <th>@item.duration</th>
                             <th>@item.commencement_date</th>
-                                                        
+
 
                             <th>
                                 @*form to display course conditions and implications*@
-                                <form action="/admin/getdetails" method="POST" id="@item.course_id">
+                                <form action="/user/getdetailsconditionimplication" method="POST" id="@item.course_id">
                                     <input type="hidden" name="id" value="@item.course_id" />
                                 </form>
                                 <button class="button-17 btn btn-default" role="button" id="todelete" form="@item.course_id" type="submit">View Conditions</button>
                             </th>
 
-                            
-                            
+
+
                         </tr>
                     }
                 </tbody>

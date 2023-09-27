@@ -16,9 +16,8 @@ namespace WebApplication2.context
     {
         public cours()
         {
-            this.cors = new HashSet<cor>();
             this.CourseConditions = new HashSet<CourseCondition>();
-            this.Remarks = new HashSet<Remark>();
+            this.CourseImplications = new HashSet<CourseImplication>();
             this.usercourses = new HashSet<usercours>();
         }
     
@@ -29,15 +28,14 @@ namespace WebApplication2.context
         public string location { get; set; }
         public string branch { get; set; }
         public string admin { get; set; }
+        public int course_id { get; set; }
         public string status { get; set; }
-        public System.DateTime time { get; set; }
+        public Nullable<System.DateTime> time { get; set; }
         public string createdBy { get; set; }
         public string courseno { get; set; }
-        public int course_id { get; set; }
     
-        public virtual ICollection<cor> cors { get; set; }
         public virtual ICollection<CourseCondition> CourseConditions { get; set; }
-        public virtual ICollection<Remark> Remarks { get; set; }
+        public virtual ICollection<CourseImplication> CourseImplications { get; set; }
         public virtual ICollection<usercours> usercourses { get; set; }
     }
 }

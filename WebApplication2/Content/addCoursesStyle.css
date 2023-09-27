@@ -200,8 +200,8 @@
     font-weight: 500;
     color: #0a3059;
     background-color: white;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 nav .sidebar-button i {
@@ -228,7 +228,7 @@ nav .sidebar-button i {
     padding-left: 0px;
     padding-right: 0px;
     margin-left: 0px;
-    font-size: 109%;
+    font-size: 50%;
     font-weight: 750;
     margin-right: 5px;
     font-family: 'Poppins', sans-serif;

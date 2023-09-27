@@ -14,13 +14,10 @@ namespace WebApplication2.context
     
     public partial class cor
     {
-        public int user_id { get; set; }
-        public int course_id { get; set; }
+        public int id { get; set; }
+        public Nullable<int> course_id { get; set; }
         public string admin_name { get; set; }
         public string status { get; set; }
-        public int id { get; set; }
-    
-        public virtual cours cours { get; set; }
-        public virtual user user { get; set; }
+        public Nullable<int> user_id { get; set; }
     }
 }

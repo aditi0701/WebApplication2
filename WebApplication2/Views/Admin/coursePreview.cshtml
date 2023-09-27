@@ -223,15 +223,18 @@
      
 
             @{
+               
 
-                string rank="";
+                string rank ="";
 
                 for (var i = 0; i < course_conditions.Length; i++)
 
                 {
                     var cond_name = Model.Condition.FirstOrDefault(r => r.condition_id.Equals(course_conditions[i].condition_id)).condition_name;
                     if (cond_name.Equals("rank"))
-                    { rank = course_conditions[i].condition_value; }
+                    {
+                        Console.WriteLine("______________________");
+                        rank = course_conditions[i].condition_value; }
 
                 }
 
@@ -261,12 +264,13 @@
                         <tr>
                             <td style="width: 900px">
                                 <table>
-                                    <tr>
+                                    @*<tr>
                                         <td style="width: 150px">DTG</td>
                                         <td style="width: 150px">@getDate[1]@time[0]@time[1]</td>
-                                    </tr>
+                                    </tr>*@
                                     <tr>
-                                        <td>FROM</td>
+                                        <td>    FROM &nbsp;    </td>
+
                                         <td>NHQ</td>
                                     </tr>
                                     <tr>
@@ -283,7 +287,7 @@
 
                     <div>
                         <p>
-                            For TRI-SERVICES USE SELF CANCELLING VOLUNTEERS REQUIRED OF RANK <span> @rank</span> of <span>@branch</span>  for <span> @course_name </span>COURSE(<span> @course_no</span>) at <span>@location</span>
+                            For TRI-SERVICES USE SELF CANCELLING VOLUNTEERS REQUIRED OF RANK SLT, LT,LT CDR <span> @rank</span> of Branch <span>@branch</span>  for <span> @course_name </span>COURSE(<span> @course_no</span>) at <span>@location</span>
                             FOR DURATION OF <span>@duration</span> WEEKS STARTING FROM <span>@commence_date</span> TO <span id="enddate">@end_date</span>.
                             <br />
                             UPON CLEARING THE COURSE THE PATH OF CAREER FOR THE OFFICER WILL BE :<span>@career_path</span>

@@ -473,7 +473,7 @@
                     </form>
                 </a>
             </li>
-            <li>
+            @*<li>
                 <a>
                     <form action="/admin/allCourses" method="post">
                         <input type="hidden" value="@Session["Email"]" name="email">
@@ -486,7 +486,7 @@
                         </button>
                     </form>
                 </a>
-            </li>
+            </li>*@
             <li>
                 <a href="http://11.0.0.183/" target="_blank">
                     <i class="bx bx-message"></i>
@@ -571,6 +571,8 @@
                             <option value="EDUCATION">EDUCATION</option>
                             <option value="LOGISTICS">LOGISTICS</option>
                             <option value="PILOT">PILOT</option>
+                            <option value="ALL">ALL</option>
+
                         </select>
                     </div>
                     <div class="col">
@@ -766,7 +768,10 @@
 
                             var getDate = date.Split('-');
 
+                            Console.Write(getDate);
+
                             String s = dateAndTime.ToString("HH:mm");
+                            Console.Write(s);
 
                             var time = s.Split(':');
 
@@ -778,12 +783,12 @@
                                     <td style="width: 900px">
                                         <table>
                                             <tr>
-                                                <td style="width: 150px">DTG</td>
-                                                <td style="width: 150px">@getDate[1]@time[0]@time[1]</td>
+                                              @*  <td style="width: 150px">DTG</td>*@
+                                                @*<td style="width: 150px">@getDate[1]@time[0]@time[1]</td>*@
 
                                             </tr>
                                             <tr>
-                                                <td>FROM</td>
+                                                <td>FROM &nbsp; </td>
                                                 <td>NHQ</td>
                                             </tr>
                                             <tr>

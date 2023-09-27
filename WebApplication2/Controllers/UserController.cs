@@ -264,7 +264,7 @@ namespace WebApplication2.Controllers
                 else
                 {
                     Session["Error"] = "Incorrect email/password";
-                    return View("Login");
+                    return View("login");
                 }
             }
             return View();
@@ -297,7 +297,7 @@ namespace WebApplication2.Controllers
                 foreach(string x in arr)
                 {
                     cor cr = new cor();
-                    cr.user_id= Int16.Parse(user_id);
+                    cr.user_id= int.Parse(user_id);
                     cr.course_id = Int16.Parse(course_id);
                     cr.status = "Pending";
                     cr.admin_name = x;
@@ -379,6 +379,7 @@ namespace WebApplication2.Controllers
 
         }
 
+
         [HttpPost]
         public ActionResult GetDetails(FormCollection collection)
         {
@@ -411,6 +412,39 @@ namespace WebApplication2.Controllers
             return View("allCourses", tables);
         }
 
+
+        public ActionResult ConditionsImplications()
+        {
+            var tables = new AdminViewModel
+            {
+                Course = db.courses.ToList(),
+                CourseCondition = db.CourseConditions.ToList(),
+                UserCourses = db.usercourses.ToList(),
+                CourseImplication = db.CourseImplications.ToList(),
+                Condition = db.conditions.ToList(),
+                Users = db.users.ToList(),
+                Implication = db.implications.ToList()
+            };
+            return View(tables);
+        }
+
+        [HttpPost]
+        public ActionResult GetDetailsConditionImplication(FormCollection collection)
+        {
+            var course_id = collection["id"];
+            Session["selected_course"] = course_id;
+            var tables = new AdminViewModel
+            {
+                Course = db.courses.ToList(),
+                CourseCondition = db.CourseConditions.ToList(),
+                UserCourses = db.usercourses.ToList(),
+                CourseImplication = db.CourseImplications.ToList(),
+                Condition = db.conditions.ToList(),
+                Users = db.users.ToList(),
+                Implication = db.implications.ToList()
+            };
+            return View("ConditionsImplicationsUser", tables);
+        }
 
     }
 }

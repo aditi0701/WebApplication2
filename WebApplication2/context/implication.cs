@@ -20,8 +20,8 @@ namespace WebApplication2.context
         }
     
         public string implication_name { get; set; }
-        public string implication_type { get; set; }
         public int id { get; set; }
+        public string implication_type { get; set; }
     
         public virtual ICollection<CourseImplication> CourseImplications { get; set; }
     }

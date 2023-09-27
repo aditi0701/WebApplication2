@@ -132,6 +132,9 @@
     <Compile Include="context\condition.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="context\cor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="context\cours.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -264,6 +267,7 @@
     <Content Include="Views\User\ImplicationDetail.cshtml" />
     <Content Include="Views\Admin\coursePreview.cshtml" />
     <Content Include="Views\User\AllCourses.cshtml" />
+    <Content Include="Views\User\ConditionsImplicationsUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

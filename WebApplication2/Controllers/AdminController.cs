@@ -14,6 +14,8 @@ using System.Text;
 using System.Security.Principal;
 using System.Data.Entity.Infrastructure;
 using WebApplication2.ViewModel;
+using System.Runtime.Remoting.Messaging;
+using System.Linq.Expressions;
 
 namespace WebApplication2.Controllers
 {
@@ -22,7 +24,7 @@ namespace WebApplication2.Controllers
         // GET: Admin
         //object of database
         dopEntities1 db = new dopEntities1() ;
-
+        
 
         public ActionResult Index()
         {
@@ -98,10 +100,10 @@ namespace WebApplication2.Controllers
             }
 
             
-            return View("AdminProfile");
+            return View("UpdateAdmin");
         }
 
-
+        
 
         [HttpPost]
         public ActionResult Register(admin model)
@@ -574,10 +576,10 @@ namespace WebApplication2.Controllers
         public ActionResult Reject(FormCollection collection)
         {
             var course_id = Int16.Parse(collection["link"]);
-            var user_id = Int16.Parse(collection["user"]);
-            var admin = collection["admin"];
+            var user_id = collection["user"];
+            var admin = collection["admin"].ToString();
             usercours prevdata = new usercours();
-            prevdata = db.usercourses.FirstOrDefault(s => s.course_id==course_id && s.user_id==user_id);
+            prevdata = db.usercourses.FirstOrDefault(s => s.course_id==course_id && s.user_id==int.Parse(user_id));
             //if (admin == "admin6")
             //{
             //    prevdata.status = "Rejected";
@@ -603,11 +605,11 @@ namespace WebApplication2.Controllers
             //    prevdata.status = "Pending_admin2";
             //}
             cor ch = new cor();
-            ch = db.cors.FirstOrDefault(s => s.course_id == course_id && s.user_id == user_id && s.status.Equals("Pending"));
+            ch = db.cors.FirstOrDefault(s => s.course_id == course_id && s.user_id.Equals(user_id) && s.status.Equals("Pending"));
             var cur_id = ch.id-1;
 
             cor ch2 = new cor();
-            ch2 = db.cors.FirstOrDefault(s => s.course_id == course_id && s.user_id == user_id && s.id==cur_id);
+            ch2 = db.cors.FirstOrDefault(s => s.course_id == course_id && s.user_id.Equals(user_id)   && s.id==cur_id);
             ch2.status = "Pending";
             prevdata.status = "Pending_" + ch2.admin_name;
             try

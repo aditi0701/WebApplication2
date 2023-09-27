@@ -28,19 +28,19 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="course_id" Type="int" Nullable="false" />
-          <Property Name="admin_name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="course_id" Type="int" />
+          <Property Name="admin_name" Type="varchar" MaxLength="100" />
+          <Property Name="status" Type="varchar" MaxLength="100" />
+          <Property Name="user_id" Type="int" />
         </EntityType>
         <EntityType Name="CourseConditions">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="course_id" Type="int" />
-          <Property Name="condition_id" Type="int" />
-          <Property Name="condition_value" Type="nvarchar" MaxLength="50" />
+          <Property Name="course_id" Type="int" Nullable="false" />
+          <Property Name="condition_id" Type="int" Nullable="false" />
+          <Property Name="condition_value" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="CourseImplications">
@@ -48,9 +48,9 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="course_id" Type="int" />
-          <Property Name="implication_id" Type="int" />
-          <Property Name="implication_value" Type="nvarchar" MaxLength="50" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="implication_id" Type="int" Nullable="false" />
+          <Property Name="implication_value" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="courses">
           <Key>
@@ -63,19 +63,19 @@
           <Property Name="location" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="branch" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="admin" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="time" Type="datetime" Nullable="false" />
-          <Property Name="createdBy" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="courseno" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="course_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="30" />
+          <Property Name="time" Type="datetime" />
+          <Property Name="createdBy" Type="varchar" MaxLength="50" />
+          <Property Name="courseno" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="implications">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="implication_name" Type="nvarchar" MaxLength="50" />
-          <Property Name="implication_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="implication_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="implication_type" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Remarks">
           <Key>
@@ -83,20 +83,20 @@
           </Key>
           <Property Name="user_id" Type="int" Nullable="false" />
           <Property Name="course_id" Type="int" Nullable="false" />
-          <Property Name="from_admin" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="to_admin" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="remark1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="from_admin" Type="varchar" MaxLength="100" />
+          <Property Name="to_admin" Type="varchar" MaxLength="100" />
+          <Property Name="remark" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="usercourses">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="user_id" Type="int" />
-          <Property Name="course_id" Type="int" />
-          <Property Name="status" Type="nvarchar" MaxLength="50" />
-          <Property Name="applyTime" Type="datetime" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="course_id" Type="int" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="applyTime" Type="datetime" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -108,53 +108,25 @@
           <Property Name="gender" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="qualification" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="rank" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="age" Type="numeric" Precision="18" Scale="0" Nullable="false" />
           <Property Name="branch" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="medical" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="yearsOfServices" Type="int" Nullable="false" />
-          <Property Name="location" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="posting" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="acrMarks" Type="int" Nullable="false" />
           <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yearsOfServices" Type="int" />
+          <Property Name="location" Type="varchar" MaxLength="50" />
+          <Property Name="posting" Type="varchar" MaxLength="50" />
+          <Property Name="acrMarks" Type="int" />
         </EntityType>
-        <EntityType Name="valueConditions">
+        <EntityType Name="valueCondition">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="condition_id" Type="int" />
-          <Property Name="value" Type="nvarchar" MaxLength="50" />
+          <Property Name="condition_id" Type="int" Nullable="false" />
+          <Property Name="value" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <Association Name="FK_cor_courses">
-          <End Role="courses" Type="Self.courses" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="cor" Type="Self.cor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="courses">
-              <PropertyRef Name="course_id" />
-            </Principal>
-            <Dependent Role="cor">
-              <PropertyRef Name="course_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cor_users">
-          <End Role="users" Type="Self.users" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="cor" Type="Self.cor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="cor">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CourseConditions_conditions">
-          <End Role="conditions" Type="Self.conditions" Multiplicity="0..1">
+          <End Role="conditions" Type="Self.conditions" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="CourseConditions" Type="Self.CourseConditions" Multiplicity="*" />
@@ -168,7 +140,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CourseConditions_courses">
-          <End Role="courses" Type="Self.courses" Multiplicity="0..1">
+          <End Role="courses" Type="Self.courses" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="CourseConditions" Type="Self.CourseConditions" Multiplicity="*" />
@@ -181,14 +153,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CourseImplications_conditions">
-          <End Role="conditions" Type="Self.conditions" Multiplicity="0..1">
+        <Association Name="FK_CourseImplications_courses">
+          <End Role="courses" Type="Self.courses" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="CourseImplications" Type="Self.CourseImplications" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="conditions">
-              <PropertyRef Name="condition_id" />
+            <Principal Role="courses">
+              <PropertyRef Name="course_id" />
             </Principal>
             <Dependent Role="CourseImplications">
               <PropertyRef Name="course_id" />
@@ -196,7 +168,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_CourseImplications_implications">
-          <End Role="implications" Type="Self.implications" Multiplicity="0..1">
+          <End Role="implications" Type="Self.implications" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="CourseImplications" Type="Self.CourseImplications" Multiplicity="*" />
@@ -209,38 +181,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Remarks_courses">
-          <End Role="courses" Type="Self.courses" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Remarks" Type="Self.Remarks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="courses">
-              <PropertyRef Name="course_id" />
-            </Principal>
-            <Dependent Role="Remarks">
-              <PropertyRef Name="course_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Remarks_users">
-          <End Role="users" Type="Self.users" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Remarks" Type="Self.Remarks" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="Remarks">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_usercourses_courses">
-          <End Role="courses" Type="Self.courses" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="courses" Type="Self.courses" Multiplicity="1" />
           <End Role="usercourses" Type="Self.usercourses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="courses">
@@ -252,9 +194,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_usercourses_users">
-          <End Role="users" Type="Self.users" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="usercourses" Type="Self.usercourses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="users">
@@ -265,14 +205,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_valueConditions_conditions">
-          <End Role="conditions" Type="Self.conditions" Multiplicity="0..1" />
-          <End Role="valueConditions" Type="Self.valueConditions" Multiplicity="*" />
+        <Association Name="FK_valueCondition_conditions">
+          <End Role="conditions" Type="Self.conditions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="valueCondition" Type="Self.valueCondition" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="conditions">
               <PropertyRef Name="condition_id" />
             </Principal>
-            <Dependent Role="valueConditions">
+            <Dependent Role="valueCondition">
               <PropertyRef Name="condition_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -288,15 +230,7 @@
           <EntitySet Name="Remarks" EntityType="Self.Remarks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usercourses" EntityType="Self.usercourses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="valueConditions" EntityType="Self.valueConditions" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_cor_courses" Association="Self.FK_cor_courses">
-            <End Role="courses" EntitySet="courses" />
-            <End Role="cor" EntitySet="cor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cor_users" Association="Self.FK_cor_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="cor" EntitySet="cor" />
-          </AssociationSet>
+          <EntitySet Name="valueCondition" EntityType="Self.valueCondition" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CourseConditions_conditions" Association="Self.FK_CourseConditions_conditions">
             <End Role="conditions" EntitySet="conditions" />
             <End Role="CourseConditions" EntitySet="CourseConditions" />
@@ -305,21 +239,13 @@
             <End Role="courses" EntitySet="courses" />
             <End Role="CourseConditions" EntitySet="CourseConditions" />
           </AssociationSet>
-          <AssociationSet Name="FK_CourseImplications_conditions" Association="Self.FK_CourseImplications_conditions">
-            <End Role="conditions" EntitySet="conditions" />
+          <AssociationSet Name="FK_CourseImplications_courses" Association="Self.FK_CourseImplications_courses">
+            <End Role="courses" EntitySet="courses" />
             <End Role="CourseImplications" EntitySet="CourseImplications" />
           </AssociationSet>
           <AssociationSet Name="FK_CourseImplications_implications" Association="Self.FK_CourseImplications_implications">
             <End Role="implications" EntitySet="implications" />
             <End Role="CourseImplications" EntitySet="CourseImplications" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Remarks_courses" Association="Self.FK_Remarks_courses">
-            <End Role="courses" EntitySet="courses" />
-            <End Role="Remarks" EntitySet="Remarks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Remarks_users" Association="Self.FK_Remarks_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="Remarks" EntitySet="Remarks" />
           </AssociationSet>
           <AssociationSet Name="FK_usercourses_courses" Association="Self.FK_usercourses_courses">
             <End Role="courses" EntitySet="courses" />
@@ -329,9 +255,9 @@
             <End Role="users" EntitySet="users" />
             <End Role="usercourses" EntitySet="usercourses" />
           </AssociationSet>
-          <AssociationSet Name="FK_valueConditions_conditions" Association="Self.FK_valueConditions_conditions">
+          <AssociationSet Name="FK_valueCondition_conditions" Association="Self.FK_valueCondition_conditions">
             <End Role="conditions" EntitySet="conditions" />
-            <End Role="valueConditions" EntitySet="valueConditions" />
+            <End Role="valueCondition" EntitySet="valueCondition" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -358,28 +284,25 @@
           <Property Name="condition_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="condition_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="CourseConditions" Relationship="Self.FK_CourseConditions_conditions" FromRole="conditions" ToRole="CourseConditions" />
-          <NavigationProperty Name="CourseImplications" Relationship="Self.FK_CourseImplications_conditions" FromRole="conditions" ToRole="CourseImplications" />
-          <NavigationProperty Name="valueConditions" Relationship="Self.FK_valueConditions_conditions" FromRole="conditions" ToRole="valueConditions" />
+          <NavigationProperty Name="valueConditions" Relationship="Self.FK_valueCondition_conditions" FromRole="conditions" ToRole="valueCondition" />
         </EntityType>
         <EntityType Name="cor">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="course_id" Type="Int32" Nullable="false" />
-          <Property Name="admin_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="cours" Relationship="Self.FK_cor_courses" FromRole="cor" ToRole="courses" />
-          <NavigationProperty Name="user" Relationship="Self.FK_cor_users" FromRole="cor" ToRole="users" />
+          <Property Name="course_id" Type="Int32" />
+          <Property Name="admin_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" />
         </EntityType>
         <EntityType Name="CourseCondition">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="course_id" Type="Int32" />
-          <Property Name="condition_id" Type="Int32" />
-          <Property Name="condition_value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="course_id" Type="Int32" Nullable="false" />
+          <Property Name="condition_id" Type="Int32" Nullable="false" />
+          <Property Name="condition_value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="condition" Relationship="Self.FK_CourseConditions_conditions" FromRole="CourseConditions" ToRole="conditions" />
           <NavigationProperty Name="cours" Relationship="Self.FK_CourseConditions_courses" FromRole="CourseConditions" ToRole="courses" />
@@ -389,10 +312,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="course_id" Type="Int32" />
-          <Property Name="implication_id" Type="Int32" />
-          <Property Name="implication_value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="condition" Relationship="Self.FK_CourseImplications_conditions" FromRole="CourseImplications" ToRole="conditions" />
+          <Property Name="implication_id" Type="Int32" Nullable="false" />
+          <Property Name="implication_value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="cours" Relationship="Self.FK_CourseImplications_courses" FromRole="CourseImplications" ToRole="courses" />
           <NavigationProperty Name="implication" Relationship="Self.FK_CourseImplications_implications" FromRole="CourseImplications" ToRole="implications" />
         </EntityType>
         <EntityType Name="cours">
@@ -406,23 +329,22 @@
           <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="admin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="time" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="courseno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="course_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="cors" Relationship="Self.FK_cor_courses" FromRole="courses" ToRole="cor" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="DateTime" Precision="3" />
+          <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="courseno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CourseConditions" Relationship="Self.FK_CourseConditions_courses" FromRole="courses" ToRole="CourseConditions" />
-          <NavigationProperty Name="Remarks" Relationship="Self.FK_Remarks_courses" FromRole="courses" ToRole="Remarks" />
+          <NavigationProperty Name="CourseImplications" Relationship="Self.FK_CourseImplications_courses" FromRole="courses" ToRole="CourseImplications" />
           <NavigationProperty Name="usercourses" Relationship="Self.FK_usercourses_courses" FromRole="courses" ToRole="usercourses" />
         </EntityType>
         <EntityType Name="implication">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="implication_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="implication_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="implication_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="implication_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="CourseImplications" Relationship="Self.FK_CourseImplications_implications" FromRole="implications" ToRole="CourseImplications" />
         </EntityType>
         <EntityType Name="Remark">
@@ -431,22 +353,20 @@
           </Key>
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <Property Name="course_id" Type="Int32" Nullable="false" />
-          <Property Name="from_admin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="to_admin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="from_admin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="to_admin" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="remark1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="cours" Relationship="Self.FK_Remarks_courses" FromRole="Remarks" ToRole="courses" />
-          <NavigationProperty Name="user" Relationship="Self.FK_Remarks_users" FromRole="Remarks" ToRole="users" />
         </EntityType>
         <EntityType Name="usercours">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="user_id" Type="Int32" />
-          <Property Name="course_id" Type="Int32" />
-          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="applyTime" Type="DateTime" Precision="3" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="course_id" Type="Int32" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="applyTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="cours" Relationship="Self.FK_usercourses_courses" FromRole="usercourses" ToRole="courses" />
           <NavigationProperty Name="user" Relationship="Self.FK_usercourses_users" FromRole="usercourses" ToRole="users" />
         </EntityType>
@@ -460,29 +380,27 @@
           <Property Name="gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="qualification" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="rank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="age" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="medical" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="yearsOfServices" Type="Int32" Nullable="false" />
-          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="posting" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="acrMarks" Type="Int32" Nullable="false" />
           <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="cors" Relationship="Self.FK_cor_users" FromRole="users" ToRole="cor" />
-          <NavigationProperty Name="Remarks" Relationship="Self.FK_Remarks_users" FromRole="users" ToRole="Remarks" />
+          <Property Name="yearsOfServices" Type="Int32" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="posting" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="acrMarks" Type="Int32" />
           <NavigationProperty Name="usercourses" Relationship="Self.FK_usercourses_users" FromRole="users" ToRole="usercourses" />
         </EntityType>
         <EntityType Name="valueCondition">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="condition_id" Type="Int32" />
-          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="condition_id" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="condition" Relationship="Self.FK_valueConditions_conditions" FromRole="valueConditions" ToRole="conditions" />
+          <NavigationProperty Name="condition" Relationship="Self.FK_valueCondition_conditions" FromRole="valueCondition" ToRole="conditions" />
         </EntityType>
         <Association Name="FK_CourseConditions_conditions">
-          <End Role="conditions" Type="Self.condition" Multiplicity="0..1">
+          <End Role="conditions" Type="Self.condition" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="CourseConditions" Type="Self.CourseCondition" Multiplicity="*" />
@@ -495,76 +413,50 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CourseImplications_conditions">
-          <End Role="conditions" Type="Self.condition" Multiplicity="0..1">
+        <Association Name="FK_valueCondition_conditions">
+          <End Role="conditions" Type="Self.condition" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="valueCondition" Type="Self.valueCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="conditions">
+              <PropertyRef Name="condition_id" />
+            </Principal>
+            <Dependent Role="valueCondition">
+              <PropertyRef Name="condition_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseConditions_courses">
+          <End Role="courses" Type="Self.cours" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CourseConditions" Type="Self.CourseCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="course_id" />
+            </Principal>
+            <Dependent Role="CourseConditions">
+              <PropertyRef Name="course_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseImplications_courses">
+          <End Role="courses" Type="Self.cours" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="CourseImplications" Type="Self.CourseImplication" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="conditions">
-              <PropertyRef Name="condition_id" />
+            <Principal Role="courses">
+              <PropertyRef Name="course_id" />
             </Principal>
             <Dependent Role="CourseImplications">
               <PropertyRef Name="course_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_valueConditions_conditions">
-          <End Role="conditions" Type="Self.condition" Multiplicity="0..1" />
-          <End Role="valueConditions" Type="Self.valueCondition" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="conditions">
-              <PropertyRef Name="condition_id" />
-            </Principal>
-            <Dependent Role="valueConditions">
-              <PropertyRef Name="condition_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cor_courses">
-          <End Role="courses" Type="Self.cours" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="cor" Type="Self.cor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="courses">
-              <PropertyRef Name="course_id" />
-            </Principal>
-            <Dependent Role="cor">
-              <PropertyRef Name="course_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cor_users">
-          <End Role="users" Type="Self.user" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="cor" Type="Self.cor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="cor">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CourseConditions_courses">
-          <End Role="courses" Type="Self.cours" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CourseConditions" Type="Self.CourseCondition" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="courses">
-              <PropertyRef Name="course_id" />
-            </Principal>
-            <Dependent Role="CourseConditions">
-              <PropertyRef Name="course_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CourseImplications_implications">
-          <End Role="implications" Type="Self.implication" Multiplicity="0..1">
+          <End Role="implications" Type="Self.implication" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="CourseImplications" Type="Self.CourseImplication" Multiplicity="*" />
@@ -577,24 +469,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Remarks_courses">
-          <End Role="courses" Type="Self.cours" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Remarks" Type="Self.Remark" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="courses">
-              <PropertyRef Name="course_id" />
-            </Principal>
-            <Dependent Role="Remarks">
-              <PropertyRef Name="course_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_usercourses_courses">
-          <End Role="courses" Type="Self.cours" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="courses" Type="Self.cours" Multiplicity="1" />
           <End Role="usercourses" Type="Self.usercours" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="courses">
@@ -605,24 +481,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Remarks_users">
-          <End Role="users" Type="Self.user" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Remarks" Type="Self.Remark" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="Remarks">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_usercourses_users">
-          <End Role="users" Type="Self.user" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="users" Type="Self.user" Multiplicity="1" />
           <End Role="usercourses" Type="Self.usercours" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="users">
@@ -649,41 +509,25 @@
             <End Role="conditions" EntitySet="conditions" />
             <End Role="CourseConditions" EntitySet="CourseConditions" />
           </AssociationSet>
-          <AssociationSet Name="FK_CourseImplications_conditions" Association="Self.FK_CourseImplications_conditions">
+          <AssociationSet Name="FK_valueCondition_conditions" Association="Self.FK_valueCondition_conditions">
             <End Role="conditions" EntitySet="conditions" />
-            <End Role="CourseImplications" EntitySet="CourseImplications" />
-          </AssociationSet>
-          <AssociationSet Name="FK_valueConditions_conditions" Association="Self.FK_valueConditions_conditions">
-            <End Role="conditions" EntitySet="conditions" />
-            <End Role="valueConditions" EntitySet="valueConditions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cor_courses" Association="Self.FK_cor_courses">
-            <End Role="courses" EntitySet="courses" />
-            <End Role="cor" EntitySet="cors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cor_users" Association="Self.FK_cor_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="cor" EntitySet="cors" />
+            <End Role="valueCondition" EntitySet="valueConditions" />
           </AssociationSet>
           <AssociationSet Name="FK_CourseConditions_courses" Association="Self.FK_CourseConditions_courses">
             <End Role="courses" EntitySet="courses" />
             <End Role="CourseConditions" EntitySet="CourseConditions" />
           </AssociationSet>
+          <AssociationSet Name="FK_CourseImplications_courses" Association="Self.FK_CourseImplications_courses">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="CourseImplications" EntitySet="CourseImplications" />
+          </AssociationSet>
           <AssociationSet Name="FK_CourseImplications_implications" Association="Self.FK_CourseImplications_implications">
             <End Role="implications" EntitySet="implications" />
             <End Role="CourseImplications" EntitySet="CourseImplications" />
           </AssociationSet>
-          <AssociationSet Name="FK_Remarks_courses" Association="Self.FK_Remarks_courses">
-            <End Role="courses" EntitySet="courses" />
-            <End Role="Remarks" EntitySet="Remarks" />
-          </AssociationSet>
           <AssociationSet Name="FK_usercourses_courses" Association="Self.FK_usercourses_courses">
             <End Role="courses" EntitySet="courses" />
             <End Role="usercourses" EntitySet="usercourses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Remarks_users" Association="Self.FK_Remarks_users">
-            <End Role="users" EntitySet="users" />
-            <End Role="Remarks" EntitySet="Remarks" />
           </AssociationSet>
           <AssociationSet Name="FK_usercourses_users" Association="Self.FK_usercourses_users">
             <End Role="users" EntitySet="users" />
@@ -720,11 +564,11 @@
           <EntitySetMapping Name="cors">
             <EntityTypeMapping TypeName="dopModel.cor">
               <MappingFragment StoreEntitySet="cor">
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="course_id" ColumnName="course_id" />
                 <ScalarProperty Name="admin_name" ColumnName="admin_name" />
                 <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -742,9 +586,9 @@
             <EntityTypeMapping TypeName="dopModel.CourseImplication">
               <MappingFragment StoreEntitySet="CourseImplications">
                 <ScalarProperty Name="course_id" ColumnName="course_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="implication_id" ColumnName="implication_id" />
                 <ScalarProperty Name="implication_value" ColumnName="implication_value" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -758,11 +602,11 @@
                 <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="branch" ColumnName="branch" />
                 <ScalarProperty Name="admin" ColumnName="admin" />
+                <ScalarProperty Name="course_id" ColumnName="course_id" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="time" ColumnName="time" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="courseno" ColumnName="courseno" />
-                <ScalarProperty Name="course_id" ColumnName="course_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -770,8 +614,8 @@
             <EntityTypeMapping TypeName="dopModel.implication">
               <MappingFragment StoreEntitySet="implications">
                 <ScalarProperty Name="implication_name" ColumnName="implication_name" />
-                <ScalarProperty Name="implication_type" ColumnName="implication_type" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="implication_type" ColumnName="implication_type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -782,7 +626,7 @@
                 <ScalarProperty Name="course_id" ColumnName="course_id" />
                 <ScalarProperty Name="from_admin" ColumnName="from_admin" />
                 <ScalarProperty Name="to_admin" ColumnName="to_admin" />
-                <ScalarProperty Name="remark1" ColumnName="remark1" />
+                <ScalarProperty Name="remark1" ColumnName="remark" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -792,9 +636,9 @@
               <MappingFragment StoreEntitySet="usercourses">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="course_id" ColumnName="course_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="applyTime" ColumnName="applyTime" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -810,17 +654,17 @@
                 <ScalarProperty Name="age" ColumnName="age" />
                 <ScalarProperty Name="branch" ColumnName="branch" />
                 <ScalarProperty Name="medical" ColumnName="medical" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="yearsOfServices" ColumnName="yearsOfServices" />
                 <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="posting" ColumnName="posting" />
                 <ScalarProperty Name="acrMarks" ColumnName="acrMarks" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="valueConditions">
             <EntityTypeMapping TypeName="dopModel.valueCondition">
-              <MappingFragment StoreEntitySet="valueConditions">
+              <MappingFragment StoreEntitySet="valueCondition">
                 <ScalarProperty Name="condition_id" ColumnName="condition_id" />
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="id" ColumnName="id" />

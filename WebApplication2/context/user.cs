@@ -16,8 +16,6 @@ namespace WebApplication2.context
     {
         public user()
         {
-            this.cors = new HashSet<cor>();
-            this.Remarks = new HashSet<Remark>();
             this.usercourses = new HashSet<usercours>();
         }
     
@@ -27,17 +25,15 @@ namespace WebApplication2.context
         public string gender { get; set; }
         public string qualification { get; set; }
         public string rank { get; set; }
-        public int age { get; set; }
+        public decimal age { get; set; }
         public string branch { get; set; }
         public string medical { get; set; }
-        public int yearsOfServices { get; set; }
+        public int user_id { get; set; }
+        public Nullable<int> yearsOfServices { get; set; }
         public string location { get; set; }
         public string posting { get; set; }
-        public int acrMarks { get; set; }
-        public int user_id { get; set; }
+        public Nullable<int> acrMarks { get; set; }
     
-        public virtual ICollection<cor> cors { get; set; }
-        public virtual ICollection<Remark> Remarks { get; set; }
         public virtual ICollection<usercours> usercourses { get; set; }
     }
 }
